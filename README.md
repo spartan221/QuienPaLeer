@@ -32,27 +32,84 @@
 <details>
   <summary>Historias de Usuario</summary>
   </br>
-  <ul>
-    <li>Inicio de Sesión<span>:x:</span></li>
-    <li>Registro de Usuario<span>:x:</span></li>
-    <li>Visualización de Chats<span>:x:</span></li>
-    <li>Eliminar Chats<span>:x:</span></li>
-    <li>Opinión de Libros<span>:x:</span></li>
-    <li>Creación de Eventos<span>:x:</span></li>
-    <li>Visualizar Eventos<span>:x:</span></li>
-    <li>Publicación Venta de Libros<span>:x:</span></li>
-    <li>Visualización Venta de Libros<span>:x:</span></li>
-    <li>Publicación Intercambio de Libros<span>:x:</span></li>
-    <li>Visualización Intercambio de Libros<span>:x:</span></li>
-    <li>Publicación de Recomendación de Libros<span>:x:</span></li>
-    <li>Visualizar Recomendación de Libros<span>:x:</span></li>
-    <li>Votación Recomendación de Libros<span>:x:</span></li>
-    <li>Búsqueda Específica Publicación<span>:x:</span></li>
-    <li>Editar Publicación<span>:x:</span></li>
-    <li>Visualizar Perfil<span>:x:</span></li>
-    <li>Actualizar Perfil<span>:x:</span></li>
-    
-  </ul>
+      <table>
+      <tr>
+        <th>Historia de Usuario</th>
+        <th>Estado</th>
+      </tr>
+      <tr>
+        <td>Inicio de Sesión</td>
+        <td>:x:</td>
+      </tr>
+      <tr>
+        <td>Registro de Usuario</td>
+        <td>:x:</td>
+      </tr>
+      <tr>
+        <td>Visualización de Chats</td>
+        <td>:x:</td>
+      </tr>
+      <tr>
+        <td>Eliminar Chats</td>
+        <td>:x:</td>
+      </tr>
+      <tr>
+        <td>Opinión de Libros</td>
+        <td>:x:</td>
+      </tr>
+      <tr>
+        <td>Creación de Eventos</td>
+        <td>:x:</td>
+      </tr>
+      <tr>
+        <td>Visualizar Eventos</td>
+        <td>:x:</td>
+      </tr>
+      <tr>
+        <td>Publicación Venta de Libros</td>
+        <td>:x:</td>
+      </tr>
+      <tr>
+        <td>Visualización Venta de Libros</td>
+        <td>:x:</td>
+      </tr>
+      <tr>
+        <td>Publicación Intercambio de Libros</td>
+        <td>:x:</td>
+      </tr>
+      <tr>
+        <td>Visualización Intercambio de Libros</td>
+        <td>:x:</td>
+      </tr>
+      <tr>
+        <td>Publicación de Recomendación de Libros</td>
+        <td>:x:</td>
+      </tr>
+      <tr>
+        <td>Visualizar Recomendación de Libros</td>
+        <td>:x:</td>
+      </tr>
+      <tr>
+        <td>Votación Recomendación de Libros</td>
+        <td>:x:</td>
+      </tr>
+      <tr>
+        <td>Búsqueda Específica Publicación</td>
+        <td>:x:</td>
+      </tr>
+      <tr>
+        <td>Editar Publicación</td>
+        <td>:x:</td>
+      </tr>
+      <tr>
+        <td>Visualizar Perfil</td>
+        <td>:x:</td>
+      </tr>
+      <tr>
+        <td>Actualizar Perfil</td>
+        <td>:x:</td>
+      </tr>
+    </table>
 </details>
 
 ### Integrantes:
