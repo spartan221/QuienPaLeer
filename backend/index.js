@@ -1,6 +1,6 @@
-const express = require("express")
-const mongoose = require("mongoose")
-const authRoute = require("./routes/auth")
+import express from "express"
+import mongoose from "mongoose"
+import {router as authRoute} from "./routes/auth.js" 
 
 mongoose.connect(
     "mongodb+srv://admin:admin1234@cluster0.w44l4de.mongodb.net/quienPaLeer?retryWrites=true&w=majority"

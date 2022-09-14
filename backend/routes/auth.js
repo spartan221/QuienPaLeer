@@ -1,6 +1,7 @@
-const User = require("../models/User")
+import * as User from "../models/User.js"
 
-const router = require("express").Router()
+import express from "express"
+const router = express.Router()
 
 //REGISTRO
 router.post("/register", async (req, res) => {
@@ -20,4 +21,4 @@ router.post("/register", async (req, res) => {
 
 })
 
-module.exports = router
+export { router }
