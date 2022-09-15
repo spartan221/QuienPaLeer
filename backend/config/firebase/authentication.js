@@ -8,12 +8,7 @@ export const registerUser = async (email, password) => {
     return new Promise((resolve, reject) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                // Registrado
-                // TODO: Crear model para usuarios
-                // el uid creado por el firebase auth va a ser la llave de cada usuario
-                // Nombre, apellido, correo, telefono
-
-                resolve(userCredential.user);
+                resolve(userCredential.user.uid);
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -49,7 +44,7 @@ export const loginUser = async (email, password) => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Logueado
-                resolve(userCredential.user);
+                resolve(userCredential.user.uid);
             })
             .catch((error) => {
                 const errorCode = error.code;

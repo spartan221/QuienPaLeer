@@ -1,24 +1,45 @@
-import * as User from "../models/User.js"
+import express from "express";
+import { registerUser } from "../config/firebase/authentication.js";
+import User from '../models/User.js'
 
-import express from "express"
-const router = express.Router()
+const authRouter = express.Router();
 
-//REGISTRO
-router.post("/register", async (req, res) => {
-    const newUser = new User({
-        name: req.body.name,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: req.body.password
-    })
+// Registro
+authRouter.post("/register", async(req, res) => {
 
     try {
-        const savedUser = await newUser.save()
-        res.status(201).json(savedUser)
-    } catch (err) {
-        res.status(500).json(err)
+        // Registrar el usuario con el servicio de Firebase
+        const userUID = await registerUser( req.body.email, req.body.password );     
+                
+        const newUser = new User({
+            _id: userUID,
+            name: req.body.name,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            phone: req.body.phone
+        });
+        
+        // Almacenar el nuevo usuario registrado en la BD
+        newUser.save()
+            .then((user) => {
+                // Se registra correctamente el usuario en la BD
+                res.statusCode = 201;
+                res.json(user);
+            })
+            .catch((error) => {
+                // Ha ocurrido un error en registrar el usuario en la BD
+                res.statusCode = 500;
+                res.json(error);
+            });
+
+    } catch (error) {
+        res.statusCode = 500;
+        res.json({error});
     }
 
-})
 
-export { router }
+});
+
+
+
+export default authRouter;
