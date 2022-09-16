@@ -2,6 +2,7 @@ import express from "express"
 import mongoose from "mongoose"
 import { router as authRoute } from "./routes/auth.js"
 import { router as eventRoute } from "./routes/event.js"
+import cors from "cors"
 
 mongoose.connect(
     "mongodb+srv://admin:admin1234@cluster0.w44l4de.mongodb.net/quienPaLeer?retryWrites=true&w=majority"
@@ -11,6 +12,7 @@ mongoose.connect(
 
 const app = express()
 
+app.use(cors())
 app.use(express.json())
 app.use("/api/auth", authRoute)
 app.use("/api/event", eventRoute)
