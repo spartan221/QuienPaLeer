@@ -68,3 +68,37 @@ export const loginUser = async (email, password) => {
             });
     });
 };
+
+// Middleware para verificar que el usuario se encuentra logueado
+// y agrega el id de este usuario al objeto req
+export const isUserAuthenticaded = ( req ,res, next ) => {
+    
+    const auth = getAuth( firebaseApp );
+    const user = auth.currentUser;
+
+    if (user) {
+        // El usuario se encuentra logueado
+        
+        // Agrega el id del usuario autenticado al request
+        req.userId = user.uid;
+
+        next();
+    }else{
+        // El usuario no se encuentra logueado o cerró sesión
+        res.statusCode = 403;
+        res.json( { error : "El usuario no se encuentra logueado" } );
+    }
+};
+
+// Cerrar Sesión
+export const logOut = async() => {
+    return new Promise((resolve, reject) => {
+        signOut(auth)
+            .then(() => {
+                resolve("Se ha cerrado sesión correctamente");
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
+};
