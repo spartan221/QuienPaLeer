@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-import authRouter from "./routes/auth.js" ;
+import authRouter from "./routes/auth.js";
 
 // const urlDb = "mongodb+srv://admin:admin1234@cluster0.w44l4de.mongodb.net/quienPaLeer?retryWrites=true&w=majority";
 

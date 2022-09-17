@@ -1,6 +1,5 @@
 import express from "express";
-import { getAuth } from "firebase/auth";
-import { isUserAuthenticaded, loginUser, logOut, registerUser } from "../config/firebase/authentication.js";
+import { getToken, isUserAuthenticaded, loginUser, logOut, registerUser, verifyUserByJwt } from "../config/firebase/authentication.js";
 import User from '../models/User.js'
 
 const authRouter = express.Router();
@@ -48,14 +47,16 @@ authRouter.post('/login', async(req, res) => {
         // Loguear al usuario usando el servicio de Firebase
         const userUID = await loginUser( req.body.email, req.body.password );
 
-        const user = await User.findById(userUID);
+        const token = getToken(userUID);
 
         res.statusCode = 200;
-        res.json(user);      
+
+        // Retorna el token JWT de autenticación
+        res.json({ token });      
 
     } catch (error) {
         res.statusCode = 500;
-        res.json({error});
+        res.json({error, mssg: "test"});
     }
 });
 
@@ -65,6 +66,7 @@ authRouter.get('/logout', async(req, res) => {
     try {
         const message = await logOut();
         res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
         res.json({message});
     } catch (error) {
         res.statusCode = 500;
@@ -73,9 +75,9 @@ authRouter.get('/logout', async(req, res) => {
 
 });
 
-authRouter.get('/test', isUserAuthenticaded, async(req, res) => {
+authRouter.get('/test', verifyUserByJwt, async(req, res) => {
     
-    const user = await User.findById(req.userId);
+    const user = req.user;
     res.statusCode = 200;
     res.json( user );
 
