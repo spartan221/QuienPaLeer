@@ -1,5 +1,5 @@
 import express from "express";
-import { getToken, isUserAuthenticaded, loginUser, logOut, registerUser, verifyUserByJwt } from "../config/firebase/authentication.js";
+import { getToken, loginUser, registerUser, isUserAuthenticaded } from "../config/firebase/authentication.js";
 import User from '../models/User.js'
 
 const authRouter = express.Router();
@@ -49,35 +49,37 @@ authRouter.post('/login', async(req, res) => {
 
         const token = getToken(userUID);
 
+        // Se envia al cliente una cookie con la clave "acces_token"
+        // y como valor el token generado
+        res.cookie("access_token", token, {
+            httpOnly: true
+        });
+
         res.statusCode = 200;
 
-        // Retorna el token JWT de autenticación
-        res.json({ token });      
+        // Mensaje de login sastifactorio
+        res.json({ message: "El login se ha compleado sastifactoriamente" });      
 
-    } catch (error) {
-        res.statusCode = 500;
-        res.json({error, mssg: "test"});
-    }
-});
-
-// Cerrar sesión
-authRouter.get('/logout', async(req, res) => {
-
-    try {
-        const message = await logOut();
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'application/json');
-        res.json({message});
     } catch (error) {
         res.statusCode = 500;
         res.json({error});
     }
+});
+
+// Cerrar sesión
+authRouter.get('/logout', isUserAuthenticaded, async(req, res) => {
+
+    res.clearCookie("access_token");
+
+    res.statusCode = 200;
+
+    res.json({ message: "Se ha cerrado sesión correctamente" });
 
 });
 
-authRouter.get('/test', verifyUserByJwt, async(req, res) => {
+authRouter.get('/myInfo', isUserAuthenticaded, async(req, res) => {
     
-    const user = req.user;
+    const user = await User.findById( req.userId );
     res.statusCode = 200;
     res.json( user );
 

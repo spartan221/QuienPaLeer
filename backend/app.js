@@ -1,3 +1,4 @@
+import cookieParser from "cookie-parser";
 import express from "express";
 import mongoose from "mongoose";
 import authRouter from "./routes/auth.js";
@@ -15,6 +16,7 @@ const app = express();
 
 // Middlewares iniciales
 app.use(express.json());
+app.use(cookieParser());
 
 // Routers
 app.use("/api/auth", authRouter);
