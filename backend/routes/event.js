@@ -3,7 +3,10 @@ import Event from "../models/Event.js"
 import express from "express"
 const router = express.Router()
 
-//CREACIÓN
+// CREACIÓN
+// TODO
+// - Agregar Middleware de Autenticación
+// - Agregar ID y nombre del Usuario a la tabla
 router.post("/create", async (req, res) => {
     const newEvent = new Event({
         name: req.body.name,

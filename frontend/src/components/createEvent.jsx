@@ -1,9 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { publicRequest } from '../requestMethods'
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import app from "../../../backend/config/firebase/firebase"
-import axios from 'axios';
+import { uploadFile } from '../../../backend/config/firebase/storage';
 
 const CreateEvent = () => {
     const [inputs, setInputs] = useState({})
@@ -17,52 +15,24 @@ const CreateEvent = () => {
         })
     }
 
+    //Se sube la imagen a Firebase, por consola se visualiza el porcentaje de subida
     const handleClick = (event) => {
         event.preventDefault()
-        const fileName = new Date().getTime() + file.name
-        const storage = getStorage(app)
-        const storageRef = ref(storage, fileName)
-        const uploadTask = uploadBytesResumable(storageRef, file)
-
-        // Register three observers:
-        // 1. 'state_changed' observer, called any time the state changes
-        // 2. Error observer, called on failure
-        // 3. Completion observer, called on successful completion
-        uploadTask.on('state_changed',
-            (snapshot) => {
-                // Observe state change events such as progress, pause, and resume
-                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
-                switch (snapshot.state) {
-                    case 'paused':
-                        console.log('Upload is paused');
-                        break;
-                    case 'running':
-                        console.log('Upload is running');
-                        break;
-                }
-            },
-            (error) => {
-                // Handle unsuccessful uploads
-                console.log(error);
-            },
-            () => {
-                // Handle successful uploads on complete
-                // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    const newEvent = { ...inputs, image: downloadURL };
-                    axios.post("http://localhost:5000/api/event/create", newEvent);
-                });
-            }
-        );
+        uploadFile(file).then((downloadURL) => {
+            const newEvent = { ...inputs, image: downloadURL };
+            publicRequest.post("/event/create", newEvent);
+        }).catch((error) => {
+            console.log(error);
+        })
     }
 
+    //TODO
+    // Comprobar que los campos del form no estén vacíos antes de envíarlo
     return (
         <div>
             <h1>Crear Evento</h1>
             <form>
-                <label htmlFor="image" n>Imagen</label><br />
+                <label htmlFor="image">Imagen</label><br />
                 <input type="file" name="image" accept="image/png, image/jpeg" id="image" onChange={(e) => setFile(e.target.files[0])}></input><br />
                 <label htmlFor="name">Nombre</label><br />
                 <input name="name" id="name" type="text" onChange={handleChange}></input><br />

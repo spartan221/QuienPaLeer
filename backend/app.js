@@ -12,10 +12,14 @@ mongoose.connect(
 
 const app = express()
 
+// Middlewares iniciales
+app.use(express.json());
 app.use(cors())
-app.use(express.json())
-app.use("/api/auth", authRoute)
+
+// Routers
+app.use("/api/auth", authRoute);
 app.use("/api/event", eventRoute)
+
 app.listen(5000, () => {
     console.log("Servidor backend funcionando")
 })
