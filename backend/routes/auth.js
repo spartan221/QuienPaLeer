@@ -2,44 +2,60 @@ import express from "express";
 import { registerUser } from "../config/firebase/authentication.js";
 import User from '../models/User.js'
 
-const authRouter = express.Router();
+const makeAuthRouter = (database) => {
 
-// Registro
-authRouter.post("/register", async(req, res) => {
+    const authRouter = express.Router();
 
-    try {
-        // Registrar el usuario con el servicio de Firebase
-        const userUID = await registerUser( req.body.email, req.body.password );     
-                
-        const newUser = new User({
-            _id: userUID,
-            name: req.body.name,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            phone: req.body.phone
-        });
-        
-        // Almacenar el nuevo usuario registrado en la BD
-        newUser.save()
-            .then((user) => {
-                // Se registra correctamente el usuario en la BD
-                res.statusCode = 201;
-                res.json(user);
-            })
-            .catch((error) => {
-                // Ha ocurrido un error en registrar el usuario en la BD
-                res.statusCode = 500;
-                res.json(error);
+    // Registro
+    authRouter.post("/register", async (req, res) => {
+
+
+        try {
+            // Comprobar que tengan todos los campos requeridos
+            if
+                (
+                !(
+                    req.body.email &&
+                    req.body.password &&
+                    req.body.name &&
+                    req.body.lastName &&
+                    req.body.email &&
+                    req.body.phone 
+                )
+            ) 
+            {
+                throw 'Falta un dato del usuario para poder realizar el registro';
+            }
+
+
+            // Registrar el usuario con el servicio de Firebase
+            const userUID = await registerUser(req.body.email, req.body.password);
+
+            const newUser = new User({
+                _id: userUID,
+                name: req.body.name,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                phone: req.body.phone
             });
 
-    } catch (error) {
-        res.statusCode = 500;
-        res.json({error});
-    }
+            // Almacenar el nuevo usuario registrado en la BD
+            const response = await database.saveUser(newUser);
+
+            // Usuario sastifactoriamente almacenado en la BD
+            if (response) {
+                res.status(201).json({ message: `El usuario ${newUser.name} se ha creado sastifactoriamente` });
+            }
 
 
-});
+        } catch (error) {
+            res.status(500).json({ message: error });
+        }
 
 
+    });
 
-export default authRouter;
+    return authRouter;
+}
+
+export default makeAuthRouter;
