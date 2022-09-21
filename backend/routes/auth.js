@@ -70,11 +70,11 @@ const makeAuthRouter = (database) => {
             res.statusCode = 200;
 
             // Mensaje de login sastifactorio
-            res.json({ message: "El login se ha compleado sastifactoriamente" });
+            res.json({ message: "El login se ha compleado sastifactoriamente" , token});
 
         } catch (error) {
             res.statusCode = 500;
-            res.json({ error });
+            res.json({ message: error });
         }
     });
 

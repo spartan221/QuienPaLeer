@@ -59,8 +59,8 @@ describe('Pruebas sobre la funcionalidad de registro de usuario', () => {
             });
 
             // Se ejecuta despues de cada test
-            afterEach(() => {
-                cleanDatabase();
+            afterEach(async() => {
+                await cleanDatabase();
             });
 
             it('El servidor devuelve el código 500', async() => {
@@ -159,4 +159,3 @@ describe('Pruebas sobre la funcionalidad de registro de usuario', () => {
 
     });
 });
-
