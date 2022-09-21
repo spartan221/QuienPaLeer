@@ -1,5 +1,5 @@
 import express from "express";
-import { registerUser } from "../config/firebase/authentication.js";
+import { getToken, loginUser, registerUser, isUserAuthenticaded } from "../config/firebase/authentication.js";
 import User from '../models/User.js'
 
 const makeAuthRouter = (database) => {
@@ -20,10 +20,9 @@ const makeAuthRouter = (database) => {
                     req.body.name &&
                     req.body.lastName &&
                     req.body.email &&
-                    req.body.phone 
+                    req.body.phone
                 )
-            ) 
-            {
+            ) {
                 throw 'Falta un dato del usuario para poder realizar el registro';
             }
 
@@ -51,11 +50,55 @@ const makeAuthRouter = (database) => {
         } catch (error) {
             res.status(500).json({ message: error });
         }
+    });
 
+    // Login
+    authRouter.post('/login', async (req, res) => {
+
+        try {
+            // Loguear al usuario usando el servicio de Firebase
+            const userUID = await loginUser(req.body.email, req.body.password);
+
+            const token = getToken(userUID);
+
+            // Se envia al cliente una cookie con la clave "acces_token"
+            // y como valor el token generado
+            res.cookie("access_token", token, {
+                httpOnly: true
+            });
+
+            res.statusCode = 200;
+
+            // Mensaje de login sastifactorio
+            res.json({ message: "El login se ha compleado sastifactoriamente" });
+
+        } catch (error) {
+            res.statusCode = 500;
+            res.json({ error });
+        }
+    });
+
+    // Cerrar sesión
+    authRouter.get('/logout', isUserAuthenticaded, async (req, res) => {
+
+        res.clearCookie("access_token");
+
+        res.statusCode = 200;
+
+        res.json({ message: "Se ha cerrado sesión correctamente" });
 
     });
 
+    authRouter.get('/myInfo', isUserAuthenticaded, async (req, res) => {
+
+        const user = await User.findById(req.userId);
+        res.statusCode = 200;
+        res.json(user);
+    });
+
     return authRouter;
-}
+
+};
+
 
 export default makeAuthRouter;
