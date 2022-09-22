@@ -2,10 +2,12 @@ import React from 'react'
 import { useState } from 'react'
 import { publicRequest } from '../requestMethods'
 import { uploadFile } from '../../../backend/config/firebase/storage';
+import EventIcon from '@mui/icons-material/Event';
 
 const CreateEvent = () => {
     const [inputs, setInputs] = useState({})
     const [file, setFile] = useState(null)
+    const [errors, setErrors] = useState({ file: null })
 
     function handleChange(event) {
         setInputs(prevInput => {
@@ -13,40 +15,98 @@ const CreateEvent = () => {
                 ...prevInput, [event.target.name]: event.target.value
             }
         })
+
+        if (!!errors[event.target.name])
+            setErrors({
+                ...errors,
+                [event.target.name]: null
+            })
     }
 
-    //Se sube la imagen a Firebase, por consola se visualiza el porcentaje de subida
+    function handleChangeFile(event) {
+        setFile(event.target.files[0]);
+        if (!!errors[event.target.name])
+            setErrors({
+                ...errors,
+                [event.target.name]: null
+            })
+    }
+
+    const validateForm = () => {
+        const { name, description, startDate, endDate, hour, place } = inputs
+        const newErrors = {}
+        if (!name || name === '') newErrors.name = 'Ingresa un nombre.'
+        if (!description || description === '') newErrors.description = 'Ingresa una descripción.'
+        if (!startDate || startDate === '') newErrors.startDate = 'Fecha inválida.'
+        if (!endDate || endDate === '') newErrors.endDate = 'Fecha inválida.'
+        if (!hour || hour === '') newErrors.hour = 'Hora inválida.'
+        if (!place || place === '') newErrors.place = 'Ingresa un lugar.'
+        if (!file || file === '') newErrors.image = 'Sube una imagen.'
+        return newErrors
+    }
+
     const handleClick = (event) => {
         event.preventDefault()
-        uploadFile(file).then((downloadURL) => {
-            const newEvent = { ...inputs, image: downloadURL };
-            publicRequest.post("/event/create", newEvent);
-        }).catch((error) => {
-            console.log(error);
-        })
+        const formErrors = validateForm()
+        if (Object.keys(formErrors).length > 0) {
+            setErrors(formErrors)
+        } else {
+            uploadFile(file).then((downloadURL) => {
+                const newEvent = { ...inputs, image: downloadURL };
+                publicRequest.post("/event/create", newEvent);
+                console.log('Evento agregado.')
+            }).catch((error) => {
+                console.log(error);
+            })
+        }
     }
 
-    //TODO
-    // Comprobar que los campos del form no estén vacíos antes de envíarlo
     return (
-        <div>
-            <h1>Crear Evento</h1>
-            <form>
-                <label htmlFor="image">Imagen</label><br />
-                <input type="file" name="image" accept="image/png, image/jpeg" id="image" onChange={(e) => setFile(e.target.files[0])}></input><br />
-                <label htmlFor="name">Nombre</label><br />
-                <input name="name" id="name" type="text" onChange={handleChange}></input><br />
-                <label htmlFor="description">Descripción</label><br />
-                <input name="description" id="description" type="text" onChange={handleChange}></input><br />
-                <label htmlFor="startDate">Fecha Inicio</label><br />
-                <input type="date" name="startDate" id="startDate" onChange={handleChange}></input><br />
-                <label htmlFor="endDate">Fecha Fin</label><br />
-                <input type="date" name="endDate" id="endDate" onChange={handleChange}></input><br />
-                <label htmlFor="hour">Hora</label><br />
-                <input type="time" name="hour" id="hour" onChange={handleChange}></input><br />
-                <label htmlFor="place">Lugar</label><br />
-                <input name="place" id="place" type="text" onChange={handleChange}></input><br />
-                <input type="submit" onClick={handleClick}></input>
+        <div className='container rounded border p-4'>
+            <div className='container row border-bottom border-secondary ms-1'>
+                <h1 className="fs-4 text-start col-8 ps-0 ms-0">Crear evento</h1>
+                <div className="col-4 text-end"><EventIcon /></div>
+            </div>
+            <form className="text-start mt-3">
+                <label htmlFor="name" className="form-label">Nombre</label><br />
+                <input className="form-control" name="name" id="name" type="text" onChange={handleChange} ></input><br />
+                <p className="text-danger fs-6 pt-0 mt-0">{errors.name}</p>
+                <label htmlFor="description" className="form-label">Descripción</label><br />
+                <textarea className="form-control" name="description" id="description" type="text" onChange={handleChange} ></textarea><br />
+                <p className="text-danger fs-6 pt-0 mt-0">{errors.description}</p>
+                <div className='row'>
+                    <div className='col'>
+                        <label htmlFor="startDate" className="form-label">Fecha Inicio</label><br />
+                        <input className="form-control" type="date" name="startDate" id="startDate" onChange={handleChange}></input><br />
+                        <p className="text-danger fs-6 pt-0 mt-0">{errors.startDate}</p>
+                    </div>
+                    <div className='col'>
+                        <label htmlFor="endDate" className="form-label">Fecha Fin</label><br />
+                        <input className="form-control" type="date" name="endDate" id="endDate" onChange={handleChange}></input><br />
+                        <p className="text-danger fs-6 pt-0 mt-0">{errors.endDate}</p>
+                    </div>
+                    <div className='col'>
+                        <label htmlFor="hour" className="form-label">Hora</label><br />
+                        <input className="form-control" type="time" name="hour" id="hour" onChange={handleChange} ></input><br />
+                        <p className="text-danger fs-6 pt-0 mt-0">{errors.hour}</p>
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col'>
+                        <label htmlFor="image" className="form-label">Imagen</label><br />
+                        <input className="form-control" type="file" name="image" accept="image/png, image/jpeg" id="image" onChange={handleChangeFile}></input><br />
+                        <p className="text-danger fs-6 pt-0 mt-0">{errors.image}</p>
+                    </div>
+                    <div className='col'>
+                        <label htmlFor="place" className="form-label">Lugar</label><br />
+                        <input className="form-control" name="place" id="place" type="text" onChange={handleChange}></input><br />
+                        <p className="text-danger fs-6 pt-0 mt-0">{errors.place}</p>
+                    </div>
+                </div>
+                <div className="text-center">
+                    <button className="btn btn-warning px-5" type="submit" onClick={handleClick}>Subir</button>
+                </div>
+
             </form>
         </div>
     )

@@ -28,3 +28,14 @@ router.post("/create", async (req, res) => {
 })
 
 export { router }
+
+
+//VISUALIZACIÓN
+router.get('/view/:id', async (req, res) => {
+    try {
+        const event = await Event.findById(req.params.id);
+        res.status(200).json(event)
+    } catch (err) {
+        res.status(500).json(err)
+    }
+})
