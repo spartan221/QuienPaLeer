@@ -3,11 +3,17 @@ import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Modal from 'react-bootstrap/Modal';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const baseURL = 'http://localhost:5000/api/book/create'
 
 function FormBook() {
+    const [show, setShow] = useState(false);
 
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     const [book, setBook] = useState('');
     const bookOject = {
         name: '',
@@ -20,6 +26,14 @@ function FormBook() {
         user: ''
     }
 
+    const handleChangeFile=(event) => {
+        setFile(event.target.files[0]);
+        if (!!errors[event.target.name])
+            setErrors({
+                ...errors,
+                [event.target.name]: null
+            })
+    }
     const saveData = async (e) => {
         e.preventDefault()
         const newBook = {
@@ -42,76 +56,90 @@ function FormBook() {
     }
 
     return (<div>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <Button variant="primary" onClick={handleShow}>
             Agregar libro
-        </button>
-        
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+        </Button>
+        <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+                <Modal.Title>Agregar libro</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <div className="px-4">
+                    <Form onSubmit={saveData}>
+                        <Form.Group className="mb-3" controlId="formName">
+                            <Form.Label>Nombre:</Form.Label>
+                            <Form.Control type="text" placeholder="Ingrese nombre del libro" value={book.name} onChange={captureValues} />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formAuthor">
+                            <Form.Label>Autor:</Form.Label>
+                            <Form.Control type="text" placeholder="Ingrese el autor" value={book.author} onChange={captureValues} />
+                        </Form.Group>
+
+
+                        <Row>
+                            <Col sm={8}>
+                                <Form.Group className="mb-3" controlId="formEditorial">
+                                    <Form.Label>Editorial:</Form.Label>
+                                    <Form.Control type="text" placeholder="Ingrese la editorial" value={book.editorial} onChange={captureValues} />
+                                </Form.Group>
+                            </Col>
+                            <Col sm={4}><Form.Group className="mb-3" controlId="formISBN">
+                                <Form.Label>ISBN:</Form.Label>
+                                <Form.Control type="text" placeholder="ISBN del libro" value={book.isbn} onChange={captureValues} />
+                            </Form.Group></Col>
+                        </Row>
+
+
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formYear">
+                                    <Form.Label>Año:</Form.Label>
+                                    <Form.Control type="Number" placeholder="Ingrese el año de publiación" value={book.year} onChange={captureValues} />
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formPrice">
+                                    <Form.Label>precio $:</Form.Label>
+                                    <Form.Control type="text" placeholder="Ingrese el precio" value={book.price} onChange={captureValues} />
+                                </Form.Group>
+                            </Col>
+
+                        </Row>
+
+                        <Row>
+                            <Col>
+                                <Form.Label>Categoría:</Form.Label>
+                                <Form.Select aria-label="Default select example">
+                                    <option>Seleccione la categoría</option>
+                                    <option value="1">Romántico</option>
+                                    <option value="2">Drama</option>
+                                    <option value="3">Educación</option>
+                                    <option value="4">Suspenso</option>
+                                    <option value="5">Novela</option>
+                                </Form.Select>
+                            </Col>
+
+                            <Col>
+                                <Form.Label htmlFor="image" className="form-label">Imagen</Form.Label>
+                                <Form.Control className="form-control" type="file" name="image" accept="image/png, image/jpeg" id="image" onChange={handleChangeFile}/>
+                            </Col>
+                        </Row>
+
+                        <div className="d-flex justify-content-center mt-2">
+                            <Button className="bg-dark" variant="primary" type="submit">
+                                Agregar
+                            </Button>
+                        </div>
+
+                    </Form>
                 </div>
-            </div>
-        </div>
 
-        <Form onSubmit={saveData}>
-            <Form.Group className="mb-3" controlId="formName">
-                <Form.Label>Nombre:</Form.Label>
-                <Form.Control type="text" placeholder="Ingrese nombre del libro" value={book.name} onChange={captureValues} />
-            </Form.Group>
+            </Modal.Body>
+        </Modal>
 
-            <Form.Group className="mb-3" controlId="formISBN">
-                <Form.Label>ISBN:</Form.Label>
-                <Form.Control type="text" placeholder="ISBN del libro" value={book.isbn} onChange={captureValues} />
-            </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formAuthor">
-                <Form.Label>Autor:</Form.Label>
-                <Form.Control type="text" placeholder="Ingrese el autor" value={book.author} onChange={captureValues} />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formEditorial">
-                <Form.Label>Editorial:</Form.Label>
-                <Form.Control type="text" placeholder="Ingrese la editorial" value={book.editorial} onChange={captureValues} />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formYear">
-                <Form.Label>Año:</Form.Label>
-                <Form.Control type="text" placeholder="Ingrese el año de publiación" value={book.year} onChange={captureValues} />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formPrice">
-                <Form.Label>precio $:</Form.Label>
-                <Form.Control type="text" placeholder="Ingrese el precio" value={book.price} onChange={captureValues} />
-            </Form.Group>
-
-            <Form.Label>Categoría:</Form.Label>
-            <Form.Select aria-label="Default select example">
-
-                <option>Seleccione la categoría</option>
-                <option value="1">Romántico</option>
-                <option value="2">Drama</option>
-                <option value="3">Educación</option>
-                <option value="4">Suspenso</option>
-                <option value="5">Novela</option>
-            </Form.Select>
-
-            <Button variant="primary" type="submit">
-                Submit
-            </Button>
-        </Form>
-
-    </div>)
+    </div >)
 }
 
 export default FormBook;
