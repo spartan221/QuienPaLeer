@@ -8,8 +8,11 @@ const BookSchema= new mongoose.Schema({
     year: { type: String, required: true},
     price :{ type:Number, required: true},
     cathegory : {type:String},  
-    user:{ type: mongoose.Schema.ObjectId,ref:"UserPrueba"}
+    user:{ type: mongoose.Schema.ObjectId,ref:"UserPrueba"},
+    image:{type:String}
 },{
     timestamps:true
-})
-export default mongoose.model("Book", BookSchema)
+});
+const Book = mongoose.model("Book", BookSchema)
+
+export default Book;
