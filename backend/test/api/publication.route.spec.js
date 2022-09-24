@@ -1,15 +1,17 @@
-import app from '../app.js';
+import makeApp from '../../app.js';
+import database from '../../database.js';
 import request from 'supertest';
 import mongoose from 'mongoose';
 import publication from '../models/Publication.js'
+const app = makeApp(database);
 
 describe('Testing api publication',()=>{
-    beforeAll(async()=>{
-        await mongoose.connect('mongodb://localhost/BookSale')
-    });
-    afterAll(async()=>{
-        await mongoose.disconnect();
-    });
+    //beforeAll(async()=>{
+      //  await mongoose.connect('mongodb://localhost/BookSale')
+    //});
+    //afterAll(async()=>{
+      //  await mongoose.disconnect();
+    //});
     describe('GET /api/publication ',()=>{
         let response;
         beforeEach(async ()=>{

@@ -1,16 +1,20 @@
 import Book from "../models/Book.js"
 import express from "express"
+import {isUserAuthenticaded} from '../config/firebase/authentication.js'
+import mongoose from 'mongoose'
 const router = express.Router()
 
 //CREACIÓN
-router.post("/create", async (req, res) => {
+
+router.post("/create", isUserAuthenticaded, async (req, res) => {
     const newBook = new Book({
         name: req.body.name,
         author: req.body.author,
+        isbn:req.body.isbn,
         editorial: req.body.editorial,
         year: req.body.year,
         price: req.body.price,
-        user: req.body.user
+        user:req.userId  
     });
     try {
         const bookSaved = await newBook.save()
@@ -31,7 +35,7 @@ router.get("/getWithUsers", async (req, res) => {
     const books = await Book.aggregate([
         {
             $lookup: {
-                from: "userpruebas",
+                from: "users",
                 localField: "user",
                 foreignField :"_id",
                 as:"userPublic"
@@ -44,4 +48,4 @@ router.get("/getWithUsers", async (req, res) => {
     res.json(books);
 })
 
-export { router }
+export default router
