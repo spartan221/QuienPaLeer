@@ -1,25 +1,25 @@
-import express from "express"
-import mongoose from "mongoose"
-import { router as authRoute } from "./routes/auth.js"
-import { router as eventRoute } from "./routes/event.js"
-import cors from "cors"
+import cookieParser from "cookie-parser";
+import express from "express";
+import makeAuthRouter from "./routes/auth.js";
 
-mongoose.connect(
-    "mongodb+srv://admin:admin1234@cluster0.w44l4de.mongodb.net/quienPaLeer?retryWrites=true&w=majority"
-)
-    .then(() => console.log("Conexión a BD exitosa"))
-    .catch((err) => console.log(err))
 
-const app = express()
+const makeApp = (database) => {
 
-// Middlewares iniciales
-app.use(express.json());
-app.use(cors())
+    const app = express();
 
-// Routers
-app.use("/api/auth", authRoute);
-app.use("/api/event", eventRoute)
+    // Middlewares iniciales
+    app.use(express.json());
+    app.use(cookieParser());
 
-app.listen(5000, () => {
-    console.log("Servidor backend funcionando")
-})
+    app.get('', (req, res) => {
+        res.status(200).json({ message: "test" });
+    });
+
+    // Routers
+    const authRouter = makeAuthRouter(database);
+    app.use("/api/auth", authRouter);
+
+    return app;
+}
+
+export default makeApp;
