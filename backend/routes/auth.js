@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-import User from "../models/User.js"
-=======
 import express from "express";
 import { getToken, loginUser, registerUser, isUserAuthenticaded } from "../config/firebase/authentication.js";
 import User from '../models/User.js'
->>>>>>> aa52f8ee8127baf482d5a139d4e56fe7f9875a65
 
 const makeAuthRouter = (database) => {
 

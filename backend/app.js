@@ -1,6 +1,8 @@
 import cookieParser from "cookie-parser";
 import express from "express";
 import makeAuthRouter from "./routes/auth.js";
+import cors from "cors"
+import makeEventRouter from "./routes/event.js";
 
 
 const makeApp = (database) => {
@@ -10,6 +12,7 @@ const makeApp = (database) => {
     // Middlewares iniciales
     app.use(express.json());
     app.use(cookieParser());
+    app.use(cors());
 
     app.get('', (req, res) => {
         res.status(200).json({ message: "test" });
@@ -18,6 +21,8 @@ const makeApp = (database) => {
     // Routers
     const authRouter = makeAuthRouter(database);
     app.use("/api/auth", authRouter);
+    const eventRouter = makeEventRouter(database);
+    app.use("/api/event", eventRouter);
 
     return app;
 }
