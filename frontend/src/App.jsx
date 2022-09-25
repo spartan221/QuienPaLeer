@@ -1,14 +1,14 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
-import FormBook from './components/AddBookSale.jsx'
+
+import ViewBooks from './components/publicationBook/ViewBooks'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <div >
-      <FormBook/>
+      <ViewBooks/>
     </div>
   )
 }
