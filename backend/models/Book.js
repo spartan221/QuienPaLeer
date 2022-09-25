@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const BookSchema= new mongoose.Schema({
     name: { type: String, required: true,trim:true },
-    isbn:{type:String,required:true,trim:true},
+    title:{type:String,required:true,trim:true},
     author: { type: String, required: true},
     editorial: { type: String, required: true},
     year: { type: String, required: true},

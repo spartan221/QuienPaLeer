@@ -1,7 +1,7 @@
 import Book from "../models/Book.js"
 import express from "express"
 import {isUserAuthenticaded} from '../config/firebase/authentication.js'
-import mongoose from 'mongoose'
+
 const router = express.Router()
 
 //CREACIÓN
@@ -10,7 +10,7 @@ router.post("/create", isUserAuthenticaded, async (req, res) => {
     const newBook = new Book({
         name: req.body.name,
         author: req.body.author,
-        isbn:req.body.isbn,
+        title:req.body.title,
         editorial: req.body.editorial,
         year: req.body.year,
         price: req.body.price,
