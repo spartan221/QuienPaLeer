@@ -1,6 +1,7 @@
 import cookieParser from "cookie-parser";
 import express from "express";
 import makeAuthRouter from "./routes/auth.js";
+import cors from 'cors';
 
 
 const makeApp = (database) => {
@@ -10,6 +11,7 @@ const makeApp = (database) => {
     // Middlewares iniciales
     app.use(express.json());
     app.use(cookieParser());
+    app.use(cors({origin: true, credentials: true }));
 
     app.get('', (req, res) => {
         res.status(200).json({ message: "test" });

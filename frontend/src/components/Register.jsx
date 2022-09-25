@@ -3,12 +3,20 @@ import "../css/Register.css"
 import LogoQPLBlack from "../assets/img/QPL_Logo_Black.png";
 import { FaEye } from "react-icons/fa";
 import { useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
+
+const baseURL = 'http://localhost:5000/api/auth/register'
 
 function Register() {
 
   const [passwordShown, setPasswordShown] = useState(false);
   const [isChecked, setCheck] = useState(false);
+  const [inputs, setInputs] = useState({});
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -21,6 +29,95 @@ function Register() {
       setCheck(false);
     }
   };
+
+  const handleChange = (event) => {
+    setInputs(prevInput => {
+      return {
+        ...prevInput, [event.target.name]: event.target.value
+      }
+    })
+
+    if (!!errors[event.target.name])
+      setErrors({
+        ...errors,
+        [event.target.name]: null
+      })
+  }
+
+  const validateForm = () => {
+    const { name, lastName, email, phone, password, confirmPassword  } = inputs
+    const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    const passwordPattern = /^[A-Za-z0-9]{8,20}$/
+    const phonePattern = /^3[0-9]{9}$/
+    const newErrors = {}
+    if (!name || name === '') newErrors.name = 'Ingresa un nombre'
+    if (!lastName || lastName === '') newErrors.lastName = 'Ingresa un apellido'
+    if (!email || email === '') newErrors.email = 'Ingresa un correo'
+    if (!emailPattern.test(email)) newErrors.email = 'Ingrese un correo válido'
+    if (!phone || phone === '') newErrors.phone = 'Ingrese un número telefónico'
+    if (!phonePattern.test(phone)) newErrors.phone = 'Ingrese un número telefónico válido. Ej: 3001234567'
+    if (!password || password === '') newErrors.password = 'Ingrese una contraseña'
+    if (!passwordPattern.test(password)) newErrors.password = 'La contraseña debe tener almenos 8 carácteres del alfabeto ingles'
+    if (!confirmPassword || confirmPassword === '') newErrors.confirmPassword = 'Ingrese la confirmación de la contraseña'
+    if (confirmPassword !== password) newErrors.confirmPassword = 'Las contraseña no coincide'
+    return newErrors
+  }
+
+  const handleSumbitRegister = (event) => {
+    event.preventDefault()
+    const formErros = validateForm();
+    if (Object.keys(formErros).length > 0) {
+      setErrors(formErros)
+    } else {
+      axios.post(baseURL, inputs)
+      .then((response) => {
+
+        // Registro exitoso
+
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'success',
+          title: 'Se ha registrado correctamente'
+        })
+
+        // Redirigir al login si todo sale bien
+        navigate('/', { replace: true })
+
+      })
+      .catch((error) => {
+        const errMessage = error.response.data.message
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        
+        Toast.fire({
+          icon: 'error',
+          title: errMessage
+        })
+
+
+      });
+    }
+  }
 
   return (
     <div className='d-flex align-content-center justify-content-center vh-100'>
@@ -52,30 +149,38 @@ function Register() {
           <form>
             <div className='row mx-2'>
               <div className='col form-group'>
-                <label className="pb-1" htmlFor="firstname">Nombre(s)</label>
-                <input id="firstname" name="firstname" type="text" className='form-control' required autoFocus autoComplete='off'/>
-                <p className="errorContainer ms-1 mt-2 text-danger" id="containerErrorFirstN"></p>
+                <label className="pb-1" htmlFor="name">Nombre(s)</label>
+                <input id="name" name="name" type="text" className='form-control' required autoFocus autoComplete='off' onChange={handleChange}/>
+                {errors.name
+                ? <p className="errorContainer ms-1 mt-2 text-danger" id="containerErrorName">{errors.name}</p>
+                : null}
               </div>
               <div className='col'>
-                <label className="pb-1" htmlFor="lastname">Apellido(s)</label>
-                <input id="lastname" name="lastname" type="text" className='form-control'required autoComplete='off'/>
-                <p className="errorContainer ms-1 mt-2 text-danger" id="containerErrorLastN"></p>
+                <label className="pb-1" htmlFor="lastName">Apellido(s)</label>
+                <input id="lastName" name="lastName" type="text" className='form-control'required autoComplete='off' onChange={handleChange}/>
+                {errors.lastName
+                ? <p className="errorContainer ms-1 mt-2 text-danger" id="containerErrorLastName">{errors.lastName}</p>
+                : null}
               </div>
             </div>
 
             <div className='row mt-1 mx-2'>
               <div className='col form-group'>
                 <label className="pb-1" htmlFor="email">Correo electrónico</label>
-                <input id="email" name="email" type="email" className='form-control' required autoComplete='off'/>
-                <p className="errorContainer ms-1 mt-2 text-danger" id="containerErrorEmail"></p>
+                <input id="email" name="email" type="email" className='form-control' required autoComplete='off' onChange={handleChange}/>
+                {errors.email
+                ? <p className="errorContainer ms-1 mt-2 text-danger" id="containerErrorEmail">{errors.email}</p>
+                : null}
               </div>
             </div>
 
             <div className='row mt-2 mx-2'>
               <div className='col form-group'>
                 <label className="pb-1" htmlFor="phone">Teléfono</label>
-                <input id="phone" name="phone" type="tel" className='form-control' required autoComplete='off'/>
-                <p className="errorContainer ms-1 mt-2 text-danger" id="containerErrorPhone"></p>
+                <input id="phone" name="phone" type="tel" className='form-control' required autoComplete='off'onChange={handleChange}/>
+                {errors.phone
+                ? <p className="errorContainer ms-1 mt-2 text-danger" id="containerErrorPhone">{errors.phone}</p>
+                : null}
               </div>
             </div>
             
@@ -89,13 +194,17 @@ function Register() {
                     <FaEye onClick={togglePasswordVisiblity} />
                   </div>
                 </div>
-                <input id="password" name="password" type={passwordShown ? "text" : "password"} className='form-control' required autoComplete='off'/>
-                <p className="errorContainer ms-1 mt-2 text-danger" id="containerErrorPassword"></p>
+                <input id="password" name="password" type={passwordShown ? "text" : "password"} className='form-control' required autoComplete='off' onChange={handleChange}/>
+                {errors.password
+                ? <p className="errorContainer ms-1 mt-2 text-danger" id="containerErrorPassword">{errors.password}</p>
+                : null}
               </div>
               <div className='col'>
                 <label className="pb-1 confirmPassLabel" htmlFor="confirmPassword">Confirmar contraseña</label>
-                <input id="confirmPassword" name="confirmPassword" type={passwordShown ? "text" : "password"} className='form-control' required autoComplete='off'/>
-                <p className="errorContainer ms-1 mt-2 text-danger" id="containerErrorConfPassword"></p>
+                <input id="confirmPassword" name="confirmPassword" type={passwordShown ? "text" : "password"} className='form-control' required autoComplete='off' onChange={handleChange}/>
+                {errors.confirmPassword
+                ? <p className="errorContainer ms-1 mt-2 text-danger" id="containerErrorConfPassword">{errors.confirmPassword}</p>
+                : null}
               </div>
             </div>
 
@@ -110,14 +219,14 @@ function Register() {
 
             <div className='row my-4 mx-2'>
               <div className='col form-group'>
-                <button className='btn btn-sm' id='submitRegister' type='submit' disabled={isChecked ? false : true}>Registrarse</button>
+                <button className='btn btn-sm' id='submitRegister' type='submit' disabled={isChecked ? false : true} onClick={handleSumbitRegister}>Registrarse</button>
               </div>
             </div>
           </form>
         </div>
         <div className="card-footer d-flex justify-content-center align-content-center">
           <p className="textDontHaveAcc">¿Ya tienes una cuenta?</p>
-          <a className="linkRegister">Entrar</a>
+          <Link className="linkRegister" to='/'>Entrar</Link>
         </div>
       </div>        
     </div>
