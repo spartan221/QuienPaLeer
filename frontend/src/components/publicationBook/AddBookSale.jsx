@@ -72,14 +72,14 @@ function FormBook() {
 
 
   return (
-    <div className="px-4">
-      <div className='container row border-bottom border-secondary ms-1'>
+    <div className="px-4 ">
+      <div className='container row border-bottom border-secondary ms-1 '>
         <h1 className="fs-4 text-start col-8 ps-0 ms-0">Agregar libro</h1>
         <div className="col-4 text-end"><AttachMoneyIcon /></div>
         
       </div>
       <br />
-      <Form onSubmit={saveData}>
+      <Form onSubmit={saveData} >
               
             <Form.Group className="mb-3" controlId="formTitle">
             <Form.Label>Título de la venta</Form.Label>

@@ -50,11 +50,11 @@ const ViewBooks = () => {
         setCurrentPage(pageNumber)
     }
     return (
-        <div className='container'>
+        <div className='container pt-2'>
             <div className='row'>
                 <h2 className='col text-start'>Venta de libros</h2>
                 <div className='col text-end'>
-                    <button type="button" className='btn btn-dark' data-bs-toggle="modal" data-bs-target="#ModalCreate">Añadir a la venta</button>
+                    <button type="button" className='btn border text-white' data-bs-toggle="modal" data-bs-target="#ModalCreate">Añadir a la venta</button>
                 </div>
             </div>
             <br></br>
