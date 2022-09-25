@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 // const urlDb = "mongodb+srv://admin:admin1234@cluster0.w44l4de.mongodb.net/quienPaLeer?retryWrites=true&w=majority";
 
-const urlDb = 'mongodb://127.0.0.1:27017/quienPaLeer';
+const urlDb = 'mongodb://localhost:27017/BookSale';
 
 const connection = mongoose.connect(urlDb)
-    // .then(() => console.log("Conexión a BD exitosa"))
-    // .catch((err) => console.log("Error en la conexión a BD"));
+    .then(() => console.log("Conexión a BD exitosa"))
+    .catch((err) => console.log("Error en la conexión a BD"));
 
 
 // Almacenar usuario en la BD

@@ -67,9 +67,9 @@ function FormBook() {
 
   return (
     <div>
-      <Stack direction="horizontal" gap={2} className='d-flex justify-content-between p-2'>
+      <Stack direction="horizontal" gap={2} className='d-flex justify-content-between p-4'>
         <div >
-          <h2>Venta de libros</h2>
+          <h3>Venta de libros</h3>
         </div>
         <div >
           <Button variant="dark" onClick={handleShow}>
