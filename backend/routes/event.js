@@ -1,13 +1,12 @@
 import Event from "../models/Event.js"
 import express from "express"
+import { isUserAuthenticaded } from "../config/firebase/authentication.js"
 
 const makeEventRouter = (database) => {
     const eventRouter = express.Router()
 
     // CREACIÓN
-    // TODO
-    // - Agregar Middleware de Autenticación
-    // - Agregar ID y nombre del Usuario a la tabla
+    //eventRouter.post("/create", isUserAuthenticaded,async (req, res) => {
     eventRouter.post("/create", async (req, res) => {
         const newEvent = new Event({
             name: req.body.name,
@@ -27,8 +26,17 @@ const makeEventRouter = (database) => {
 
     })
 
+    //PAGINACIÓN
+    eventRouter.get('/view/all', async (req, res) => {
+        try {
+            const events = await Event.find();
+            res.status(200).json(events)
+        } catch (err) {
+            res.status(500).json(err)
+        }
+    })
 
-    //VISUALIZACIÓN
+    //VISUALIZACIÓN UN EVENTO
     eventRouter.get('/view/:id', async (req, res) => {
         try {
             const event = await Event.findById(req.params.id);
