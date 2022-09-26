@@ -13,7 +13,7 @@ export const EventPost = ({ posts, loading }) => {
                 <div>
                     <div key={post._id} className="col py-2 px-4">
                         <div className='row'>
-                            <input onClick={e => setProperties({ ...post })} type="image" data-bs-toggle="modal" data-bs-target="#Modal" className="rounded-4 border" src={post.image}></input>
+                            <input  onClick={e => setProperties({ ...post })} type="image" data-bs-toggle="modal" data-bs-target="#Modal" className="rounded-4 border imagen" src={post.image}></input>
                         </div>
                         <div className='row'>
                             <p className='col text-start'>{post.name}</p>

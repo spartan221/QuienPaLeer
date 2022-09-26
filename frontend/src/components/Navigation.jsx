@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import LogoQPLBlack from "../assets/img/QPL_Logo_Black.png";
 import './css/View.css'
 function Navigation() {
     return (
@@ -14,7 +15,9 @@ function Navigation() {
             <Navbar bg="light" variant="light" className="py-3 border border-bottom shadow-sm h-100" >
 
                 <Navbar.Brand className="px-4 negrita" href="/">
-                        QuienPaLeer
+
+                    <img src={LogoQPLBlack}  style={{ Size: 20 }} />
+                    QuienPaLeer
                 </Navbar.Brand>
                 <div className="vr"></div>
 
@@ -22,7 +25,7 @@ function Navigation() {
 
                     <Nav  >
                         <NavDropdown title="Libros" id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="books">Libros</NavDropdown.Item>
+                            <NavDropdown.Item href="home/books">Libros</NavDropdown.Item>
                             <NavDropdown.Item href="events">Eventos</NavDropdown.Item>
                         </NavDropdown>
 
@@ -35,14 +38,14 @@ function Navigation() {
                             />
                             <Button className='orange-text text-white border'>Buscar</Button>
                         </Form>
-                        
+
 
                     </Nav>
                     <Nav>
 
-                        <Nav.Link  className='py-0'>
-                        <i className="bi bi-person-circle px-2" style={{ fontSize: 30 }}></i>                            
-                                Usuario                           
+                        <Nav.Link className='py-0'>
+                            <i className="bi bi-person-circle px-2" style={{ fontSize: 30 }}></i>
+                            Usuario
                         </Nav.Link>
 
                         <div className="vr"></div>
@@ -52,9 +55,9 @@ function Navigation() {
                         </Nav.Link>
 
                         <Nav.Link>
-                            <i className="bi bi-x-lg"  style={{ fontSize: 20 }}></i>
+                            <i className="bi bi-x-lg" style={{ fontSize: 20 }}></i>
                         </Nav.Link>
-                        
+
                     </Nav>
                 </Container>
             </Navbar>

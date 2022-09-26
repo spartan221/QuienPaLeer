@@ -2,8 +2,13 @@ import { useState } from "react"
 import axios from 'axios'
 import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
-import Spinner from "./SpinnerCircular"
-
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import FormBook from "./publicationBook/ViewBooks";
+import Navigation from './Navigation';
+import SideBar from './SideBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/ContentStyle.css';
+import Events from './ViewEvents'
 const Home = () => {
 
     const baseURL = 'http://localhost:5000/api/auth/myInfo'
@@ -24,7 +29,7 @@ const Home = () => {
     useEffect(() => {
         setTimeout(() => {
             fetchUserName()
-        }, 3000);
+        }, 60000);
     })
 
 
@@ -37,14 +42,28 @@ const Home = () => {
         );
     } else {
         return (
-            <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '100vh',
-            }}>
-                <Spinner/>
+            <div>
+            <div className='layout'>
+              <div className='navegBar'>
+                <Navigation />
+              </div>
+              <div className="side">
+                <SideBar />
+              </div>
+              <div className="content">
+                
+                  <Routes >
+                    <Route path="/home/books" element={<FormBook />} />
+                    <Route path="/home/events" element={<Events />} />
+                  </Routes>
+              </div>
+      
+              <div className="chat">
+      
+              </div>
+      
             </div>
+          </div>
         );
     }
 

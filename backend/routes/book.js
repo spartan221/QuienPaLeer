@@ -6,7 +6,7 @@ const router = express.Router()
 
 //CREACIÓN
 
-router.post("/create", isUserAuthenticaded, async (req, res) => {
+router.post("/create", async (req, res) => {
     const newBook = new Book({
         name: req.body.name,
         author: req.body.author,
@@ -14,7 +14,7 @@ router.post("/create", isUserAuthenticaded, async (req, res) => {
         editorial: req.body.editorial,
         year: req.body.year,
         price: req.body.price,
-        user:req.userId  
+        image : req.body.image
     });
     try {
         const bookSaved = await newBook.save()

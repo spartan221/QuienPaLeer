@@ -4,6 +4,7 @@ import BookPost from './BookPost.jsx'
 import Paginations from './Paginations'
 import '../css/View.css'
 import FormBook from './AddBookSale.jsx'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const ViewBooks = () => {
@@ -20,7 +21,7 @@ const ViewBooks = () => {
     useEffect(() => {
         const fetchPost = async () => {
             setLoading(true);
-            const res = await axios.get("http://localhost:5000/api/book/getWithUsers")
+            const res = await axios.get("http://localhost:5000/api/book/")
             console.log(res.data)
             setPost(res.data);
             setLoading(false);

@@ -10,34 +10,34 @@ const Paginations = ({postPerPage, totalPosts,paginate,currentPage,band,bandRigh
         <ul className='pagination justify-content-center '>
             {band
                   ?<li key={currentPage - 1} className="page-item disabled">
-                        <a onClick={() => paginate(currentPage - 1)} href="!#" className='page-link text-secondary'>
+                        <span onClick={() => paginate(currentPage - 1)}  className='page-link text-secondary'>
                             <span aria-hidden="true">&lang;</span>
-                        </a>
+                        </span>
                     </li>
                   : <li key={currentPage - 1} className="page-item ">
-                        <a onClick={() => paginate(currentPage - 1) } href="!#" className='page-link text-secondary'>
+                        <span onClick={() => paginate(currentPage - 1) }  className='page-link text-secondary'>
                             <span aria-hidden="true">&lang;</span>
-                        </a>
+                        </span>
                     </li>
             }
             {pageNumbers.map(number=>(
                 
                 <li key={number} className={number==currentPage ?"page-item active " : "page-item "}  >
-                    <a onClick={()=>paginate(number)} href="!#" className={number==currentPage ?"page-link text-light bg-dark" :"page-link text-secondary"}>
+                    <span onClick={()=>paginate(number)}  className={number==currentPage ?"page-link text-light bg-dark border-dark" :"page-link text-secondary"}>
                         {number}
-                    </a>
+                    </span>
                 </li>
             ))}
             {bandRight
                   ? <li key={currentPage + 1} className="page-item disabled">
-                      <a onClick={() => paginate(currentPage + 1)} href="!#" className='page-link text-secondary'>
+                      <span onClick={() => paginate(currentPage + 1)}  className='page-link text-secondary'>
                           <span aria-hidden="true">&rang;</span>
-                      </a>
+                      </span>
                     </li>
                   : <li key={currentPage + 1} className="page-item">
-                      <a onClick={() => paginate(currentPage + 1)} href="!#" className='page-link text-secondary'>
+                      <sapn onClick={() => paginate(currentPage + 1)} className='page-link text-secondary'>
                           <span aria-hidden="true">&rang;</span>
-                      </a>
+                      </sapn>
                     </li>
             }
             
