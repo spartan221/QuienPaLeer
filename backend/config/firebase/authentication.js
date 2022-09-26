@@ -87,7 +87,7 @@ export const isUserAuthenticaded = (req, res, next) => {
     // Si no se encuentra el token en los cookies
     // Se retorna el error 401
     if (!token) {
-        res.sendStatus(401);
+        return res.sendStatus(401);
     }
 
     try {
