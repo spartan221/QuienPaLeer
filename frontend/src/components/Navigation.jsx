@@ -23,7 +23,7 @@ function Navigation() {
                     <Nav  >
                         <NavDropdown title="Libros" id="collasible-nav-dropdown">
                             <NavDropdown.Item href="books">Libros</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Eventos</NavDropdown.Item>
+                            <NavDropdown.Item href="events">Eventos</NavDropdown.Item>
                         </NavDropdown>
 
                         <Form className="d-flex justify-content px-2">

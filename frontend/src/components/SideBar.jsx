@@ -10,12 +10,12 @@ export default function SideBar() {
                 <p className='text-secondary d-flex justify-content-start p-2'>
                     Browse
                 </p>
-                <Nav.Link variant="primary" >
+                <Nav.Link variant="primary" href="/events">
                     <i className="bi bi-calendar-minus p-2"></i>
                     Eventos
                 </Nav.Link>
                 <br/>
-                <Nav.Link variant="primary" >
+                <Nav.Link variant="primary" href="/books">
                     <i className="bi bi-currency-dollar px-2"></i>
                     Compra de libros
                 </Nav.Link>

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import EventPost from './EventPost.jsx'
+import EventPost from './publicationEvent/EventPost.jsx'
 import Paginations from './Paginations'
 import { publicRequest } from '../requestMethods.js'
 import '../css/View.css'
@@ -48,11 +48,11 @@ const Pagination = () => {
         setCurrentPage(pageNumber)
     }
     return (
-        <div className='container'>
+        <div className='container pt-2'>
             <div className='row'>
                 <h2 className='col text-start'>Eventos</h2>
                 <div className='col text-end'>
-                    <button type="button" className='btn btn-dark' data-bs-toggle="modal" data-bs-target="#ModalCreate">Crear evento</button>
+                    <button type="button" className='btn btn-dark border' data-bs-toggle="modal" data-bs-target="#ModalCreate">Crear evento</button>
                 </div>
             </div>
             <br></br>

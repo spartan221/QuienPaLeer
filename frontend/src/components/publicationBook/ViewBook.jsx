@@ -5,7 +5,7 @@ const ViewBook = (props) => {
     return (
         <div className='container rounded border p-4 mr-5'>
             <div className='row'>
-                <img className='rounded-4' src="https://firebasestorage.googleapis.com/v0/b/quienpaleer-c0891.appspot.com/o/299381290_1098676200815041_5013859073615010350_n%20(1).jpg?alt=media&token=c3a0a1ad-dce6-48cd-9a08-c70aabf02db9" />
+                <img className='rounded-4' src={props.image}/>
             </div><br />
             <h5 className='text-start'>Nombre del Libro</h5>
             <p className='text-start'>{props.name}</p>

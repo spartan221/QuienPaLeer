@@ -3,7 +3,6 @@
   "private": true,
   "proxy": "http://localhost:5000",
   "version": "0.0.0",
-  "proxy": "http://localhost:5000",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -19,11 +18,14 @@
     "@popperjs/core": "^2.11.6",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.1",
+    "bootstrap-icons": "^1.9.1",
     "firebase": "^9.10.0",
     "jquery": "^3.6.1",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.4.0"
+    "react-icons": "^4.4.0",
+    "react-router-dom": "^6.4.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.19.1",
