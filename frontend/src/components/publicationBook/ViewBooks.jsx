@@ -62,7 +62,7 @@ const ViewBooks = () => {
             <BookPost posts={currentPost} loading={loading} />
 
             <Paginations postPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} currentPage={currentPage} band={band} bandRight={bandRight} />
-            <div className="modal fade" id="ModalCreate" tabindex={-1} aria-labelledby="ModalCreateLabel" aria-hidden="true">
+            <div className="modal fade" id="ModalCreate" tabIndex={-1} aria-labelledby="ModalCreateLabel" aria-hidden="true">
                 <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">

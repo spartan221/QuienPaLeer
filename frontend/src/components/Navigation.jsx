@@ -13,7 +13,7 @@ function Navigation() {
         <>
             <Navbar bg="light" variant="light" className="py-3 border border-bottom shadow-sm h-100" >
 
-                <Navbar.Brand className="px-4" href="/">
+                <Navbar.Brand className="px-4 negrita" href="/">
                         QuienPaLeer
                 </Navbar.Brand>
                 <div className="vr"></div>

@@ -11,17 +11,17 @@ export default function SideBar() {
                     Browse
                 </p>
                 <Nav.Link variant="primary" >
-                    <i class="bi bi-calendar-minus p-2"></i>
+                    <i className="bi bi-calendar-minus p-2"></i>
                     Eventos
                 </Nav.Link>
                 <br/>
                 <Nav.Link variant="primary" >
-                    <i class="bi bi-currency-dollar px-2"></i>
+                    <i className="bi bi-currency-dollar px-2"></i>
                     Compra de libros
                 </Nav.Link>
                 <br/>
                 <Nav.Link>
-                    <i class="bi bi-repeat px-2"></i>
+                    <i className="bi bi-repeat px-2"></i>
                     Cambio de libros
                 </Nav.Link>
 
