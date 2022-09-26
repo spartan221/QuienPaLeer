@@ -7,10 +7,15 @@ import Navigation from './components/Navigation';
 import SideBar from './components/SideBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/ContentStyle.css'
-
+import CreateEvent from './components/createEvent'
+import Register from './components/Register'
+import Login from './components/Login'
+import ViewEvent from './components/ViewEvent'
+import ViewEvents from './components/ViewEvents'
+// <CreateEvent />
+// <Register />
+//<Login />
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <div>
       <div className='layout'>
