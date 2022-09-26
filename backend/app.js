@@ -1,7 +1,10 @@
 import cookieParser from "cookie-parser";
 import express from "express";
 import makeAuthRouter from "./routes/auth.js";
-import cors from 'cors';
+import cors from "cors"
+import makeEventRouter from "./routes/event.js";
+import bookRoute from './routes/book.js'
+
 
 
 const makeApp = (database) => {
@@ -20,6 +23,9 @@ const makeApp = (database) => {
     // Routers
     const authRouter = makeAuthRouter(database);
     app.use("/api/auth", authRouter);
+    const eventRouter = makeEventRouter(database);
+    app.use("/api/event", eventRouter);
+    app.use("/api/book",bookRoute)
 
     return app;
 }
