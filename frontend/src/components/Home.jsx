@@ -11,7 +11,7 @@ import '../styles/ContentStyle.css';
 import Events from './ViewEvents'
 const Home = () => {
 
-    const baseURL = 'http://localhost:5000/api/auth/myInfo'
+    const baseURL = 'http://127.0.0.1:5000/api/auth/myInfo'
     const [userName, setuserName] = useState(null)
     const navigate = useNavigate();
 

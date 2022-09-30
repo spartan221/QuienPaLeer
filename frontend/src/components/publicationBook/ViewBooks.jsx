@@ -21,7 +21,7 @@ const ViewBooks = () => {
     useEffect(() => {
         const fetchPost = async () => {
             setLoading(true);
-            const res = await axios.get("http://localhost:5000/api/book/")
+            const res = await axios.get("http://127.0.0.1:5000/api/book/")
             console.log(res.data)
             setPost(res.data);
             setLoading(false);

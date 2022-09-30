@@ -8,7 +8,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 
-const baseURL = 'http://localhost:5000/api/auth/register'
+const baseURL = 'http://127.0.0.1:5000/api/auth/register'
 
 function Register() {
 
