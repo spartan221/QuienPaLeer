@@ -7,7 +7,7 @@ const makeEventRouter = (database) => {
 
     // CREACIÓN
     //eventRouter.post("/create", isUserAuthenticaded,async (req, res) => {
-    eventRouter.post("/create", async (req, res) => {
+    eventRouter.post("/create",  isUserAuthenticaded ,async (req, res) => {
         const newEvent = new Event({
             name: req.body.name,
             description: req.body.description,
@@ -15,7 +15,8 @@ const makeEventRouter = (database) => {
             endDate: req.body.endDate,
             hour: req.body.hour,
             image: req.body.image,
-            place: req.body.place
+            place: req.body.place,
+            userId: req.userId
         })
 
         const response = await database.saveEvent(newEvent);

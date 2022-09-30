@@ -9,7 +9,8 @@ const EventSchema = new mongoose.Schema({
     endDate: { type: String, required: true },
     hour: { type: String, required: true },
     image: { type: String, required: true },
-    place: { type: String, required: true }
+    place: { type: String, required: true },
+    userId: { type: String, required: true }
 })
 
 export default mongoose.model("Event", EventSchema)
