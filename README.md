@@ -39,11 +39,11 @@
       </tr>
       <tr>
         <td>Inicio de Sesión</td>
-        <td>:x:</td>
+        <td>:white_check_mark:</td>
       </tr>
       <tr>
         <td>Registro de Usuario</td>
-        <td>:x:</td>
+        <td>:white_check_mark:</td>
       </tr>
       <tr>
         <td>Visualización de Chats</td>
@@ -59,19 +59,19 @@
       </tr>
       <tr>
         <td>Creación de Eventos</td>
-        <td>:x:</td>
+        <td>:white_check_mark:</td>
       </tr>
       <tr>
         <td>Visualizar Eventos</td>
-        <td>:x:</td>
+        <td>:white_check_mark:</td>
       </tr>
       <tr>
         <td>Publicación Venta de Libros</td>
-        <td>:x:</td>
+        <td>:white_check_mark:</td>
       </tr>
       <tr>
         <td>Visualización Venta de Libros</td>
-        <td>:x:</td>
+        <td>:white_check_mark:</td>
       </tr>
       <tr>
         <td>Publicación Intercambio de Libros</td>
