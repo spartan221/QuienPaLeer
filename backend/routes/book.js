@@ -5,7 +5,6 @@ import {isUserAuthenticaded} from '../config/firebase/authentication.js'
 const router = express.Router()
 
 //CREACIÓN
-
 router.post("/create", async (req, res) => {
     const newBook = new Book({
         name: req.body.name,
