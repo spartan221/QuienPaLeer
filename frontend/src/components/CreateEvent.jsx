@@ -56,10 +56,11 @@ const CreateEvent = ({reloadPage}) => {
                 const newEvent = { ...inputs, image: downloadURL };
                 publicRequest.post("/event/create", newEvent, {withCredentials: true});
                 console.log('Evento agregado.')
+                reloadPage();
             }).catch((error) => {
                 console.log(error);
             })
-            reloadPage();
+            
         }
     }
 

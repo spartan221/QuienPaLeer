@@ -24,9 +24,11 @@ const Pagination = () => {
             console.log(res.data)
             setPost(res.data);
             setLoading(false);
+            console.log("posts:",res.data)
         }
         fetchPost();
-    }, []);
+        console.log("recarga")
+    }, [reload]);
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
