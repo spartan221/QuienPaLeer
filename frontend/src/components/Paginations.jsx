@@ -35,9 +35,9 @@ const Paginations = ({postPerPage, totalPosts,paginate,currentPage,band,bandRigh
                       </span>
                     </li>
                   : <li key={currentPage + 1} className="page-item">
-                      <sapn onClick={() => paginate(currentPage + 1)} className='page-link text-secondary'>
+                      <span onClick={() => paginate(currentPage + 1)} className='page-link text-secondary'>
                           <span aria-hidden="true">&rang;</span>
-                      </sapn>
+                      </span>
                     </li>
             }
             
