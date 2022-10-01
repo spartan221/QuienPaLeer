@@ -210,8 +210,8 @@ function Register() {
 
             <div className='row mt-4 mx-2'>
               <div className='col form-group'>
-                <input class="form-check-input ms-5" type="checkbox" id="checkbox" onChange={handleCheck}/>
-                <label class="form-check-label ms-2" for="checkbox" >
+                <input className="form-check-input ms-5" type="checkbox" id="checkbox" onChange={handleCheck}/>
+                <label className="form-check-label ms-2" htmlFor="checkbox" >
                   Acepto los términos y condiciones de uso de la WebApp.
                 </label>
               </div>

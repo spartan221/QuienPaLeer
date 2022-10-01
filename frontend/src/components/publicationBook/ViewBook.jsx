@@ -5,7 +5,7 @@ const ViewBook = (props) => {
     return (
         <div className='container rounded border p-4 mr-5'>
             <div className='row'>
-                <img className='rounded-4' src={props.image}/>
+                <img className='rounded-4' src={props.image} />
             </div><br />
             <h5 className='text-start'>Nombre del Libro</h5>
             <p className='text-start'>{props.name}</p>
@@ -23,6 +23,9 @@ const ViewBook = (props) => {
                     <p>{props.author}</p>
                 </div>
             </div>
+            <a className='row' href={`profile/${props.userId}`}>
+                Usuario
+            </a>
         </div>
     )
 }

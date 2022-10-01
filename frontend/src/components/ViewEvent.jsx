@@ -23,6 +23,9 @@ const ViewEvent = (props) => {
                     <p>{props.place}</p>
                 </div>
             </div>
+            <a className='row' href={`profile/${props.userId}`}>
+                Usuario
+            </a>
         </div>
     )
 }

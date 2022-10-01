@@ -7,7 +7,7 @@ const makeEventRouter = (database) => {
 
     // CREACIÓN
     //eventRouter.post("/create", isUserAuthenticaded,async (req, res) => {
-    eventRouter.post("/create",  isUserAuthenticaded ,async (req, res) => {
+    eventRouter.post("/create", isUserAuthenticaded, async (req, res) => {
         const newEvent = new Event({
             name: req.body.name,
             description: req.body.description,

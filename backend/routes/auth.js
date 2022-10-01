@@ -70,7 +70,7 @@ const makeAuthRouter = (database) => {
             res.statusCode = 200;
 
             // Mensaje de login sastifactorio
-            res.json({ message: "El login se ha compleado sastifactoriamente" , token});
+            res.json({ message: "El login se ha compleado sastifactoriamente", token });
 
         } catch (error) {
             res.statusCode = 500;
@@ -87,13 +87,6 @@ const makeAuthRouter = (database) => {
 
         res.json({ message: "Se ha cerrado sesión correctamente" });
 
-    });
-
-    authRouter.get('/myInfo', isUserAuthenticaded, async (req, res) => {
-
-        const user = await User.findById(req.userId);
-        res.statusCode = 200;
-        res.json(user);
     });
 
     return authRouter;

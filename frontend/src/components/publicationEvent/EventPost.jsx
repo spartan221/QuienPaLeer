@@ -22,7 +22,7 @@ export const EventPost = ({ posts, loading }) => {
                         <p className='col text-start orange-text'>{post.startDate} - {post.endDate}</p>
                     </div>
 
-                    <div className="modal fade" id="Modal" tabindex={-1} aria-labelledby="ModalLabel" aria-hidden="true">
+                    <div className="modal fade" id="Modal" tabIndex={-1} aria-labelledby="ModalLabel" aria-hidden="true">
                         <div className="modal-dialog">
                             <div className="modal-content">
                                 <div className="modal-header">

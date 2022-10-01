@@ -9,14 +9,16 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import LogoQPLBlack from "../assets/img/QPL_Logo_Black.png";
 import './css/View.css'
-function Navigation() {
+import { Link } from 'react-router-dom';
+
+function Navigation({ userName }) {
     return (
         <>
             <Navbar bg="light" variant="light" className="py-3 border border-bottom shadow-sm h-100" >
 
                 <Navbar.Brand className="px-4 negrita" href="/">
 
-                    <img src={LogoQPLBlack}  style={{ Size: 20 }} />
+                    <img src={LogoQPLBlack} style={{ Size: 20 }} />
                     QuienPaLeer
                 </Navbar.Brand>
                 <div className="vr"></div>
@@ -24,9 +26,10 @@ function Navigation() {
                 <Container>
 
                     <Nav  >
-                        <NavDropdown title="Libros" id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="home/books">Libros</NavDropdown.Item>
-                            <NavDropdown.Item href="events">Eventos</NavDropdown.Item>
+                        <NavDropdown title="Compra de Libros" id="collasible-nav-dropdown">
+                            <Link to="buyBooks">Compra de Libros</Link>
+                            <br/>
+                            <Link to="events">Eventos</Link>
                         </NavDropdown>
 
                         <Form className="d-flex justify-content px-2">
@@ -44,8 +47,8 @@ function Navigation() {
                     <Nav>
 
                         <Nav.Link className='py-0'>
+                            {userName ? userName : 'Cargando...'}
                             <i className="bi bi-person-circle px-2" style={{ fontSize: 30 }}></i>
-                            Usuario
                         </Nav.Link>
 
                         <div className="vr"></div>
