@@ -1,6 +1,6 @@
 import React from 'react'
-import "../css/Register.css"
-import LogoQPLBlack from "../assets/img/QPL_Logo_Black.png";
+import '../../css/Register.css'
+import LogoQPLBlack from '../../assets/img/QPL_Logo_Black.png';
 import { FaEye } from "react-icons/fa";
 import { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';

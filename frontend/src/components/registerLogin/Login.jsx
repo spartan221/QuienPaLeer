@@ -1,6 +1,6 @@
 import React from "react";
-import "../css/Login.css";
-import LogoQPLBlack from "../assets/img/QPL_Logo_Black.png";
+import '../../css/Login.css';
+import LogoQPLBlack from "../../assets/img/QPL_Logo_Black.png";
 import { FaEye } from "react-icons/fa";
 import { useState } from "react";
 import axios from 'axios';
