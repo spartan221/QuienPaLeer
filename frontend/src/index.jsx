@@ -8,6 +8,7 @@ import ErrorPage from "./components/ErrorPage";
 import Home from "./components/Home";
 import Register from "./components/Register";
 import FormBook from "./components/publicationBook/ViewBooks";
+import Events from "./components/ViewEvents";
 import "bootstrap/dist/js/bootstrap.js";
 import "jquery/dist/jquery.js";
 const router = createBrowserRouter([
