@@ -9,13 +9,13 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import LogoQPLBlack from "../assets/img/QPL_Logo_Black.png";
 import '../css/Navigation.css'
-function Navigation() {
+function Navigation({ userName }) {
     return (
         <>
             <Navbar bg="light" variant="light" className="py-3 border border-bottom shadow-sm h-100" >
-                
+
                 <Navbar.Brand className="px-4 d-flex align-items-center" href="/">
-                    <span><img src={LogoQPLBlack}  id='qplLogoNavBar' className=''/></span>
+                    <span><img src={LogoQPLBlack} id='qplLogoNavBar' className='' /></span>
                     <span id='qplTitle'>QuienPaLeer</span>
                 </Navbar.Brand>
                 <div className="vr ms-2"></div>
@@ -45,9 +45,8 @@ function Navigation() {
                     <Nav>
 
                         <Nav.Link className='navBarLinks py-0 d-flex align-items-center' id='userNameNavContainer'>
-                            <span className='pe-2'>Usuario</span>
-                            <i className="bi bi-person-circle px-2" style={{ fontSize: 30 }}></i>
                             {userName ? userName : 'Cargando...'}
+                            <i className="bi bi-person-circle px-2" style={{ fontSize: 30 }}></i>
                         </Nav.Link>
 
                         <div className="vr mx-3"></div>
