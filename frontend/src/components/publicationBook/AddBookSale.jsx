@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import '../css/CreateBookSale.css'
 
 
 
@@ -142,7 +143,7 @@ function FormBook() {
                 <style>
                   
                 </style>
-                <Button  className="bg-dark estilos" onClick={handleClose} variant="primary" type="submit" style={{border:"none"}}>
+                <Button  className="mt-4" id='btnAddSellBookModal' onClick={handleClose} variant="primary" type="submit" style={{border:"none"}}>
                   Agregar
                 </Button>
               </div>

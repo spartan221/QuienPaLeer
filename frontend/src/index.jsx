@@ -1,30 +1,24 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-} from "react-router-dom";
-import App from './App'
-import './index.css'
-import 'bootstrap/dist/css/bootstrap.css';
-import ErrorPage from './components/ErrorPage';
-import Home from './components/Home'
-import Register from './components/Register'
-import FormBook from './components/publicationBook/ViewBooks';
-import Events from './components/ViewEvents'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import App from "./App";
+import "./index.css";
+import "bootstrap/dist/css/bootstrap.css";
+import ErrorPage from "./components/ErrorPage";
+import Home from "./components/Home";
+import Register from "./components/Register";
+import FormBook from "./components/publicationBook/ViewBooks";
 import "bootstrap/dist/js/bootstrap.js";
-import 'jquery/dist/jquery.js';
-
+import "jquery/dist/jquery.js";
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   {
-    path: '/register',
-    element: <Register />
+    path: "/register",
+    element: <Register />,
   },
   {
     path: '/home',
@@ -42,9 +36,8 @@ const router = createBrowserRouter([
   }
 ])
 
-
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   </React.StrictMode>
 )

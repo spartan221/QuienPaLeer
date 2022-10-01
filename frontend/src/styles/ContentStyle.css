@@ -1,26 +1,26 @@
-:root{
-  --backGroundColor:#f6f7f8;
+:root {
+  --backGroundColor: #ffffff;
 }
 .layout {
-    display: grid;
-    height: 100vh;
-    grid-template-areas: "navegBar navegBar navegBar" 
+  display: grid;
+  height: 100vh;
+  grid-template-areas:
+    "navegBar navegBar navegBar"
     "side content chat";
-    grid-template-columns: 240px auto 240px ;
-    grid-template-rows: 80px auto;
-
-  }
-  .side{
-    grid-area: side;
-    background-color: var(--backGroundColor);
-  }
-  .content{
-    grid-area: content;
-  }
-  .chat{
-    background-color: var(--backGroundColor);
-    grid-area: chat;
-  }
-  .navegBar{
-    grid-area: navegBar;
-  }
+  grid-template-columns: 240px auto 240px;
+  grid-template-rows: 80px auto;
+}
+.side {
+  grid-area: side;
+  background-color: var(--backGroundColor);
+}
+.content {
+  grid-area: content;
+}
+.chat {
+  background-color: var(--backGroundColor);
+  grid-area: chat;
+}
+.navegBar {
+  grid-area: navegBar;
+}

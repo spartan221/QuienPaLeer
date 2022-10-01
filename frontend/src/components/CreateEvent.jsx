@@ -105,7 +105,7 @@ const CreateEvent = () => {
                     </div>
                 </div>
                 <div className="text-center">
-                    <button className="btn btn-dark px-5" type="submit" onClick={handleClick}>Crear</button>
+                    <button className="btn btn-dark px-5" id='btnCreateEventModal' type="submit" onClick={handleClick}>Crear</button>
                 </div>
 
             </form>
