@@ -55,8 +55,9 @@ const CreateEvent = ({reloadPage}) => {
             uploadFile(file).then((downloadURL) => {
                 const newEvent = { ...inputs, image: downloadURL };
                 publicRequest.post("/event/create", newEvent, {withCredentials: true});
-                console.log('Evento agregado.')
                 reloadPage();
+                console.log('Evento agregado.')
+                
             }).catch((error) => {
                 console.log(error);
             })

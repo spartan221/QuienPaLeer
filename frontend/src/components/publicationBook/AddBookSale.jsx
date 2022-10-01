@@ -116,7 +116,7 @@ function FormBook({reloadPage}) {
         
       </div>
       <br />
-      <Form onSubmit={saveData}   >
+      <Form onSubmit={saveData} novalidate="novalidate"  >
               
             <Form.Group className="mb-3" controlId="formTitle"  >
             <Form.Label>Título de la venta</Form.Label>
