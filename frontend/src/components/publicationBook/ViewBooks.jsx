@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import BookPost from './BookPost.jsx'
-import Paginations from './Paginations'
+import Paginations from '../Paginations'
 import '../css/ViewBooks.css'
 import FormBook from './AddBookSale.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';

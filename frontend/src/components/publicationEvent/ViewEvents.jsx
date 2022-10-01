@@ -1,10 +1,10 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import EventPost from './publicationEvent/EventPost.jsx'
-import Paginations from './Paginations'
-import { publicRequest } from '../requestMethods.js'
+import EventPost from './EventPost.jsx'
+import Paginations from '../Paginations'
+import { publicRequest } from '../../requestMethods.js'
 import '../css/ViewEvents.css'
-import CreateEvent from './CreateEvent.jsx'
+import CreateEvent from './CreateEvent'
 
 const Pagination = () => {
     const [posts, setPost] = useState([])
