@@ -16,7 +16,7 @@ export const BookPost = ({ posts, loading }) => {
                             <h5>{post.title}</h5>
                         </div>
                         <div className='row'>
-                            <input onClick={e => setProperties({ ...post })} type="image" data-bs-toggle="modal" data-bs-target="#Modal" className="rounded-4 border" styles={{height:"20px"}} src={post.image}></input>
+                            <input onClick={e => setProperties({ ...post })} type="image" data-bs-toggle="modal" data-bs-target="#Modal" className="rounded-4 border imagen" styles={{height:"20px"}} src={post.image}></input>
                         </div>
                         <div className='row'>
                             

@@ -11,13 +11,11 @@ const ViewBooks = () => {
     const [posts, setPost] = useState([])
     const [loading, setLoading] = useState(false);
     const [band, setBand] = useState(true);
+    const [reload, setReload] = useState(0);
     const [bandRight, setBandRight] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(6)
-
-
-
-
+    const reloadPage = () => setReload(reload+1);
     useEffect(() => {
         const fetchPost = async () => {
             setLoading(true);
@@ -25,9 +23,11 @@ const ViewBooks = () => {
             console.log(res.data)
             setPost(res.data);
             setLoading(false);
+            
         }
         fetchPost();
-    }, []);
+        console.log("recarga")
+    }, [reload]);
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -50,6 +50,8 @@ const ViewBooks = () => {
         }
         setCurrentPage(pageNumber)
     }
+   
+    
     return (
         <div className='container pt-2'>
             <div className='row'>
@@ -70,7 +72,7 @@ const ViewBooks = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <FormBook/>
+                            <FormBook reloadPage={reloadPage}/>
                         </div>
                     </div>
                 </div>

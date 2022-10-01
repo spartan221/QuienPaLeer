@@ -5,7 +5,7 @@ import { uploadFile } from '../../../backend/config/firebase/storage';
 import EventIcon from '@mui/icons-material/Event';
 import '../css/CreateEvent.css'
 
-const CreateEvent = () => {
+const CreateEvent = ({reloadPage}) => {
     const [inputs, setInputs] = useState({})
     const [file, setFile] = useState(null)
     const [errors, setErrors] = useState({ file: null })
@@ -59,6 +59,7 @@ const CreateEvent = () => {
             }).catch((error) => {
                 console.log(error);
             })
+            reloadPage();
         }
     }
 

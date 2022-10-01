@@ -13,6 +13,8 @@ const Pagination = () => {
     const [bandRight, setBandRight] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(6)
+    const [reload, setReload] = useState(0);
+    const reloadPage = () => setReload(reload+1);
 
 
     useEffect(() => {
@@ -67,7 +69,7 @@ const Pagination = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <CreateEvent />
+                            <CreateEvent reloadPage={reloadPage} />
                         </div>
                     </div>
                 </div>
