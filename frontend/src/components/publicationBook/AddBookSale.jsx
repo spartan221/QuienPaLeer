@@ -185,7 +185,7 @@ function FormBook({reloadPage}) {
                 <style>
                   
                 </style>
-                <Button  className="mt-4" id='btnAddSellBookModal' onClick={handleClose} variant="primary" type="submit" style={{border:"none"}}>
+                <Button  className="mt-4" id='btnAddSellBookModal'  variant="primary" type="submit" style={{border:"none"}}>
                   Agregar
                 </Button>
               </div>
