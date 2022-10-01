@@ -32,14 +32,14 @@ const Home = () => {
         }, 60000);
     })
 
-
+    
     if (userName) {
         return (
             <div>
                 <h1>Este es el Home</h1>
                 <h2>{`Hola! ${userName}`}</h2>
             </div>
-        );
+        )
     } else {
         return (
             <div>
@@ -51,7 +51,6 @@ const Home = () => {
                 <SideBar />
               </div>
               <div className="content">
-                
                   <Routes >
                     <Route path="/home/books" element={<FormBook />} />
                     <Route path="/home/events" element={<Events />} />

@@ -8,54 +8,52 @@ import Button from 'react-bootstrap/Button';
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import LogoQPLBlack from "../assets/img/QPL_Logo_Black.png";
-import './css/View.css'
+import '../css/Navigation.css'
 function Navigation() {
     return (
         <>
             <Navbar bg="light" variant="light" className="py-3 border border-bottom shadow-sm h-100" >
-
-                <Navbar.Brand className="px-4 negrita" href="/">
-
-                    <img src={LogoQPLBlack}  style={{ Size: 20 }} />
-                    QuienPaLeer
+                
+                <Navbar.Brand className="px-4 d-flex align-items-center" href="/">
+                    <span><img src={LogoQPLBlack}  id='qplLogoNavBar' className=''/></span>
+                    <span id='qplTitle'>QuienPaLeer</span>
                 </Navbar.Brand>
-                <div className="vr"></div>
+                <div className="vr ms-2"></div>
 
                 <Container>
-
-                    <Nav  >
-                        <NavDropdown title="Libros" id="collasible-nav-dropdown">
+                    <Nav>
+                        <NavDropdown title="Libros" id="collasible-nav-dropdown" className='ms-3'>
                             <NavDropdown.Item href="home/books">Libros</NavDropdown.Item>
                             <NavDropdown.Item href="events">Eventos</NavDropdown.Item>
                         </NavDropdown>
 
-                        <Form className="d-flex justify-content px-2">
+                        <Form className="d-flex justify-content px-2" id='containerSearchNavBar'>
                             <Form.Control
                                 type="search"
                                 placeholder="Busca un libro"
-                                className="me-2 "
+                                className="me-3"
+                                id='searchNavBar'
                                 aria-label="Search"
                             />
-                            <Button className='orange-text text-white border'>Buscar</Button>
+                            <Button className='' id='btnSearchNavBar' >Buscar</Button>
                         </Form>
-
 
                     </Nav>
                     <Nav>
 
-                        <Nav.Link className='py-0'>
+                        <Nav.Link className='navBarLinks py-0 d-flex align-items-center' id='userNameNavContainer'>
+                            <span className='pe-2'>Usuario</span>
                             <i className="bi bi-person-circle px-2" style={{ fontSize: 30 }}></i>
-                            Usuario
                         </Nav.Link>
 
-                        <div className="vr"></div>
+                        <div className="vr mx-3"></div>
 
                         <Nav.Link eventKey="link-1">
-                            <i className="bi bi-pencil-square" style={{ fontSize: 20 }}></i>
+                            <i className="navBarLinks bi bi-pencil-square" style={{ fontSize: 20 }}></i>
                         </Nav.Link>
 
                         <Nav.Link>
-                            <i className="bi bi-x-lg" style={{ fontSize: 20 }}></i>
+                            <i className="navBarLinks bi bi-x-lg mx-3" style={{ fontSize: 20 }}></i>
                         </Nav.Link>
 
                     </Nav>
