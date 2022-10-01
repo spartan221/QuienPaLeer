@@ -11,18 +11,18 @@ export const EventPost = ({ posts, loading }) => {
         <div className='row row-cols-2'>
             {posts.map(post => (
                 <div>
-                    <div key={post._id} className="col py-2 px-4">
+                    <div key={post._id} className="col py-2 px-4 h-20 pb-4" id='infoEventsContainer'>
                         <div className='row'>
-                            <input  onClick={e => setProperties({ ...post })} type="image" data-bs-toggle="modal" data-bs-target="#Modal" className="rounded-4 border imagen" src={post.image}></input>
+                            <input  onClick={e => setProperties({ ...post })} type="image" data-bs-toggle="modal" data-bs-target="#Modal" className="rounded-5 imagen" src={post.image}></input>
                         </div>
                         <div className='row'>
-                            <p className='col text-start'>{post.name}</p>
+                            <p className='col text-start fw-bold'>{post.name}</p>
                             <p className='col text-end gray-text'>{post.place}</p>
                         </div>
                         <p className='col text-start orange-text'>{post.startDate} - {post.endDate}</p>
                     </div>
 
-                    <div className="modal fade" id="Modal" tabindex={-1} aria-labelledby="ModalLabel" aria-hidden="true">
+                    <div className="modal fade" id="Modal" tabIndex={-1} aria-labelledby="ModalLabel" aria-hidden="true">
                         <div className="modal-dialog">
                             <div className="modal-content">
                                 <div className="modal-header">

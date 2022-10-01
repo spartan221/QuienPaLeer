@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import BookPost from './BookPost.jsx'
 import Paginations from './Paginations'
-import '../css/View.css'
+import '../css/ViewBooks.css'
 import FormBook from './AddBookSale.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -53,14 +53,14 @@ const ViewBooks = () => {
    
     
     return (
-        <div className='container pt-2'>
+        <div className='container pt-5'>
             <div className='row'>
-                <h2 className='col text-start'>Venta de libros</h2>
+                <h2 className='col text-start ms-4 fw-bold'>Venta de libros</h2>
                 <div className='col text-end'>
-                    <button type="button" className='btn border text-white' data-bs-toggle="modal" data-bs-target="#ModalCreate">Añadir a la venta</button>
+                    <button type="button" className='btn border me-4' id='btnAddBookSell' data-bs-toggle="modal" data-bs-target="#ModalCreate">Añadir a la venta</button>
                 </div>
             </div>
-            <br></br>
+            <hr/>
 
             <BookPost posts={currentPost} loading={loading} />
 

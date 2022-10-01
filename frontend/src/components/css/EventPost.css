@@ -1,6 +1,11 @@
 .imagen {
-    height: 85px;
+    height: 120px;
     object-fit: cover;
+}
+
+#infoEventsContainer:hover {
+    transform: scale(1.05);
+    transition: all .5s;
 }
 
 p {

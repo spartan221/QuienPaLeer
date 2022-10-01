@@ -7,7 +7,7 @@ const Paginations = ({postPerPage, totalPosts,paginate,currentPage,band,bandRigh
     }
   return (
     <nav>
-        <ul className='pagination justify-content-center '>
+        <ul className='pagination justify-content-center mt-5'>
             {band
                   ?<li key={currentPage - 1} className="page-item disabled">
                         <span onClick={() => paginate(currentPage - 1)}  className='page-link text-secondary'>
@@ -35,9 +35,9 @@ const Paginations = ({postPerPage, totalPosts,paginate,currentPage,band,bandRigh
                       </span>
                     </li>
                   : <li key={currentPage + 1} className="page-item">
-                      <sapn onClick={() => paginate(currentPage + 1)} className='page-link text-secondary'>
+                      <span onClick={() => paginate(currentPage + 1)} className='page-link text-secondary'>
                           <span aria-hidden="true">&rang;</span>
-                      </sapn>
+                      </span>
                     </li>
             }
             

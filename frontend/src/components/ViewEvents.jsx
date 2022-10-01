@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import EventPost from './publicationEvent/EventPost.jsx'
 import Paginations from './Paginations'
 import { publicRequest } from '../requestMethods.js'
-import '../css/View.css'
+import '../css/ViewEvents.css'
 import CreateEvent from './CreateEvent.jsx'
 
 const Pagination = () => {
@@ -53,18 +53,18 @@ const Pagination = () => {
     }
     return (
         <div className='container pt-2'>
-            <div className='row'>
-                <h2 className='col text-start'>Eventos</h2>
+            <div className='row my-4'>
+                <h2 className='col text-start ms-4 fw-bold'>Eventos</h2>
                 <div className='col text-end'>
-                    <button type="button" className='btn btn-dark border' data-bs-toggle="modal" data-bs-target="#ModalCreate">Crear evento</button>
+                    <button type="button" className='btn btn-dark border me-4' id='btnCreateEvent' data-bs-toggle="modal" data-bs-target="#ModalCreate">Crear evento</button>
                 </div>
             </div>
-            <br></br>
+            <hr/>
 
             <EventPost posts={currentPost} loading={loading} />
 
             <Paginations postPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} currentPage={currentPage} band={band} bandRight={bandRight} />
-            <div className="modal fade" id="ModalCreate" tabindex={-1} aria-labelledby="ModalCreateLabel" aria-hidden="true">
+            <div className="modal fade" id="ModalCreate" tabIndex={-1} aria-labelledby="ModalCreateLabel" aria-hidden="true">
                 <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">

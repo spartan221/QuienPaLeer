@@ -1,7 +1,7 @@
 @import url("http://fonts.cdnfonts.com/css/muli?styles=19919,19916,19912,19908");
 
 .card {
-  border-radius: 20px !important;
+  border-radius: 20px;
   width: 350px;
   font-family: "Muli", sans-serif;
 }
@@ -83,6 +83,6 @@
 }
 
 a:hover {
-  color:#ff9f43 !important;
+  color:#ff9f43;
 }
 
