@@ -4,8 +4,9 @@ import { publicRequest } from '../../requestMethods'
 import { uploadFile } from '../../../../backend/config/firebase/storage';
 import EventIcon from '@mui/icons-material/Event';
 import '../css/CreateEvent.css'
+import Swal from 'sweetalert2'
 
-const CreateEvent = ({reloadPage}) => {
+const CreateEvent = ({ reloadPage }) => {
     const [inputs, setInputs] = useState({})
     const [file, setFile] = useState(null)
     const [errors, setErrors] = useState({ file: null })
@@ -54,14 +55,31 @@ const CreateEvent = ({reloadPage}) => {
         } else {
             uploadFile(file).then((downloadURL) => {
                 const newEvent = { ...inputs, image: downloadURL };
-                publicRequest.post("/event/create", newEvent, {withCredentials: true});
+                publicRequest.post("/event/create", newEvent, { withCredentials: true });
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Evento agregado.'
+                })
+                document.getElementById('eventForm').reset()
                 reloadPage();
                 console.log('Evento agregado.')
-                
+
             }).catch((error) => {
                 console.log(error);
             })
-            
+
         }
     }
 
@@ -71,7 +89,7 @@ const CreateEvent = ({reloadPage}) => {
                 <h1 className="fs-4 text-start col-8 ps-0 ms-0">Crear evento</h1>
                 <div className="col-4 text-end"><EventIcon /></div>
             </div>
-            <form className="text-start mt-3">
+            <form className="text-start mt-3" id="eventForm">
                 <label htmlFor="name" className="form-label">Nombre</label><br />
                 <input className="form-control" name="name" id="name" type="text" onChange={handleChange} ></input>
                 <p className="errorContainer ms-1 mt-2 text-danger">{errors.name}</p>
