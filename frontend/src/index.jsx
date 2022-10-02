@@ -23,15 +23,27 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: '/register',
-    element: <Register />
+    path: "/register",
+    element: <Register />,
   },
   {
-    path: '/home/*',
-    element: <Home />
-  },{
-    path:'/books',
-    element:<FormBook/>
+    path: '/home',
+    element: <Home />,
+    children: [
+      {
+        path: 'buyBooks',
+        element: <FormBook />
+      },
+      {
+        path: 'events',
+        element: <Events />,
+      },
+      {
+        path: 'profile/:userId',
+        element: <Profile />,
+        loader: profileLoader
+      }
+    ]
   }
 ])
 

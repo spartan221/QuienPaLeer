@@ -11,7 +11,7 @@ import LogoQPLBlack from "../assets/img/QPL_Logo_Black.png";
 import '../css/Navigation.css'
 import { Link } from 'react-router-dom';
 
-function Navigation({ userName }{ userName }) {
+function Navigation({ userName }) {
     return (
         <>
             <Navbar bg="light" variant="light" className="py-3 border border-bottom shadow-sm h-100" >
