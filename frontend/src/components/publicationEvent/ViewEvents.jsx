@@ -1,10 +1,10 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import EventPost from './publicationEvent/EventPost.jsx'
-import Paginations from './Paginations'
-import { publicRequest } from '../requestMethods.js'
-import '../css/View.css'
-import CreateEvent from './CreateEvent.jsx'
+import EventPost from './EventPost.jsx'
+import Paginations from '../Paginations'
+import { publicRequest } from '../../requestMethods.js'
+import '../css/ViewEvents.css'
+import CreateEvent from './CreateEvent'
 
 const Pagination = () => {
     const [posts, setPost] = useState([])
@@ -13,6 +13,8 @@ const Pagination = () => {
     const [bandRight, setBandRight] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(6)
+    const [reload, setReload] = useState(0);
+    const reloadPage = () => setReload(reload+1);
 
 
     useEffect(() => {
@@ -22,9 +24,11 @@ const Pagination = () => {
             console.log(res.data)
             setPost(res.data);
             setLoading(false);
+            console.log("posts:",res.data)
         }
         fetchPost();
-    }, []);
+        console.log("recarga")
+    }, [reload]);
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -49,13 +53,13 @@ const Pagination = () => {
     }
     return (
         <div className='container pt-2'>
-            <div className='row'>
-                <h2 className='col text-start'>Eventos</h2>
+            <div className='row my-4'>
+                <h2 className='col text-start ms-4 fw-bold'>Eventos</h2>
                 <div className='col text-end'>
-                    <button type="button" className='btn btn-dark border' data-bs-toggle="modal" data-bs-target="#ModalCreate">Crear evento</button>
+                    <button type="button" className='btn btn-dark border me-4' id='btnCreateEvent' data-bs-toggle="modal" data-bs-target="#ModalCreate">Crear evento</button>
                 </div>
             </div>
-            <br></br>
+            <hr/>
 
             <EventPost posts={currentPost} loading={loading} />
 
@@ -67,7 +71,7 @@ const Pagination = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <CreateEvent />
+                            <CreateEvent reloadPage={reloadPage} />
                         </div>
                     </div>
                 </div>

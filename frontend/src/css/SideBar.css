@@ -1,0 +1,9 @@
+
+.navLinkContainer:hover{
+    background-color: #ffb875;
+    border-radius: 5px;
+}
+
+.textAppVersionSideBar{
+    font-size: .8em;
+}

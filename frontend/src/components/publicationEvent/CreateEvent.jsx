@@ -1,11 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
-import { publicRequest } from '../requestMethods'
-import { uploadFile } from '../../../backend/config/firebase/storage';
+import { publicRequest } from '../../requestMethods'
+import { uploadFile } from '../../../../backend/config/firebase/storage';
 import EventIcon from '@mui/icons-material/Event';
 import '../css/CreateEvent.css'
 
-const CreateEvent = () => {
+const CreateEvent = ({reloadPage}) => {
     const [inputs, setInputs] = useState({})
     const [file, setFile] = useState(null)
     const [errors, setErrors] = useState({ file: null })
@@ -55,10 +55,13 @@ const CreateEvent = () => {
             uploadFile(file).then((downloadURL) => {
                 const newEvent = { ...inputs, image: downloadURL };
                 publicRequest.post("/event/create", newEvent, {withCredentials: true});
+                reloadPage();
                 console.log('Evento agregado.')
+                
             }).catch((error) => {
                 console.log(error);
             })
+            
         }
     }
 
@@ -105,7 +108,7 @@ const CreateEvent = () => {
                     </div>
                 </div>
                 <div className="text-center">
-                    <button className="btn btn-dark px-5" type="submit" onClick={handleClick}>Crear</button>
+                    <button className="btn btn-dark px-5" id='btnCreateEventModal' type="submit" onClick={handleClick}>Crear</button>
                 </div>
 
             </form>
