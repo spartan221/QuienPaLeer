@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import NavDropdown from 'react-bootstrap/NavDropdown'
+import InputGroup from 'react-bootstrap/InputGroup';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import LogoQPLBlack from "../assets/img/QPL_Logo_Black.png";
 import '../css/Navigation.css'
@@ -14,32 +14,31 @@ function Navigation({ userName }) {
         <>
             <Navbar bg="light" variant="light" className="py-3 border border-bottom shadow-sm h-100" >
 
-                <Navbar.Brand className="px-4 d-flex align-items-center" href="/">
+                <Navbar.Brand className="px-4 d-flex align-items-center" id='qplContainer' href="/home">
                     <span><img src={LogoQPLBlack} id='qplLogoNavBar' className='' /></span>
                     <span id='qplTitle'>QuienPaLeer</span>
                 </Navbar.Brand>
                 <div className="vr ms-2"></div>
 
                 <Container>
+                    <Nav>
+                        <Form.Select id="selectTypeSearch">
+                            <option value="1">Eventos</option>
+                            <option value="2">Compra de libros</option>
+                            <option value='3'>Cambio de libros</option>
+                        </Form.Select>
 
-                    <Nav  >
-                        <NavDropdown title="Compra de Libros" id="collasible-nav-dropdown">
-                            <ul>
-                                <li>Compra de Libros</li>
-                                <li>Eventos</li>
-                            </ul>
-                        </NavDropdown>
-
-                        <Form className="d-flex justify-content px-2" id='containerSearchNavBar'>
+                        <InputGroup className="ps-3">
                             <Form.Control
                                 type="search"
-                                placeholder="Busca un libro"
-                                className="me-3"
+                                placeholder="Buscar..."
                                 id='searchNavBar'
-                                aria-label="Search"
                             />
-                            <Button className='' id='btnSearchNavBar' >Buscar</Button>
-                        </Form>
+                            <Button id="btnSearchNavBar">
+                                <i class="bi bi-search"></i>
+                            </Button>
+                        </InputGroup>
+
 
                     </Nav>
                     <Nav>
