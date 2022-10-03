@@ -81,7 +81,7 @@ describe('Testing api publication',()=>{
 
         
         it('The request returns a json with all the attributes inserted', async ()=>{
-            const response = await request(app).post('/api/publication').send(newBook);
+            const response = await request(app).post('/api/book/create').send(newBook);
             expect(response.body.name).toBeDefined();
             expect(response.body.title).toBeDefined();
             expect(response.body.author).toBeDefined();

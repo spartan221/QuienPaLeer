@@ -24,8 +24,8 @@ router.post("/create", isUserAuthenticaded, async (req, res) => {
 
 //Lectura
 router.get("/", async (req, res) => {
-    const books = await Book.find();
-    res.json(books)
+    const swap = await Swap.find();
+    res.json(swap)
 })
 
 export default router

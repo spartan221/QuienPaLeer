@@ -6,7 +6,7 @@ const SwapSchema= new mongoose.Schema({
     description:{type: String,required:true},
     interest:{type:String,required:true},
     user:{ type:String},
-    image:{type:String}
+    image:{type:String,required:true}
 },{
     timestamps:true
 });

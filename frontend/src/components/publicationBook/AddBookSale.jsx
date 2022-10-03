@@ -157,11 +157,11 @@ function FormBook({reloadPage}) {
                 <Form.Label>Categoría</Form.Label>
                   <Form.Select aria-label="Default select example" name="cathegory" onChange={captureValues}>
                     <option>Seleccione la categoría</option>
-                    <option value="romantico">Biografias</option>
-                    <option value="drama">Ciencia</option>
-                    <option value="educacion">Comics</option>
-                    <option value="suspenso">Cuentos</option>
-                    <option value="novela">Otros</option>
+                    <option value="Biografias">Biografias</option>
+                    <option value="Ciencia">Ciencia</option>
+                    <option value="Comics">Comics</option>
+                    <option value="Cuentos">Cuentos</option>
+                    <option value="Otros">Otros</option>
                   </Form.Select>
                 </Col>
                 <Col>
