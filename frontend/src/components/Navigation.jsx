@@ -41,24 +41,29 @@ function Navigation({ userName }) {
 
 
                     </Nav>
-                    <Nav>
 
-                        <Nav.Link className='navBarLinks py-0 d-flex align-items-center' id='userNameNavContainer'>
+                    <div class="dropdown">
+                        <Nav.Link className='navBarLinks pe-4 d-flex align-items-center dropdown-toggle' data-bs-toggle="dropdown" id='userNameNavContainer'>
                             {userName ? userName : 'Cargando...'}
                             <i className="bi bi-person-circle px-2" style={{ fontSize: 30 }}></i>
                         </Nav.Link>
-
-                        <div className="vr mx-3"></div>
-
-                        <Nav.Link eventKey="link-1">
-                            <i className="navBarLinks bi bi-pencil-square" style={{ fontSize: 20 }}></i>
-                        </Nav.Link>
-
-                        <Nav.Link>
-                            <i className="navBarLinks bi bi-x-lg mx-3" style={{ fontSize: 20 }}></i>
-                        </Nav.Link>
-
-                    </Nav>
+                        
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li className='mt-3'>
+                                <Nav.Link eventKey="link-1">
+                                    <i className="navBarLinks bi bi-person-fill ms-3 me-1" style={{ fontSize: 20 }}></i>
+                                    Ver Perfil
+                                </Nav.Link>
+                            </li>
+                            <hr className='mx-2'/>
+                            <li className='my-3'>
+                                <Nav.Link className='d-flex justify-content-center align-items-center' style={{ color:"#FF9F43" }}>
+                                    <i className="navBarLinks bi bi-x-lg me-1"></i>
+                                    Cerrar Sesión
+                                </Nav.Link>
+                            </li>
+                        </ul>
+                    </div>
                 </Container>
             </Navbar>
         </>

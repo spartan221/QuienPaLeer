@@ -2,8 +2,10 @@ import React from 'react'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { NavLink } from 'react-router-dom';
-import { Nav, NavItem } from 'react-bootstrap';
+import { Button, Nav, NavItem } from 'react-bootstrap';
 import '../css/SideBar.css'
+import LogoQPLBlack from "../assets/img/QPL_Logo_Black.png";
+import TeamJson from '../assets/team.json';
 
 export default function SideBar() {
 
@@ -56,16 +58,18 @@ export default function SideBar() {
                 <p className='text-muted d-flex justify-content-start p-2 mt-3' style={{fontSize: 12}}>
                     Extras
                 </p>
-                <Nav.Link href="" className='navLinkContainer text-muted' disabled>
-                    <i className="bi bi-people-fill p-2"></i>
-                    Equipo
-                </Nav.Link>
-                <br/>
-                <div>
-                    <Nav.Link href="" className='navLinkContainer text-muted' disabled>
-                        <i className="bi bi-envelope p-2"></i>
-                        Contactanos
-                    </Nav.Link>
+
+                <div className='d-flex justify-content-evenly align-items-center'>
+                    <div>
+                        <button type="button" className="btnExtrasSideBar btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <i class="bi bi-info-lg"></i>
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button" className="btnExtrasSideBar btn" data-bs-toggle="modal" data-bs-target="#exampleModal" disabled >
+                            <i className="bi bi-envelope fs-5"></i>
+                        </button>
+                    </div>
                 </div>
                 <br/>
                 <div className='text-center textAppVersionSideBar text-muted lead h6 mt-3'>
@@ -75,6 +79,24 @@ export default function SideBar() {
                 <hr/>
 
             </div>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div className="modal-header d-flex justify-content-start">
+                            <h5 className='modal-title fw-bold' id="exampleModalLabel">Equipo</h5>
+                        </div>
+                        <div class="modal-body">
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <span><img src={LogoQPLBlack} id='qplLogoNavBar' className='' /></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
+        
     )
 }
