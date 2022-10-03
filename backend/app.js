@@ -4,8 +4,7 @@ import makeAuthRouter from "./routes/auth.js";
 import cors from "cors"
 import makeEventRouter from "./routes/event.js";
 import bookRoute from './routes/book.js'
-
-
+import swapRoute from './routes/swap.js'
 
 const makeApp = (database) => {
 
@@ -25,7 +24,8 @@ const makeApp = (database) => {
     app.use("/api/auth", authRouter);
     const eventRouter = makeEventRouter(database);
     app.use("/api/event", eventRouter);
-    app.use("/api/book",bookRoute)
+    app.use("/api/book",bookRoute);
+    app.use('/api/swap',swapRoute);
 
     return app;
 }
