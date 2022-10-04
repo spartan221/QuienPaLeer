@@ -12,9 +12,19 @@ const makeProfileRouter = (database) => {
         const user = await User.findById(req.params.userId);
         const events = await Event.find({ userId: req.params.userId });
         const books = await Book.find({ userId: req.params.userId })
-        console.log(events);
         if (user) {
             res.status(201).json({ user, events, books });
+        } else {
+            res.status(500)
+        }
+    })
+
+    profileRouter.get('/myInfo', isUserAuthenticaded, async (req, res) => {
+        const user = await User.findById(req.userId);
+        if (user) {
+            res.status(201).json(user);
+        } else {
+            res.status(500)
         }
     })
 
