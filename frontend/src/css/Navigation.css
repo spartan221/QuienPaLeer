@@ -1,10 +1,11 @@
 
 #SearchNavBar {
     width: 2em;
+    border-radius: 20px;
 }
 
 #containerSearchNavBar{
-    width: 600px;
+    width: 400px;
 }
 
 #btnSearchNavBar{
@@ -19,19 +20,33 @@
 }
 
 #qplTitle{
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bold;
     color: black;
-    text-shadow: 3px 3px 2px #ff9f43;
 }
 
 #qplLogoNavBar{
-    width: 60px;
-    width: 60px;
+    width: 50px;
+    width: 50px;
     margin-right: 10px;
+    filter: drop-shadow(4px 4px 6px #c2c2c2);
 }
 
 .navBarLinks:hover{
     color: #FF9F43;
 }
 
+#selectTypeSearch {
+    width: 200px;
+    border-style: none;
+}
+
+#selectTypeSearch:focus {
+    box-shadow: none;  
+}
+
+#searchNavBar:focus{
+    box-shadow: none;
+    border-color: #FF9F43;
+    width: 450px;
+}

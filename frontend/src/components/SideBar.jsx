@@ -8,7 +8,8 @@ import '../css/SideBar.css'
 export default function SideBar() {
 
     let activeStyle = {
-        backgroundColor : '#ff9f43'
+        backgroundColor : '#ff9f43',
+        borderRadius: '5px',
     }
 
     return (
@@ -19,8 +20,8 @@ export default function SideBar() {
                 </p>
 
                 <Nav vertical fill>
-                    <NavItem>
-                        <NavLink className='text-decoration-none text-dark'
+                    <NavItem className='d-flex align-items-start pb-4'>
+                        <NavLink className='text-decoration-none text-dark navLinkContainer w-100 text-start'
                             style={({ isActive }) =>
                                 isActive ? activeStyle : undefined
                             }
@@ -29,8 +30,8 @@ export default function SideBar() {
                             Eventos
                         </NavLink>
                     </NavItem>
-                    <NavItem>
-                        <NavLink className='text-decoration-none text-dark'
+                    <NavItem className='d-flex align-items-start  pb-4'>
+                        <NavLink className='text-decoration-none text-dark navLinkContainer w-100 text-start'
                             style={({ isActive }) =>
                                 isActive ? activeStyle : undefined
                             }
@@ -39,8 +40,8 @@ export default function SideBar() {
                             Compra de libros
                         </NavLink>
                     </NavItem>
-                    <NavItem>
-                        <NavLink className='text-decoration-none text-dark'
+                    <NavItem className='d-flex align-items-start  pb-4'>
+                        <NavLink className='text-decoration-none text-dark navLinkContainer w-100 text-start'
                             style={({ isActive }) =>
                                 isActive ? activeStyle : undefined
                             } to='changeBooks'>
@@ -55,13 +56,13 @@ export default function SideBar() {
                 <p className='text-muted d-flex justify-content-start p-2 mt-3' style={{fontSize: 12}}>
                     Extras
                 </p>
-                <Nav.Link variant="primary" href="home/events" id='linkEvents' className='navLinkContainer'>
+                <Nav.Link href="" className='navLinkContainer text-muted' disabled>
                     <i className="bi bi-people-fill p-2"></i>
                     Equipo
                 </Nav.Link>
                 <br/>
                 <div>
-                    <Nav.Link variant="primary" href="home/events" id='linkEvents' className='navLinkContainer'>
+                    <Nav.Link href="" className='navLinkContainer text-muted' disabled>
                         <i className="bi bi-envelope p-2"></i>
                         Contactanos
                     </Nav.Link>
