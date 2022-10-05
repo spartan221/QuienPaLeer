@@ -9,9 +9,9 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import LogoQPLBlack from "../assets/img/QPL_Logo_Black.png";
 import '../css/Navigation.css'
-import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap'
 
-function Navigation({ userName }) {
+function Navigation(user) {
     return (
         <>
             <Navbar bg="light" variant="light" className="py-3 border border-bottom shadow-sm h-100" >
@@ -44,11 +44,12 @@ function Navigation({ userName }) {
 
                     </Nav>
                     <Nav>
-
-                        <Nav.Link className='navBarLinks py-0 d-flex align-items-center' id='userNameNavContainer'>
-                            {userName ? userName : 'Cargando...'}
-                            <i className="bi bi-person-circle px-2" style={{ fontSize: 30 }}></i>
-                        </Nav.Link>
+                        <LinkContainer to={`profile/${user._id}`}>
+                            <Nav.Link className='navBarLinks py-0 d-flex align-items-center' id='userNameNavContainer'>
+                                {user.name ? user.name : 'Cargando...'}
+                                <i className="bi bi-person-circle px-2" style={{ fontSize: 30 }}></i>
+                            </Nav.Link>
+                        </LinkContainer>
 
                         <div className="vr mx-3"></div>
 

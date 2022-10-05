@@ -7,9 +7,9 @@ export async function loader({ params }) {
 }
 
 const Profile = () => {
-    const user = useLoaderData().data;
-    const events = useLoaderData().data;
-    const books = useLoaderData().data;
+    const user = useLoaderData().data.user;
+    const events = useLoaderData().data.events;
+    const books = useLoaderData().data.books;
     console.log({ user, events, books })
     return (
         <div>
