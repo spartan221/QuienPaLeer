@@ -1,9 +1,10 @@
 import cookieParser from "cookie-parser";
 import express from "express";
 import makeAuthRouter from "./routes/auth.js";
-import cors from "cors"
+import cors from "cors";
 import makeEventRouter from "./routes/event.js";
-import bookRoute from './routes/book.js'
+import bookRoute from './routes/book.js';
+import donationRoute from './routes/donation.js';
 
 
 
@@ -26,6 +27,7 @@ const makeApp = (database) => {
     const eventRouter = makeEventRouter(database);
     app.use("/api/event", eventRouter);
     app.use("/api/book",bookRoute)
+    app.use("/api/donation",donationRoute)
 
     return app;
 }
