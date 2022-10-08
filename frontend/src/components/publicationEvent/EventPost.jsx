@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../css/EventPost.css'
-import ViewEvent from './ViewEvent'  
+import ViewEvent from './ViewEvent'
 
 export const EventPost = ({ posts, loading }) => {
     const [properties, setProperties] = useState({})
@@ -13,7 +13,7 @@ export const EventPost = ({ posts, loading }) => {
                 <div>
                     <div key={post._id} className="col py-2 px-4 h-20 pb-4" id='infoEventsContainer'>
                         <div className='row'>
-                            <input  onClick={e => setProperties({ ...post })} type="image" data-bs-toggle="modal" data-bs-target="#Modal" className="rounded-5 imagen" src={post.image}></input>
+                            <input onClick={e => setProperties({ ...post })} type="image" data-bs-toggle="modal" data-bs-target="#modalViewEvent" className="rounded-5 imagen" src={post.image}></input>
                         </div>
                         <div className='row'>
                             <p className='col text-start fw-bold'>{post.name}</p>
@@ -22,11 +22,11 @@ export const EventPost = ({ posts, loading }) => {
                         <p className='col text-start orange-text'>{post.startDate} - {post.endDate}</p>
                     </div>
 
-                    <div className="modal fade" id="Modal" tabIndex={-1} aria-labelledby="ModalLabel" aria-hidden="true">
+                    <div className="modal fade" id="modalViewEvent" tabIndex={-1} aria-labelledby="modalViewEventLabel" aria-hidden="true">
                         <div className="modal-dialog">
                             <div className="modal-content">
                                 <div className="modal-header">
-                                    <h5 className="modal-title" id="ModalLabel">{properties.name}</h5>
+                                    <h5 className="modal-title" id="modalViewEventLabel">{properties.name}</h5>
                                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div className="modal-body">

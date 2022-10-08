@@ -1,7 +1,17 @@
 import React from 'react'
 import "../css/ViewEvent.css"
+import { Link, Navigate, useNavigate } from 'react-router-dom'
+import * as bootstrap from 'bootstrap'
+import EditProfile from '../profile/EditProfile'
 
 const ViewEvent = (props) => {
+    const navigate = useNavigate();
+    const hideModal = () => {
+        setTimeout(() => {
+            navigate(`profile/${props.userId}`)
+        }, 100);
+    }
+
     return (
         <div className='container rounded border p-4 mr-5'>
             <div className='row'>
@@ -23,11 +33,12 @@ const ViewEvent = (props) => {
                     <p>{props.place}</p>
                 </div>
             </div>
-            <a className='row' href={`profile/${props.userId}`}>
+
+            <Link data-bs-dismiss="modal" aria-label="Close" onClick={hideModal}>
                 Usuario
-            </a>
+            </Link>
         </div>
     )
 }
-
+// to={`profile/${props.userId}`}
 export default ViewEvent

@@ -1,7 +1,14 @@
 import React from 'react'
 import "../css/ViewEvent.css"
+import { Link, useNavigate } from 'react-router-dom'
 
 const ViewBook = (props) => {
+    const navigate = useNavigate();
+    const hideModal = () => {
+        setTimeout(() => {
+            navigate(`profile/${props.userId}`)
+        }, 100);
+    }
     return (
         <div className='container rounded border p-4 mr-5'>
             <div className='row'>
@@ -23,9 +30,9 @@ const ViewBook = (props) => {
                     <p>{props.author}</p>
                 </div>
             </div>
-            <a className='row' href={`profile/${props.userId}`}>
+            <Link data-bs-dismiss="modal" aria-label="Close" onClick={hideModal}>
                 Usuario
-            </a>
+            </Link>
         </div>
     )
 }

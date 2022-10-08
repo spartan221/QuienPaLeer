@@ -9,11 +9,11 @@ import Home from "./components/Home";
 import Register from "./components/registerLogin/Register";
 import FormBook from "./components/publicationBook/ViewBooks";
 import Events from "./components/publicationEvent/ViewEvents";
-import "bootstrap/dist/js/bootstrap.js";
 import "jquery/dist/jquery.js";
+import "bootstrap/dist/js/bootstrap.js";
 import Profile, {
   loader as profileLoader,
-} from './components/Profile';
+} from './components/profile/Profile.jsx';
 
 const router = createBrowserRouter([
   {
@@ -38,8 +38,18 @@ const router = createBrowserRouter([
         element: <Events />,
       },
       {
+        path: 'events/profile/:userId',
+        element: <Profile myProfile={false} />,
+        loader: profileLoader
+      },
+      {
+        path: 'buyBooks/profile/:userId',
+        element: <Profile myProfile={false} />,
+        loader: profileLoader
+      },
+      {
         path: 'profile/:userId',
-        element: <Profile />,
+        element: <Profile myProfile={true} />,
         loader: profileLoader
       }
     ]

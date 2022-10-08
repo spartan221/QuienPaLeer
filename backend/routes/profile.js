@@ -7,7 +7,7 @@ import { isUserAuthenticaded } from '../config/firebase/authentication.js';
 const makeProfileRouter = (database) => {
     const profileRouter = express.Router();
 
-    //VISUALIZAR PERFIL
+    //VISUALIZAR PERFIL DE OTRO USUARIO
     profileRouter.get('/view/:userId', async (req, res) => {
         const user = await User.findById(req.params.userId);
         const events = await Event.find({ userId: req.params.userId });
@@ -19,6 +19,7 @@ const makeProfileRouter = (database) => {
         }
     })
 
+    //VISUALIZAR PERFIL DEL USUARIO LOGUEADO
     profileRouter.get('/myInfo', isUserAuthenticaded, async (req, res) => {
         const user = await User.findById(req.userId);
         if (user) {
@@ -26,6 +27,21 @@ const makeProfileRouter = (database) => {
         } else {
             res.status(500)
         }
+    })
+
+    //EDITAR PERFIL
+    profileRouter.put('/update', isUserAuthenticaded, async (req, res) => {
+        const user = await User.findById(req.userId);
+        if (user.name) user.name = req.body.name
+        if (user.lastName) user.lastName = req.body.lastName
+        if (user.phone) user.phone = req.body.phone
+        const response = await database.saveUser(user);
+        if (response) {
+            res.status(201).json('Perfil actualizado en la BD satisfactoriamente.');
+        } else {
+            res.status(500).json('Error al actualizar el perfil')
+        }
+
     })
 
     return profileRouter
