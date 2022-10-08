@@ -43,7 +43,7 @@ const makeAuthRouter = (database) => {
 
             // Usuario sastifactoriamente almacenado en la BD
             if (response) {
-                res.status(201).json({ message: `El usuario ${newUser.name} se ha creado sastifactoriamente` });
+                res.status(201).json({ message: `El usuario ${newUser.name} se ha creado sastifactoriamente`, confirmationEmail: true });
             }
 
 
@@ -73,7 +73,7 @@ const makeAuthRouter = (database) => {
             res.json({ message: "El login se ha compleado sastifactoriamente" , token});
 
         } catch (error) {
-            res.statusCode = 500;
+            res.statusCode = 401;
             res.json({ message: error });
         }
     });
