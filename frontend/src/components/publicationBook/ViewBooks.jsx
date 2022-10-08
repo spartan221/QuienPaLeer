@@ -5,6 +5,7 @@ import Paginations from '../Paginations'
 import '../css/ViewBooks.css'
 import FormBook from './AddBookSale.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import * as bootstrap from 'bootstrap'
 
 
 const ViewBooks = () => {
@@ -16,6 +17,16 @@ const ViewBooks = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(6)
     const reloadPage = () => setReload(reload+1);
+
+    const handleShow = () => {
+        const myModal = new bootstrap.Modal(document.getElementById('ModalCreate'))
+        myModal.show();
+    };
+    const hideModal = ()=>{ 
+        const myModal = document.getElementById('ModalCreate') ;
+        const modal = bootstrap.Modal.getInstance(myModal);
+        modal.hide();
+    }
     useEffect(() => {
         const fetchPost = async () => {
             setLoading(true);
@@ -34,6 +45,7 @@ const ViewBooks = () => {
     const currentPost = posts.slice(indexOfFirstPost, indexOfLastPost)
 
     const paginate = pageNumber => {
+        
         if ((pageNumber - 1) == 0) {
 
             setBand(true)
@@ -44,9 +56,11 @@ const ViewBooks = () => {
         }
         if (pageNumber >= Math.ceil(posts.length / postsPerPage)) {
             setBandRight(true)
+            
         }
         else {
             setBandRight(false)
+            
         }
         setCurrentPage(pageNumber)
     }
@@ -57,7 +71,7 @@ const ViewBooks = () => {
             <div className='row'>
                 <h2 className='col text-start ms-4 fw-bold'>Venta de libros</h2>
                 <div className='col text-end'>
-                    <button type="button" className='btn border me-4' id='btnAddBookSell' data-bs-toggle="modal" data-bs-target="#ModalCreate">Añadir a la venta</button>
+                    <button type="button" className='btn border me-4' id='btnAddBookSell' onClick={handleShow}>Añadir a la venta</button>
                 </div>
             </div>
             <hr/>
@@ -72,7 +86,7 @@ const ViewBooks = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <FormBook reloadPage={reloadPage}/>
+                            <FormBook reloadPage={reloadPage} closeModal={hideModal}/>
                         </div>
                     </div>
                 </div>

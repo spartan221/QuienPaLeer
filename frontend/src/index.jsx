@@ -11,6 +11,7 @@ import FormBook from "./components/publicationBook/ViewBooks";
 import Events from "./components/publicationEvent/ViewEvents";
 import "bootstrap/dist/js/bootstrap.js";
 import "jquery/dist/jquery.js";
+import ViewDonations from "./components/publicationDonation/ViewDonations";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,7 +33,12 @@ const router = createBrowserRouter([
       {
         path: 'events',
         element: <Events />
+      },
+      {
+        path: 'donationBooks',
+        element: <ViewDonations/>
       }
+
     ]
   }
 ])

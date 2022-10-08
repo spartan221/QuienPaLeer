@@ -1,7 +1,9 @@
-import React from 'react'
-import "../css/ViewEvent.css"
 
+import React, { useState, useEffect } from 'react'
+import "../css/ViewEvent.css"
+import DatePublication from '../DatePublication.jsx';
 const ViewBook = (props) => {
+    
     return (
         <div className='container rounded border p-4 mr-5'>
             <div className='row'>
@@ -23,6 +25,7 @@ const ViewBook = (props) => {
                     <p>{props.author}</p>
                 </div>
             </div>
+            <DatePublication dateCreatedAt={props.createdAt}/>
         </div>
     )
 }

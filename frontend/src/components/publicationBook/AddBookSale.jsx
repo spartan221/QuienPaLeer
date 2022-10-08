@@ -13,7 +13,7 @@ import '../css/CreateBookSale.css'
 
 const baseURL = 'http://127.0.0.1:5000/api/book/create'
 
-function FormBook({reloadPage}) {
+function FormBook({reloadPage,closeModal}) {
   let re = /^\d+$/;
   const [inputs, setInputs] = useState({})
   const [file, setFile] = useState(null)
@@ -46,6 +46,7 @@ function FormBook({reloadPage}) {
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors)
     }else{
+      closeModal();
     uploadFile(file).then(async (downloadURL) => {
       const newBook = {
         name: book.name,
@@ -61,6 +62,7 @@ function FormBook({reloadPage}) {
       await axios.post(baseURL, newBook);
       reloadPage();
       setBook(bookOject)
+      setInputs({})
     }).catch((error) => {
       console.log(error);
     }) 
@@ -185,7 +187,7 @@ function FormBook({reloadPage}) {
                 <style>
                   
                 </style>
-                <Button  className="mt-4" id='btnAddSellBookModal'  variant="primary" type="submit" style={{border:"none"}}>
+                <Button  className="btn btn-dark px-5" id='btnAddSellBookModal'  variant="primary" type="submit" style={{border:"none"}}>
                   Agregar
                 </Button>
               </div>

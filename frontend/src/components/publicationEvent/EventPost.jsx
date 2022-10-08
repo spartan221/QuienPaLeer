@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import '../css/EventPost.css'
+import Spinner from '../SpinnerCircular';
 import ViewEvent from './ViewEvent'  
 
 export const EventPost = ({ posts, loading }) => {
     const [properties, setProperties] = useState({})
     if (loading) {
-        return <h2>Cargando ...</h2>
+        return<div className='container'>
+            <div className='col-auto p-5 text-center'> <Spinner/> </div>
+        </div>
     }
     return <div className='container'>
         <div className='row row-cols-2'>

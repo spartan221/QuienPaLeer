@@ -1,5 +1,6 @@
 import React from 'react'
 import "../css/ViewEvent.css"
+import DatePublication from '../DatePublication.jsx';
 
 const ViewEvent = (props) => {
     return (
@@ -23,6 +24,7 @@ const ViewEvent = (props) => {
                     <p>{props.place}</p>
                 </div>
             </div>
+            <DatePublication dateCreatedAt={props.createdAt}/>
         </div>
     )
 }
