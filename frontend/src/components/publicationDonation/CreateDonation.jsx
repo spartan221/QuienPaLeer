@@ -83,12 +83,12 @@ const CreateDonation = ({reloadPage,closeModal}) => {
                 <i className="col-4 text-end  bi-bag-heart "></i>
             </div>
             <form className="text-start mt-3">
-                <label htmlFor="name" className="form-label">Título de la publicación</label><br />
-                <input className="form-control" name="name" id="name" type="text" value={donation.name} onChange={handleChange} ></input>
+                <label htmlFor="title" className="form-label">Título de la publicación</label><br />
+                <input className="form-control" name="title" id="title" type="text" value={donation.title} onChange={handleChange} ></input>
                 <p className="errorContainer ms-1 mt-2 text-danger">{errors.title}</p>
 
-                <label htmlFor="title" className="form-label">Nombre del libro</label><br />
-                <input className="form-control" name="title" id="title" type="text" value={donation.title}  onChange={handleChange} ></input>
+                <label htmlFor="name" className="form-label">Nombre del libro</label><br />
+                <input className="form-control" name="name" id="name" type="text" value={donation.name}  onChange={handleChange} ></input>
                 <p className="errorContainer ms-1 mt-2 text-danger">{errors.name}</p>
 
                 <label htmlFor="author" className="form-label">Autor</label><br />
