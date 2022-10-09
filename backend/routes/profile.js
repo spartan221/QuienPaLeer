@@ -23,7 +23,7 @@ const makeProfileRouter = (database) => {
     profileRouter.get('/myInfo', isUserAuthenticaded, async (req, res) => {
         const user = await User.findById(req.userId);
         if (user) {
-            res.status(201).json(user);
+            res.status(200).json(user);
         } else {
             res.status(500)
         }
@@ -32,9 +32,9 @@ const makeProfileRouter = (database) => {
     //EDITAR PERFIL
     profileRouter.put('/update', isUserAuthenticaded, async (req, res) => {
         const user = await User.findById(req.userId);
-        if (user.name) user.name = req.body.name
-        if (user.lastName) user.lastName = req.body.lastName
-        if (user.phone) user.phone = req.body.phone
+        if (req.body.name) user.name = req.body.name
+        if (req.body.lastName) user.lastName = req.body.lastName
+        if (req.body.phone) user.phone = req.body.phone
         const response = await database.saveUser(user);
         if (response) {
             res.status(201).json('Perfil actualizado en la BD satisfactoriamente.');

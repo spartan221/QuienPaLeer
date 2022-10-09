@@ -2,6 +2,7 @@ import React from 'react'
 import { useLoaderData } from 'react-router-dom';
 import { publicRequest } from '../../requestMethods';
 import EditProfile from './EditProfile';
+import * as bootstrap from 'bootstrap'
 
 export async function loader({ params }) {
     return await publicRequest.get(`profile/view/${params.userId}`)
@@ -12,9 +13,18 @@ const Profile = ({ myProfile }) => {
     const events = useLoaderData().data.events;
     const books = useLoaderData().data.books;
     console.log({ user, events, books })
+    const handleShow = () => {
+        const myModal = new bootstrap.Modal(document.getElementById('modalEditProfile'))
+        myModal.show();
+    };
+    const hideModal = () => {
+        const myModal = document.getElementById('modalEditProfile');
+        const modal = bootstrap.Modal.getInstance(myModal);
+        modal.hide();
+    }
     return (
         <div>
-            {myProfile && <button data-bs-toggle="modal" data-bs-target="#modalEditProfile">Editar</button>}
+            {myProfile && <button onClick={handleShow}>Editar</button>}
             Página perfil usuario <br />
             Nombre: {user.name} <br />
             ...
@@ -27,7 +37,7 @@ const Profile = ({ myProfile }) => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <EditProfile />
+                            <EditProfile closeModal={hideModal} />
                         </div>
                     </div>
                 </div>

@@ -37,13 +37,15 @@ const makeAuthRouter = (database) => {
                 email: req.body.email,
                 phone: req.body.phone
             });
-
+            
             // Almacenar el nuevo usuario registrado en la BD
             const response = await database.saveUser(newUser);
 
             // Usuario sastifactoriamente almacenado en la BD
             if (response) {
                 res.status(201).json({ message: `El usuario ${newUser.name} se ha creado sastifactoriamente`, confirmationEmail: true });
+            } else {
+                res.status(501)
             }
 
 

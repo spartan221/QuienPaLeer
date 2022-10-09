@@ -3,8 +3,11 @@ import '../../css/Register.css'
 import { useState } from "react";
 import Swal from 'sweetalert2';
 import { publicRequest } from '../../requestMethods'
+import { useNavigate } from "react-router-dom";
 
-export default function EditProfile() {
+export default function EditProfile({ closeModal }) {
+  const navigate = useNavigate();
+
   const [inputs, setInputs] = useState({});
   const [errors, setErrors] = useState({});
 
@@ -23,13 +26,10 @@ export default function EditProfile() {
   }
 
   const validateForm = () => {
-    const { name, lastName, phone } = inputs
+    const { phone } = inputs
     const phonePattern = /^3[0-9]{9}$/
     const newErrors = {}
-    if (!name || name === '') newErrors.name = 'Ingresa un nombre'
-    if (!lastName || lastName === '') newErrors.lastName = 'Ingresa un apellido'
-    if (!phone || phone === '') newErrors.phone = 'Ingrese un número telefónico'
-    if (!phonePattern.test(phone)) newErrors.phone = 'Ingrese un número telefónico válido. Ej: 3001234567'
+    if (phone && !phonePattern.test(phone)) newErrors.phone = 'Ingrese un número telefónico válido. Ej: 3001234567'
     return newErrors
   }
 
@@ -40,6 +40,10 @@ export default function EditProfile() {
       setErrors(formErros)
     } else {
       publicRequest.put("/profile/update", inputs, { withCredentials: true });
+      closeModal()
+      setTimeout(() => {
+        navigate(``)
+      }, 200);
       const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',

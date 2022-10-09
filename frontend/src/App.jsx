@@ -12,7 +12,7 @@ import Spinner from './components/SpinnerCircular';
 
 function App() {
 
-  const baseURL = 'http://127.0.0.1:5000/api/auth/myInfo';
+  const baseURL = 'http://127.0.0.1:5000/api/profile/myInfo';
   const [alreadyLoggedIn, setAlreadyLoggedIn] = useState(null);
   const navigate = useNavigate();
 
