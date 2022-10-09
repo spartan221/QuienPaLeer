@@ -2,35 +2,35 @@
     {
         "firstname":"Ivan",
         "lastname":"Morales",
-        "email":"imorales@unal.edu.co",
+        "email":"mailto:imorales@unal.edu.co",
         "dev":"Fullstack",
         "imgpath":"https://picsum.photos/200/300"
     },
     {
         "firstname":"Miguel",
         "lastname":"Villada",
-        "email":"mvilladas@unal.edu.co",
+        "email":"mailto:mvilladas@unal.edu.co",
         "dev":"Fullstack",
         "imgpath":"https://picsum.photos/200/300"
     },
     {
         "firstname":"Luis",
         "lastname":"Mendez ",
-        "email":"lumendezm@unal.edu.co",
-        "dev":"Diseñador UX/UI - Frontend",
+        "email":"mailto:lumendezm@unal.edu.co",
+        "dev":"UX/UI & Frontend",
         "imgpath":"https://picsum.photos/200/300"
     },
     {
         "firstname":"Daniel",
         "lastname":"Vargas",
-        "email":"danvargasgo@unal.edu.co",
+        "email":"mailto:danvargasgo@unal.edu.co",
         "dev":"Fullstack",
         "imgpath":"https://picsum.photos/200/300"
     },
     {
         "firstname":"Daniel",
         "lastname":"Bonilla",
-        "email":"dabonilla@unal.edu.co",
+        "email":"mailto:dabonilla@unal.edu.co",
         "dev":"Fullstack",
         "imgpath":"https://picsum.photos/200/300"
     }
