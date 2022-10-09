@@ -20,15 +20,16 @@ describe('Pruebas sobre la funcionalidad de registro de usuario', () => {
         };
 
         const newUser = {
-            email: "testUser@unal.edu.co",
+            email: "xiyega6103@deitada.com",
             password: "qweqwe123",
             name: "ivan",
             lastName: "morales",
             phone: "1234567"
         };
-
-        describe("Dado un correo, contraseña, nombre, apellido y telefono", () => {
     
+
+        describe("Dado un correo, contraseña, nombre, apellido y telefono correctos", () => {
+
             // Despues de ejecutar cada test se limpia la base de datos
             afterEach( () => cleanDatabase() );
 
@@ -48,6 +49,14 @@ describe('Pruebas sobre la funcionalidad de registro de usuario', () => {
                 expect(response.body.message).toBe(`El usuario ${newUser.name} se ha creado sastifactoriamente`);
 
             });
+
+            it('Se manda un correo de verficación al correo brindado', async() => {
+
+                const response = await request(app).post(endpoint).send(newUser);
+                expect(response.body.confirmationEmail).toBeDefined();
+                expect(response.body.confirmationEmail).toBe(true);
+
+            })
 
         });
 
@@ -143,19 +152,15 @@ describe('Pruebas sobre la funcionalidad de registro de usuario', () => {
 
                     const response = await request(app).post(endpoint).send(badUserInput);
                     expect(response.statusCode).toBe(500);
-                    
+
 
                 });
 
 
             });
 
-            
-
         });
 
-
-
-
     });
+
 });

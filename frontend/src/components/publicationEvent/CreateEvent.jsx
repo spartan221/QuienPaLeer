@@ -6,7 +6,7 @@ import EventIcon from '@mui/icons-material/Event';
 import '../css/CreateEvent.css'
 import Swal from 'sweetalert2'
 
-const CreateEvent = ({ reloadPage }) => {
+const CreateEvent = ({reloadPage,closeModal}) => {
     const [inputs, setInputs] = useState({})
     const [file, setFile] = useState(null)
     const [errors, setErrors] = useState({ file: null })
@@ -67,7 +67,8 @@ const CreateEvent = ({ reloadPage }) => {
         if (Object.keys(formErrors).length > 0) {
             setErrors(formErrors)
         } else {
-            uploadFile(file).then((downloadURL) => {
+            closeModal();
+            uploadFile(file).then( async (downloadURL) => {
                 const newEvent = { ...inputs, image: downloadURL };
                 publicRequest.post("/event/create", newEvent, { withCredentials: true });
                 const Toast = Swal.mixin({

@@ -1,7 +1,8 @@
-import React from 'react'
+
+import React, { useState, useEffect } from 'react'
 import "../css/ViewEvent.css"
 import { Link, useNavigate } from 'react-router-dom'
-
+import DatePublication from '../DatePublication.jsx';
 const ViewBook = (props) => {
     const navigate = useNavigate();
     const hideModal = () => {
@@ -30,6 +31,7 @@ const ViewBook = (props) => {
                     <p>{props.author}</p>
                 </div>
             </div>
+            <DatePublication dateCreatedAt={props.createdAt}/>
             <Link data-bs-dismiss="modal" aria-label="Close" onClick={hideModal}>
                 Usuario
             </Link>

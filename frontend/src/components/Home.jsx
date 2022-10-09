@@ -30,8 +30,6 @@ const Home = () => {
         }, 3000);
     })
 
-
-
     return (
         <div>
             <div className='layout'>

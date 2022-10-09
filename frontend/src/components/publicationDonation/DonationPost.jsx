@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import '../css/EventPost.css'
+import '../css/BookPost.css'
+import ViewDonation from './ViewDonation'
 import Spinner from '../SpinnerCircular';
-import ViewEvent from './ViewEvent'
 
-export const EventPost = ({ posts, loading }) => {
+export const DonationPost = ({ posts, loading }) => {
     const [properties, setProperties] = useState({})
     if (loading) {
         return<div className='container'>
@@ -14,26 +14,28 @@ export const EventPost = ({ posts, loading }) => {
         <div className='row row-cols-2'>
             {posts.map(post => (
                 <div>
-                    <div key={post._id} className="col py-2 px-4 h-20 pb-4" id='infoEventsContainer'>
+                    <div key={post._id} className="col py-2 px-5 pb-5">
                         <div className='row'>
-                            <input onClick={e => setProperties({ ...post })} type="image" data-bs-toggle="modal" data-bs-target="#modalViewEvent" className="rounded-5 imagen" src={post.image}></input>
+                            <p className='col text-start fw-bold'>{post.title}</p>
                         </div>
                         <div className='row'>
-                            <p className='col text-start fw-bold'>{post.name}</p>
-                            <p className='col text-end gray-text'>{post.place}</p>
+                            <input onClick={e => setProperties({ ...post })} type="image" data-bs-toggle="modal" data-bs-target="#Modal" className="rounded-5 imagen" id='imageInputSellBook' src={post.image}></input>
                         </div>
-                        <p className='col text-start orange-text'>{post.startDate} - {post.endDate}</p>
+                        <div className='row mt-2'>
+                            <p className='col text-start'>{post.name}</p>
+                            <p className='col text-end' id='priceSellBook'> {post.author}</p>
+                        </div>
                     </div>
 
-                    <div className="modal fade" id="modalViewEvent" tabIndex={-1} aria-labelledby="modalViewEventLabel" aria-hidden="true">
+                    <div className="modal fade" id="Modal" tabIndex={-1} aria-labelledby="ModalLabel" aria-hidden="true">
                         <div className="modal-dialog">
                             <div className="modal-content">
                                 <div className="modal-header">
-                                    <h5 className="modal-title" id="modalViewEventLabel">{properties.name}</h5>
+                                    <h5 className="modal-title" id="ModalLabel">{properties.title}</h5>
                                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div className="modal-body">
-                                    <ViewEvent {...properties} />
+                                    <ViewDonation {...properties} />
                                 </div>
                             </div>
                         </div>
@@ -44,4 +46,4 @@ export const EventPost = ({ posts, loading }) => {
         </div>
     </div>
 }
-export default EventPost
+export default DonationPost

@@ -15,6 +15,7 @@ import Profile, {
   loader as profileLoader,
 } from './components/profile/Profile.jsx';
 
+import ViewDonations from "./components/publicationDonation/ViewDonations";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,7 +52,12 @@ const router = createBrowserRouter([
         path: 'profile/:userId',
         element: <Profile myProfile={true} />,
         loader: profileLoader
+      },
+      {
+        path: 'donationBooks',
+        element: <ViewDonations/>
       }
+
     ]
   }
 ])

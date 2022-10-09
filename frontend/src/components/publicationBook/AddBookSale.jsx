@@ -14,7 +14,7 @@ import Swal from 'sweetalert2'
 
 const baseURL = 'http://127.0.0.1:5000/api/book/create'
 
-function FormBook({ reloadPage }) {
+function FormBook({reloadPage,closeModal}) {
   let re = /^\d+$/;
   const [inputs, setInputs] = useState({})
   const [file, setFile] = useState(null)
@@ -47,6 +47,7 @@ function FormBook({ reloadPage }) {
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors)
     } else {
+      closeModal();
       uploadFile(file).then(async (downloadURL) => {
         const newBook = {
           name: book.name,
@@ -79,6 +80,7 @@ function FormBook({ reloadPage }) {
         document.getElementById('bookForm').reset()
         reloadPage();
         setBook(bookOject)
+      setInputs({})
       }).catch((error) => {
         console.log(error);
       })

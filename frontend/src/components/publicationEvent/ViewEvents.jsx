@@ -1,10 +1,10 @@
-import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import EventPost from './EventPost.jsx'
 import Paginations from '../Paginations'
 import { publicRequest } from '../../requestMethods.js'
 import '../css/ViewEvents.css'
 import CreateEvent from './CreateEvent'
+import * as bootstrap from 'bootstrap'
 
 const Pagination = () => {
     const [posts, setPost] = useState([])
@@ -15,7 +15,19 @@ const Pagination = () => {
     const [postsPerPage] = useState(6)
     const [reload, setReload] = useState(0);
     const reloadPage = () => setReload(reload+1);
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPost = posts.slice(indexOfFirstPost, indexOfLastPost)
 
+    const handleShow = () => {
+        const myModal = new bootstrap.Modal(document.getElementById('ModalCreate'))
+        myModal.show();
+    };
+    const hideModal = ()=>{ 
+        const myModal = document.getElementById('ModalCreate') ;
+        const modal = bootstrap.Modal.getInstance(myModal);
+        modal.hide();
+    }
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -29,10 +41,6 @@ const Pagination = () => {
         fetchPost();
         console.log("recarga")
     }, [reload]);
-
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPost = posts.slice(indexOfFirstPost, indexOfLastPost)
 
     const paginate = pageNumber => {
         if ((pageNumber - 1) == 0) {
@@ -56,7 +64,7 @@ const Pagination = () => {
             <div className='row my-4'>
                 <h2 className='col text-start ms-4 fw-bold'>Eventos</h2>
                 <div className='col text-end'>
-                    <button type="button" className='btn btn-dark border me-4' id='btnCreateEvent' data-bs-toggle="modal" data-bs-target="#ModalCreate">Crear evento</button>
+                    <button type="button" className='btn btn-dark border me-4' id='btnCreateEvent' onClick={handleShow}>Crear evento</button>
                 </div>
             </div>
             <hr/>
@@ -71,7 +79,7 @@ const Pagination = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <CreateEvent reloadPage={reloadPage} />
+                            <CreateEvent reloadPage={reloadPage} closeModal={hideModal} />
                         </div>
                     </div>
                 </div>

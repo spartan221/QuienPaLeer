@@ -11,6 +11,8 @@ const EventSchema = new mongoose.Schema({
     image: { type: String, required: true },
     place: { type: String, required: true },
     userId: { type: String, required: true }
+},{
+    timestamps:true
 })
 
 export default mongoose.model("Event", EventSchema)

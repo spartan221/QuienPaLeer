@@ -3,6 +3,7 @@ import "../css/ViewEvent.css"
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import * as bootstrap from 'bootstrap'
 import EditProfile from '../profile/EditProfile'
+import DatePublication from '../DatePublication.jsx';
 
 const ViewEvent = (props) => {
     const navigate = useNavigate();
@@ -33,6 +34,7 @@ const ViewEvent = (props) => {
                     <p>{props.place}</p>
                 </div>
             </div>
+            <DatePublication dateCreatedAt={props.createdAt}/>
 
             <Link data-bs-dismiss="modal" aria-label="Close" onClick={hideModal}>
                 Usuario
