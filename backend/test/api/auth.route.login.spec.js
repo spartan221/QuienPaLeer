@@ -87,9 +87,9 @@ describe('\nPruebas sobre la funcionalidad de login de usuario', () => {
             const badInputLogin = { email: "noregistrado@correo.com", password: "qweqwe123" };
 
 
-            it('Devuelve el código 500', async () => {
+            it('Devuelve el código 401', async () => {
                 const response = await request(app).post(endpoint).send(badInputLogin);
-                expect(response.statusCode).toBe(500);
+                expect(response.statusCode).toBe(401);
             });
 
             it('Devuelve el mensaje: El correo EMAIL NO se encuentra registrado. Donde EMAIl es el correo no registrado', async () => {
@@ -103,10 +103,10 @@ describe('\nPruebas sobre la funcionalidad de login de usuario', () => {
 
         describe('Dado un correo registrado y una contraseña incorrecta', () => {
 
-            it('Devuelve el código 500', async () => {
+            it('Devuelve el código 401', async () => {
 
                 const response = await request(app).post(endpoint).send({ ...loginInput, password: "anotherpassword" });
-                expect(response.statusCode).toBe(500);
+                expect(response.statusCode).toBe(401);
 
 
             });

@@ -25,18 +25,14 @@ const Home = () => {
     }
 
     useEffect(() => {
-        setTimeout(() => {
-            fetchUserName()
-        }, 3000);
+        fetchUserName()
     })
-
-
 
     return (
         <div>
             <div className='layout'>
                 <div className='navegBar'>
-                    <Navigation userName={userName}/>
+                    <Navigation userName={userName} />
                 </div>
                 <div className="side">
                     <SideBar />
