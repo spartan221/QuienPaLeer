@@ -49,8 +49,8 @@ export default function SideBar() {
                             Cambio de libros
                         </NavLink>
                     </NavItem>
-                    <NavItem>
-                        <NavLink className='text-decoration-none text-dark'
+                    <NavItem className='d-flex align-items-start  pb-4'>
+                        <NavLink className='text-decoration-none text-dark navLinkContainer w-100 text-start'
                             style={({ isActive }) =>
                                 isActive ? activeStyle : undefined
                             } to='donationBooks'>
