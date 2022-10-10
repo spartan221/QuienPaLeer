@@ -60,7 +60,6 @@ function Navigation(user) {
                         <Nav.Link>
                             <i className="navBarLinks bi bi-x-lg mx-3" style={{ fontSize: 20 }}></i>
                         </Nav.Link>
-
                     </Nav>
                 </Container>
             </Navbar>

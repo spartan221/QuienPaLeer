@@ -8,3 +8,13 @@
     font-size: .8em;
 }
 
+.btn{
+    background-color: rgb(241, 241, 241);
+}
+
+#btnInfoTeamSideBar:hover, #btnContactSideBar:hover{
+    background-color: #ffb875;
+}
+
+
+

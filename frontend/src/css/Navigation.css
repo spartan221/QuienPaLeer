@@ -9,14 +9,14 @@
 }
 
 #btnSearchNavBar{
-    background-color: #FF9F43;
+    background-color: #ffb875;
     color: black;
     border-color: transparent;
 }
 
 #btnSearchNavBar:hover{
     background-color: black;
-    color: #FF9F43;
+    color: #ffb875;
 }
 
 #qplTitle{
@@ -33,7 +33,7 @@
 }
 
 .navBarLinks:hover{
-    color: #FF9F43;
+    color: #ffb875;
 }
 
 #selectTypeSearch {
@@ -47,6 +47,6 @@
 
 #searchNavBar:focus{
     box-shadow: none;
-    border-color: #FF9F43;
+    border-color: #ffb875;
     width: 450px;
 }

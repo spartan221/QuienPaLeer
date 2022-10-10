@@ -1,0 +1,37 @@
+[
+    {
+        "firstname":"Ivan",
+        "lastname":"Morales",
+        "email":"mailto:imorales@unal.edu.co",
+        "dev":"Fullstack",
+        "imgpath":"https://picsum.photos/200/300"
+    },
+    {
+        "firstname":"Miguel",
+        "lastname":"Villada",
+        "email":"mailto:mvilladas@unal.edu.co",
+        "dev":"Fullstack",
+        "imgpath":"https://picsum.photos/200/300"
+    },
+    {
+        "firstname":"Luis",
+        "lastname":"Mendez ",
+        "email":"mailto:lumendezm@unal.edu.co",
+        "dev":"UX/UI & Frontend",
+        "imgpath":"https://picsum.photos/200/300"
+    },
+    {
+        "firstname":"Daniel",
+        "lastname":"Vargas",
+        "email":"mailto:danvargasgo@unal.edu.co",
+        "dev":"Fullstack",
+        "imgpath":"https://picsum.photos/200/300"
+    },
+    {
+        "firstname":"Daniel",
+        "lastname":"Bonilla",
+        "email":"mailto:dabonilla@unal.edu.co",
+        "dev":"Fullstack",
+        "imgpath":"https://picsum.photos/200/300"
+    }
+]
