@@ -1,11 +1,19 @@
-import React from 'react'
-import "../css/ViewEvent.css"
 
+import React, { useState, useEffect } from 'react'
+import "../css/ViewEvent.css"
+import { Link, useNavigate } from 'react-router-dom'
+import DatePublication from '../DatePublication.jsx';
 const ViewBook = (props) => {
+    const navigate = useNavigate();
+    const hideModal = () => {
+        setTimeout(() => {
+            navigate(`profile/${props.userId}`)
+        }, 100);
+    }
     return (
         <div className='container rounded border p-4 mr-5'>
             <div className='row'>
-                <img className='rounded-4' src={props.image}/>
+                <img className='rounded-4' src={props.image} />
             </div><br />
             <h5 className='text-start'>Nombre del Libro</h5>
             <p className='text-start'>{props.name}</p>
@@ -23,6 +31,10 @@ const ViewBook = (props) => {
                     <p>{props.author}</p>
                 </div>
             </div>
+            <DatePublication dateCreatedAt={props.createdAt}/>
+            <Link data-bs-dismiss="modal" aria-label="Close" onClick={hideModal}>
+                Usuario
+            </Link>
         </div>
     )
 }

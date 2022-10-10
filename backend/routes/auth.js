@@ -37,13 +37,15 @@ const makeAuthRouter = (database) => {
                 email: req.body.email,
                 phone: req.body.phone
             });
-
+            
             // Almacenar el nuevo usuario registrado en la BD
             const response = await database.saveUser(newUser);
 
             // Usuario sastifactoriamente almacenado en la BD
             if (response) {
-                res.status(201).json({ message: `El usuario ${newUser.name} se ha creado sastifactoriamente` });
+                res.status(201).json({ message: `El usuario ${newUser.name} se ha creado sastifactoriamente`, confirmationEmail: true });
+            } else {
+                res.status(501)
             }
 
 
@@ -70,10 +72,10 @@ const makeAuthRouter = (database) => {
             res.statusCode = 200;
 
             // Mensaje de login sastifactorio
-            res.json({ message: "El login se ha compleado sastifactoriamente" , token});
+            res.json({ message: "El login se ha compleado sastifactoriamente", token });
 
         } catch (error) {
-            res.statusCode = 500;
+            res.statusCode = 401;
             res.json({ message: error });
         }
     });
@@ -87,13 +89,6 @@ const makeAuthRouter = (database) => {
 
         res.json({ message: "Se ha cerrado sesión correctamente" });
 
-    });
-
-    authRouter.get('/myInfo', isUserAuthenticaded, async (req, res) => {
-
-        const user = await User.findById(req.userId);
-        res.statusCode = 200;
-        res.json(user);
     });
 
     return authRouter;

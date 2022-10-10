@@ -1,8 +1,13 @@
 import mongoose from "mongoose";
+let urlDb;
 
-const urlDb = "mongodb+srv://admin:admin1234@cluster0.w44l4de.mongodb.net/quienPaLeer?retryWrites=true&w=majority";
+if (process.env.NODE_ENV === 'DEV') {
+    urlDb = 'mongodb://127.0.0.1:27017/quienPaLeer';
+} else {
+    urlDb = "mongodb+srv://admin:admin1234@cluster0.w44l4de.mongodb.net/quienPaLeer?retryWrites=true&w=majority";
+}
 
-//const urlDb = 'mongodb://127.0.0.1:27017/quienPaLeer';
+console.log(urlDb)
 
 const connection = mongoose.connect(urlDb)
     .then(() => console.log("Conexión a BD exitosa"))
@@ -10,7 +15,7 @@ const connection = mongoose.connect(urlDb)
 
 
 // Almacenar usuario en la BD
-const saveUser = async(user) => {
+const saveUser = async (user) => {
     return new Promise((resolve, reject) => {
         user.save()
             .then(() => {
@@ -24,7 +29,7 @@ const saveUser = async(user) => {
     });
 };
 
-const saveEvent = async(event) => {
+const saveEvent = async (event) => {
     return new Promise((resolve, reject) => {
         event.save()
             .then(() => {

@@ -51,6 +51,15 @@ export default function SideBar() {
                             Cambio de libros
                         </NavLink>
                     </NavItem>
+                    <NavItem className='d-flex align-items-start  pb-4'>
+                        <NavLink className='text-decoration-none text-dark navLinkContainer w-100 text-start'
+                            style={({ isActive }) =>
+                                isActive ? activeStyle : undefined
+                            } to='donationBooks'>
+                            <i className="bi bi-bag-heart p-2"></i>
+                            Donación de libros
+                        </NavLink>
+                    </NavItem>
                 </Nav>
 
                 <hr />

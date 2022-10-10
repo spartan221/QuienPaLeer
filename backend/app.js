@@ -1,9 +1,11 @@
 import cookieParser from "cookie-parser";
 import express from "express";
 import makeAuthRouter from "./routes/auth.js";
-import cors from "cors"
+import cors from "cors";
 import makeEventRouter from "./routes/event.js";
-import bookRoute from './routes/book.js'
+import bookRoute from './routes/book.js';
+import donationRoute from './routes/donation.js';
+import makeProfileRouter from "./routes/profile.js";
 
 
 
@@ -14,7 +16,7 @@ const makeApp = (database) => {
     // Middlewares iniciales
     app.use(express.json());
     app.use(cookieParser());
-    app.use(cors({origin: true, credentials: true }));
+    app.use(cors({ origin: true, credentials: true }));
 
     app.get('', (req, res) => {
         res.status(200).json({ message: "test" });
@@ -25,8 +27,10 @@ const makeApp = (database) => {
     app.use("/api/auth", authRouter);
     const eventRouter = makeEventRouter(database);
     app.use("/api/event", eventRouter);
-    app.use("/api/book",bookRoute)
-
+    app.use("/api/book", bookRoute)
+    app.use("/api/donation",donationRoute)
+    const profileRouter = makeProfileRouter(database);
+    app.use("/api/profile", profileRouter)
     return app;
 }
 

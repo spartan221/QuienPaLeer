@@ -9,8 +9,13 @@ import Home from "./components/Home";
 import Register from "./components/registerLogin/Register";
 import FormBook from "./components/publicationBook/ViewBooks";
 import Events from "./components/publicationEvent/ViewEvents";
-import "bootstrap/dist/js/bootstrap.js";
 import "jquery/dist/jquery.js";
+import "bootstrap/dist/js/bootstrap.js";
+import Profile, {
+  loader as profileLoader,
+} from './components/profile/Profile.jsx';
+
+import ViewDonations from "./components/publicationDonation/ViewDonations";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,8 +36,28 @@ const router = createBrowserRouter([
       },
       {
         path: 'events',
-        element: <Events />
+        element: <Events />,
+      },
+      {
+        path: 'events/profile/:userId',
+        element: <Profile myProfile={false} />,
+        loader: profileLoader
+      },
+      {
+        path: 'buyBooks/profile/:userId',
+        element: <Profile myProfile={false} />,
+        loader: profileLoader
+      },
+      {
+        path: 'profile/:userId',
+        element: <Profile myProfile={true} />,
+        loader: profileLoader
+      },
+      {
+        path: 'donationBooks',
+        element: <ViewDonations/>
       }
+
     ]
   }
 ])

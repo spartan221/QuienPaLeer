@@ -9,15 +9,15 @@ import '../styles/ContentStyle.css';
 
 const Home = () => {
 
-    const baseURL = 'http://127.0.0.1:5000/api/auth/myInfo'
-    const [userName, setuserName] = useState(null)
+    const baseURL = 'http://127.0.0.1:5000/api/profile/myInfo'
+    const [user, setUser] = useState(null)
     const navigate = useNavigate();
 
 
-    const fetchUserName = () => {
+    const fetchUser = () => {
         axios.get(baseURL, { withCredentials: true })
             .then((response) => {
-                setuserName(response.data.name + ' ' + response.data.lastName)
+                setUser(response.data)
             })
             .catch((error) => {
                 navigate('/', { replace: true })
@@ -26,17 +26,15 @@ const Home = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            fetchUserName()
+            fetchUser()
         }, 3000);
     })
-
-
 
     return (
         <div>
             <div className='layout'>
                 <div className='navegBar'>
-                    <Navigation userName={userName}/>
+                    <Navigation {...user}/>
                 </div>
                 <div className="side">
                     <SideBar />

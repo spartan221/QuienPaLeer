@@ -9,7 +9,9 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import LogoQPLBlack from "../assets/img/QPL_Logo_Black.png";
 import '../css/Navigation.css'
-function Navigation({ userName }) {
+import { LinkContainer } from 'react-router-bootstrap'
+
+function Navigation(user) {
     return (
         <>
             <Navbar bg="light" variant="light" className="py-3 border border-bottom shadow-sm h-100" >
@@ -41,29 +43,24 @@ function Navigation({ userName }) {
 
 
                     </Nav>
+                    <Nav>
+                        <LinkContainer to={`profile/${user._id}`}>
+                            <Nav.Link className='navBarLinks py-0 d-flex align-items-center' id='userNameNavContainer'>
+                                {user.name ? user.name : 'Cargando...'}
+                                <i className="bi bi-person-circle px-2" style={{ fontSize: 30 }}></i>
+                            </Nav.Link>
+                        </LinkContainer>
 
-                    <div class="dropdown">
-                        <Nav.Link className='navBarLinks pe-4 d-flex align-items-center dropdown-toggle' data-bs-toggle="dropdown" id='userNameNavContainer'>
-                            {userName ? userName : 'Cargando...'}
-                            <i className="bi bi-person-circle px-2" style={{ fontSize: 30 }}></i>
+                        <div className="vr mx-3"></div>
+
+                        <Nav.Link eventKey="link-1">
+                            <i className="navBarLinks bi bi-pencil-square" style={{ fontSize: 20 }}></i>
                         </Nav.Link>
-                        
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li className='mt-3'>
-                                <Nav.Link eventKey="link-1">
-                                    <i className="navBarLinks bi bi-person-fill ms-3 me-1" style={{ fontSize: 20 }}></i>
-                                    Ver Perfil
-                                </Nav.Link>
-                            </li>
-                            <hr className='mx-2'/>
-                            <li className='my-3'>
-                                <Nav.Link className='d-flex justify-content-center align-items-center' style={{ color:"#FF9F43" }}>
-                                    <i className="navBarLinks bi bi-x-lg me-1"></i>
-                                    Cerrar Sesión
-                                </Nav.Link>
-                            </li>
-                        </ul>
-                    </div>
+
+                        <Nav.Link>
+                            <i className="navBarLinks bi bi-x-lg mx-3" style={{ fontSize: 20 }}></i>
+                        </Nav.Link>
+                    </Nav>
                 </Container>
             </Navbar>
         </>

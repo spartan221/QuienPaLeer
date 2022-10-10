@@ -1,6 +1,5 @@
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, sendEmailVerification, signInWithEmailAndPassword } from 'firebase/auth';
 import jwt from 'jsonwebtoken';
-
 import firebaseApp from './firebase.js';
 
 const auth = getAuth(firebaseApp);
@@ -8,12 +7,31 @@ const auth = getAuth(firebaseApp);
 // Secret Key para el sistema de JWT
 const secretKey = 'IngeneriadeSoftware2022-2S';
 
+// Objeto para manejar la continuación cuando un
+// usuario verifique su correo electrónico
+// TODO: Cuando se este en ambiente de producción debe redirigir al 
+// la pagina de inicio de la aplicación del frontend
+const actionCodeSettings = {
+    url: process.env.NODE_ENV === 'DEV' ? 'http://127.0.0.1:5173/' : undefined,
+    handleCodeInApp: false
+};
+
 // Registro de usuario
 export const registerUser = async (email, password) => {
     return new Promise((resolve, reject) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                resolve(userCredential.user.uid);
+
+                // Mandar el correo de confirmacion
+                const auth = getAuth();
+                sendEmailVerification(auth.currentUser, actionCodeSettings)
+                    .then(() => {
+                        resolve(userCredential.user.uid);
+                    })
+                    .catch(() => {
+                        throw { code: 'No se pudo mandar el correo de confirmación' }
+                    });
+
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -43,13 +61,20 @@ export const registerUser = async (email, password) => {
     );
 };
 
+
 // Login de usuario
 export const loginUser = async (email, password) => {
     return new Promise((resolve, reject) => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Logueado
-                resolve(userCredential.user.uid);
+                const user = userCredential.user;
+                // Verificar que el usuario ya confirmó su correo electrónico
+                if (user.emailVerified || process.env.NODE_ENV === 'DEV') {
+                    resolve(user.uid);
+                } else {
+                    throw { code: `El correo ${user.email} no se encuentra confirmado. Por favor revise su correo` }
+                }
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -75,6 +100,7 @@ export const loginUser = async (email, password) => {
 };
 
 
+
 // Manejo de persistencia a través de JWT tokens 
 
 // Middleware para verificar que el usuario tiene el cookie con el token
@@ -91,7 +117,7 @@ export const isUserAuthenticaded = (req, res, next) => {
     }
 
     try {
-        
+
         // Decodificar el jwt
         const data = jwt.verify(token, secretKey);
 
