@@ -9,6 +9,7 @@ if (process.env.NODE_ENV === 'DEV') {
 
 console.log(urlDb)
 
+
 const connection = mongoose.connect(urlDb)
     .then(() => console.log("Conexión a BD exitosa"))
     .catch((err) => console.log("Error en la conexión a BD"));
