@@ -82,6 +82,7 @@ const CreateDonation = ({ reloadPage, closeModal }) => {
                     icon: 'success',
                     title: 'Donación agregada.'
                 })
+                document.getElementById('donationForm').reset()
                 reloadPage();
                 setDonation(donationOject)
                 setInputs({})
@@ -99,7 +100,7 @@ const CreateDonation = ({ reloadPage, closeModal }) => {
                 <h1 className="fs-4 text-start col-8 ps-0 ms-0">Crear Donación</h1>
                 <i className="col-4 text-end  bi-bag-heart "></i>
             </div>
-            <form className="text-start mt-3">
+            <form className="text-start mt-3" id="donationForm">
                 <label htmlFor="title" className="form-label">Título de la publicación</label><br />
                 <input className="form-control" name="title" id="title" type="text" value={donation.title} onChange={handleChange} ></input>
                 <p className="errorContainer ms-1 mt-2 text-danger">{errors.title}</p>

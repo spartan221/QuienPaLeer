@@ -65,13 +65,13 @@ export default function EditProfile({ closeModal }) {
         icon: 'success',
         title: 'Se ha actualizado el perfil correctamente'
       })
-
+      document.getElementById('editProfileForm').reset()
 
     }
   }
 
   return (
-    <form>
+    <form id="editProfileForm">
       <div className='row mx-2'>
         <div className='col form-group'>
           <label className="pb-1" htmlFor="name">Nombre(s)</label>

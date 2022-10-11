@@ -71,6 +71,7 @@ function FormSwap({ reloadPage, closeModal }) {
                     icon: 'success',
                     title: 'Intercambio agregado.'
                 })
+                document.getElementById('swapForm').reset()
                 reloadPage();
                 setSwap(swapOject)
             }).catch((error) => {
@@ -120,7 +121,7 @@ function FormSwap({ reloadPage, closeModal }) {
 
             </div>
             <br />
-            <Form onSubmit={saveData} novalidate="novalidate"  >
+            <Form onSubmit={saveData} novalidate="novalidate"  id="swapForm">
 
                 <Form.Group className="mb-3" controlId="formTitle"  >
                     <Form.Label>Nombre del libro</Form.Label>
