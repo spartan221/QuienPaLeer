@@ -10,8 +10,49 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import LogoQPLBlack from "../assets/img/QPL_Logo_Black.png";
 import '../css/Navigation.css'
 import { LinkContainer } from 'react-router-bootstrap'
+import axios from 'axios';
+import Swal from 'sweetalert2';
+
+const baseURL = 'http://127.0.0.1:5000/api/auth/logout'
 
 function Navigation(user) {
+
+    // Controlador para cuando el usuario le de click al icono de cerrar sesión
+    const handleLogout = async () => {
+
+        axios.get(baseURL, { withCredentials: true })
+            .then(async (response) => {
+                const sucessMessage = response.data.message;
+
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'warning',
+                    title: sucessMessage
+                })
+
+                // Redirigir al login si todo sale bien
+                navigate('/', { replace: true })
+
+
+            })
+            .catch((error) => {
+                const errMessage = error.response.data.message;
+            })
+
+
+    };
+
     return (
         <>
             <Navbar bg="light" variant="light" className="py-3 border border-bottom shadow-sm h-100" >
@@ -57,7 +98,7 @@ function Navigation(user) {
                             <i className="navBarLinks bi bi-pencil-square" style={{ fontSize: 20 }}></i>
                         </Nav.Link>
 
-                        <Nav.Link>
+                        <Nav.Link onClick={handleLogout}>
                             <i className="navBarLinks bi bi-x-lg mx-3" style={{ fontSize: 20 }}></i>
                         </Nav.Link>
                     </Nav>
