@@ -11,7 +11,7 @@ export const SwapPost = ({ posts, loading }) => {
         <div className='row row-cols-3'>
             {posts.map(post => (
                 <div>
-                    <div key={post._id} className="col py-2 px-5 pb-5">
+                    <div key={post._id} className="col py-2 px-5 pb-5" id='swapPostContainer'>
                         <div className='row'>
                             <h5>{post.title}</h5>
                         </div>

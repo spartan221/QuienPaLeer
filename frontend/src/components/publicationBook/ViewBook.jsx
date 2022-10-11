@@ -16,9 +16,22 @@ const ViewBook = (props) => {
             <div className='row'>
                 <img className='rounded-4' src={props.image} />
             </div><br />
-            <h5 className='text-start'>Nombre del Libro</h5>
-            <p className='text-start'>{props.name}</p>
+
             <div className='row'>
+                <div className='col'>
+                    <h5 className='text-start'>Nombre del Libro</h5>
+                    <p className='text-start'>{props.name}</p>
+                </div>
+                <div className='col'>
+                    <div className='d-flex align-content-center justify-content-end'>
+                        <Link data-bs-dismiss="modal" aria-label="Close" onClick={hideModal} className='text-black rounded-3 btn text-decoration-none' style={{backgroundColor: '#ffb875'}}> 
+                            <i className="bi bi-person"></i>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+
+            <div className='row mt-3'>
                 <div className='col'>
                     <h5>Precio</h5>
                     <p>{props.price}</p>
@@ -32,10 +45,13 @@ const ViewBook = (props) => {
                     <p>{props.author}</p>
                 </div>
             </div>
-            <DatePublication dateCreatedAt={props.createdAt} />
-            <Link data-bs-dismiss="modal" aria-label="Close" onClick={hideModal}>
-                Usuario
-            </Link>
+
+            <div className='text-center mt-4'>
+                <DatePublication dateCreatedAt={props.createdAt} />
+            </div>
+
+
+
         </div>
 
     )

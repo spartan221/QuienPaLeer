@@ -81,7 +81,7 @@ function Navigation(user) {
                     </Nav>
 
                     <Nav>
-                        <div class="btn-group me-5">
+                        <div class="btn-group me-3">
                             <LinkContainer to={`profile/${user._id}`}>
                                 <Nav.Link className='navBarLinks py-0 d-flex align-items-center' id='userNameNavContainer'>
                                     {user.name ? user.name + ' ' + user.lastName : 'Cargando...'}
@@ -91,7 +91,7 @@ function Navigation(user) {
                             <button type="button" className="btn" id='btnDropMenu' data-bs-toggle="dropdown"><i class="bi bi-caret-down-fill"></i></button>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <Nav.Link  className='d-flex justify-content-center align-items-center' style={{ color:"#FF9F43" }}>
+                                    <Nav.Link  className='d-flex justify-content-center align-items-center'>
                                         <i className="navBarLinks bi bi-x-lg me-2" style={{ fontSize: 20 }}></i>
                                         Cerrar Sesión
                                     </Nav.Link>
