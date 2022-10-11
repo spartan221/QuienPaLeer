@@ -1,5 +1,6 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 import './styles/ContentStyle.css';
 import Login from './components/registerLogin/Login'
 import axios from 'axios';

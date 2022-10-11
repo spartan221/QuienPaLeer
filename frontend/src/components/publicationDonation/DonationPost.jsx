@@ -14,7 +14,7 @@ export const DonationPost = ({ posts, loading }) => {
         <div className='row row-cols-2'>
             {posts.map(post => (
                 <div>
-                    <div key={post._id} className="col py-2 px-5 pb-5">
+                    <div key={post._id} className="col py-2 px-5 pb-5" id='donationPostContainer'>
                         <div className='row'>
                             <p className='col text-start fw-bold'>{post.title}</p>
                         </div>

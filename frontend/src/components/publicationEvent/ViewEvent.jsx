@@ -18,9 +18,21 @@ const ViewEvent = (props) => {
             <div className='row'>
                 <img className='rounded-4' src={props.image} />
             </div><br />
-            <h5 className='text-start'>Descripción</h5>
-            <p className='text-start'>{props.description}</p>
             <div className='row'>
+                <div className='col'>
+                    <h5 className='text-start'>Descripción</h5>
+                    <p className='text-start'>{props.description}</p>
+                </div>
+                <div className='col'>
+                    <div className='d-flex align-content-center justify-content-end'>
+                        <Link data-bs-dismiss="modal" aria-label="Close" onClick={hideModal} className='text-black rounded-3 btn text-decoration-none' style={{backgroundColor: '#ffb875'}}> 
+                            <i className="bi bi-person"></i>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+
+            <div className='row mt-3'>
                 <div className='col'>
                     <h5>Fecha</h5>
                     <p>{props.startDate} - {props.endDate}</p>
@@ -34,11 +46,9 @@ const ViewEvent = (props) => {
                     <p>{props.place}</p>
                 </div>
             </div>
-            <DatePublication dateCreatedAt={props.createdAt}/>
-
-            <Link data-bs-dismiss="modal" aria-label="Close" onClick={hideModal}>
-                Usuario
-            </Link>
+            <div className='text-center mt-4'>
+                <DatePublication dateCreatedAt={props.createdAt} />
+            </div>
         </div>
     )
 }

@@ -1,9 +1,9 @@
 import React from "react";
-import '../../css/Register.css'
 import { useState } from "react";
 import Swal from 'sweetalert2';
 import { publicRequest } from '../../requestMethods'
 import { useNavigate } from "react-router-dom";
+import '../css/EditProfile.css'
 
 export default function EditProfile({ closeModal }) {
   const navigate = useNavigate();
@@ -71,7 +71,7 @@ export default function EditProfile({ closeModal }) {
   }
 
   return (
-    <form id="editProfileForm">
+    <form id="editProfileForm" className="mt-3">
       <div className='row mx-2'>
         <div className='col form-group'>
           <label className="pb-1" htmlFor="name">Nombre(s)</label>
@@ -93,8 +93,8 @@ export default function EditProfile({ closeModal }) {
             : null}
         </div>
       </div>
-      <div className='row my-4 mx-2'>
-        <div className='col form-group'>
+      <div className='row mt-5 mb-3 mx-2'>
+        <div className='col form-group text-center'>
           <button className='btn btn-sm' id='submitEdit' type='submit' onClick={handleSubmitEdit}>Actualizar</button>
           {errors.form
             ? <p className="errorContainer ms-1 mt-2 text-danger" id="containerErrorPhone">{errors.form}</p>
