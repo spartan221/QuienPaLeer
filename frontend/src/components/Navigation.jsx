@@ -10,10 +10,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import LogoQPLBlack from "../assets/img/QPL_Logo_Black.png";
 import '../css/Navigation.css'
 import { LinkContainer } from 'react-router-bootstrap'
-import axios from 'axios';
-import Swal from 'sweetalert2';
-
-const baseURL = 'http://127.0.0.1:5000/api/auth/logout'
+import { AnimatedPageNavBar } from './AnimationPage';
 
 function Navigation(user) {
 
@@ -54,7 +51,7 @@ function Navigation(user) {
     };
 
     return (
-        <>
+        <AnimatedPageNavBar>
             <Navbar bg="light" variant="light" className="py-3 border border-bottom shadow-sm h-100" >
 
                 <Navbar.Brand className="px-4 d-flex align-items-center" id='qplContainer' href="/home">
@@ -78,33 +75,34 @@ function Navigation(user) {
                                 id='searchNavBar'
                             />
                             <Button id="btnSearchNavBar">
-                                <i class="bi bi-search"></i>
+                                <i className="bi bi-search"></i>
                             </Button>
                         </InputGroup>
-
-
                     </Nav>
+
                     <Nav>
-                        <LinkContainer to={`profile/${user._id}`}>
-                            <Nav.Link className='navBarLinks py-0 d-flex align-items-center' id='userNameNavContainer'>
-                                {user.name ? user.name : 'Cargando...'}
-                                <i className="bi bi-person-circle px-2" style={{ fontSize: 30 }}></i>
-                            </Nav.Link>
-                        </LinkContainer>
-
-                        <div className="vr mx-3"></div>
-
-                        <Nav.Link eventKey="link-1">
-                            <i className="navBarLinks bi bi-pencil-square" style={{ fontSize: 20 }}></i>
-                        </Nav.Link>
-
-                        <Nav.Link onClick={handleLogout}>
-                            <i className="navBarLinks bi bi-x-lg mx-3" style={{ fontSize: 20 }}></i>
-                        </Nav.Link>
+                        <div class="btn-group me-5">
+                            <LinkContainer to={`profile/${user._id}`}>
+                                <Nav.Link className='navBarLinks py-0 d-flex align-items-center' id='userNameNavContainer'>
+                                    {user.name ? user.name + ' ' + user.lastName : 'Cargando...'}
+                                    <i className="bi bi-person-circle px-2" style={{ fontSize: 30 }}></i>
+                                </Nav.Link>
+                            </LinkContainer>
+                            <button type="button" className="btn" id='btnDropMenu' data-bs-toggle="dropdown"><i class="bi bi-caret-down-fill"></i></button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <Nav.Link  className='d-flex justify-content-center align-items-center' style={{ color:"#FF9F43" }}>
+                                        <i className="navBarLinks bi bi-x-lg me-2" style={{ fontSize: 20 }}></i>
+                                        Cerrar Sesión
+                                    </Nav.Link>
+                                </li>
+                            </ul>
+                        </div>
                     </Nav>
+
                 </Container>
             </Navbar>
-        </>
+        </AnimatedPageNavBar>
     )
 }
 

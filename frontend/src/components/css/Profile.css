@@ -1,0 +1,10 @@
+#btnEditProfile {
+  background-color: black;
+  color: #ffb875;
+}
+
+#btnEditProfile:hover {
+  background-color: #ffb875;
+  color: #000000;
+  border: 2px solid black;
+}
