@@ -16,7 +16,9 @@ const Profile = ({ myProfile }) => {
     const user = useLoaderData().data.user;
     const events = useLoaderData().data.events;
     const books = useLoaderData().data.books;
-    console.log({ user, events, books });
+    const donations = useLoaderData().data.donations;
+    const swaps = useLoaderData().data.swaps;
+    console.log({ user, events, books, donations, swaps });
     const handleShow = () => {
         const myModal = new bootstrap.Modal(document.getElementById('modalEditProfile'))
         myModal.show();
