@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-//import BookPost from './BookPost.jsx'
+import SwapPost from './SwapPost'
 import Paginations from '../Paginations'
 import '../css/ViewBooks.css'
 import FormSwap from './AddBookSwap.jsx'
@@ -62,6 +62,7 @@ const ViewSwaps = () => {
             </div>
             <hr/>
 
+            <SwapPost posts={currentPost} loading={loading} />
 
             <Paginations postPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} currentPage={currentPage} band={band} bandRight={bandRight} />
             <div className="modal fade" id="ModalCreateSwap" tabIndex={-1} aria-labelledby="ModalCreateLabel" aria-hidden="true">
