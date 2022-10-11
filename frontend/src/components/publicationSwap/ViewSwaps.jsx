@@ -5,6 +5,7 @@ import Paginations from '../Paginations'
 import '../css/ViewBooks.css'
 import FormSwap from './AddBookSwap.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import * as bootstrap from 'bootstrap'
 
 
 const ViewSwaps = () => {
@@ -15,7 +16,19 @@ const ViewSwaps = () => {
     const [bandRight, setBandRight] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(6)
-    const reloadPage = () => setReload(reload+1);
+    const reloadPage = () => setReload(reload + 1);
+
+    const handleShow = () => {
+        const myModal = new bootstrap.Modal(document.getElementById('ModalCreateSwap'))
+        myModal.show();
+    };
+
+    const hideModal = () => {
+        const myModal = document.getElementById('ModalCreateSwap');
+        const modal = bootstrap.Modal.getInstance(myModal);
+        modal.hide();
+    }
+
     useEffect(() => {
         const fetchPost = async () => {
             setLoading(true);
@@ -23,7 +36,6 @@ const ViewSwaps = () => {
             console.log(res.data)
             setPost(res.data);
             setLoading(false);
-            
         }
         fetchPost();
         console.log("recarga")
@@ -50,17 +62,16 @@ const ViewSwaps = () => {
         }
         setCurrentPage(pageNumber)
     }
-   
-    
+
     return (
         <div className='container pt-5'>
             <div className='row'>
                 <h2 className='col text-start ms-4 fw-bold'>Intercambio de libros</h2>
                 <div className='col text-end'>
-                    <button type="button" className='btn border me-4' id='btnAddBookSell' data-bs-toggle="modal" data-bs-target="#ModalCreateSwap">Añadir un intercambio</button>
+                    <button type="button" className='btn border me-4' id='btnAddBookSell' onClick={handleShow}>Añadir un intercambio</button>
                 </div>
             </div>
-            <hr/>
+            <hr />
 
             <SwapPost posts={currentPost} loading={loading} />
 
@@ -72,7 +83,7 @@ const ViewSwaps = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <FormSwap reloadPage={reloadPage}/>
+                            <FormSwap reloadPage={reloadPage} closeModal={hideModal} />
                         </div>
                     </div>
                 </div>

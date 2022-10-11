@@ -4,20 +4,21 @@ import { publicRequest } from '../../requestMethods'
 import { uploadFile } from '../../../../backend/config/firebase/storage';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import '../css/CreateEvent.css'
+import Swal from 'sweetalert2'
 
 
-const CreateDonation = ({reloadPage,closeModal}) => {
+const CreateDonation = ({ reloadPage, closeModal }) => {
     const [inputs, setInputs] = useState({})
     const [file, setFile] = useState(null)
     const [donation, setDonation] = useState({});
     const [errors, setErrors] = useState({ file: null })
 
     const donationOject = {
-        name:"",
+        name: "",
         title: "",
         author: "",
         editorial: ""
-      }
+    }
     function handleChange(event) {
         const { name, value } = event.target
         setDonation({ ...donation, [name]: value })
@@ -46,7 +47,7 @@ const CreateDonation = ({reloadPage,closeModal}) => {
     const validateForm = () => {
         const { name, title, author, editorial } = inputs
         const newErrors = {}
-        console.log("validte",name)
+        console.log("validte", name)
         if (!name || name === '') newErrors.name = 'Ingresa un nombre.'
         if (!title || title === '') newErrors.title = 'Ingresa un título.'
         if (!author || author === '') newErrors.author = 'Ingresa el nombre del autor.'
@@ -65,10 +66,26 @@ const CreateDonation = ({reloadPage,closeModal}) => {
             uploadFile(file).then(async (downloadURL) => {
                 const newDonation = { ...inputs, image: downloadURL };
                 await publicRequest.post("/donation/create", newDonation, { withCredentials: true });
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Donación agregada.'
+                })
                 reloadPage();
                 setDonation(donationOject)
                 setInputs({})
-                
+
                 //setDonation(donationOject)
             }).catch((error) => {
                 console.log(error);
@@ -88,7 +105,7 @@ const CreateDonation = ({reloadPage,closeModal}) => {
                 <p className="errorContainer ms-1 mt-2 text-danger">{errors.title}</p>
 
                 <label htmlFor="name" className="form-label">Nombre del libro</label><br />
-                <input className="form-control" name="name" id="name" type="text" value={donation.name}  onChange={handleChange} ></input>
+                <input className="form-control" name="name" id="name" type="text" value={donation.name} onChange={handleChange} ></input>
                 <p className="errorContainer ms-1 mt-2 text-danger">{errors.name}</p>
 
                 <label htmlFor="author" className="form-label">Autor</label><br />
@@ -98,12 +115,12 @@ const CreateDonation = ({reloadPage,closeModal}) => {
                 <label htmlFor="editorial" className="form-label">Editorial</label><br />
                 <input className="form-control" name="editorial" id="editorial" type="text" value={donation.editorial} onChange={handleChange} ></input>
                 <p className="errorContainer ms-1 mt-2 text-danger">{errors.editorial}</p>
-                
+
                 <label htmlFor="image" className="form-label">Imagen</label><br />
                 <input className="form-control" type="file" name="image" accept="image/png, image/jpeg" id="image" onChange={handleChangeFile}></input>
                 <p className="errorContainer ms-1 mt-2 text-danger">{errors.image}</p>
                 <div className="d-flex justify-content-center mt-2">
-                    <button  className="btn btn-dark px-5" id='btnAddSellBookModal' variant="primary"   onClick={handleClick}>Agregar</button>
+                    <button className="btn btn-dark px-5" id='btnAddSellBookModal' variant="primary" onClick={handleClick}>Agregar</button>
                 </div>
             </form>
         </div>

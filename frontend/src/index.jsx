@@ -38,7 +38,7 @@ const router = createBrowserRouter([
       {
         path: 'events',
         element: <Events />
-      },{
+      }, {
         path: 'events/profile/:userId',
         element: <Profile myProfile={false} />,
         loader: profileLoader
@@ -55,12 +55,22 @@ const router = createBrowserRouter([
       },
       {
         path: 'donationBooks',
-        element: <ViewDonations/>
-      },{
-        path:'ChangeBooks',
-        element:<Swaps/>
-      }
-
+        element: <ViewDonations />
+      },
+      {
+        path: 'donationBooks/profile/:userId',
+        element: <Profile myProfile={false} />,
+        loader: profileLoader
+      },
+      {
+        path: 'ChangeBooks',
+        element: <Swaps />
+      },
+      {
+        path: 'ChangeBooks/profile/:userId',
+        element: <Profile myProfile={false} />,
+        loader: profileLoader
+      },
     ]
   }
 ])

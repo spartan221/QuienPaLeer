@@ -8,12 +8,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AttachMoneyIcon from '@mui/icons-material/ChangeCircleOutlined';
 import '../css/CreateBookSale.css'
+import Swal from 'sweetalert2'
 
 
 
 const baseURL = 'http://127.0.0.1:5000/api/swap/create'
 
-function FormSwap({ reloadPage }) {
+function FormSwap({ reloadPage, closeModal }) {
     let re = /^\d+$/;
     const [inputs, setInputs] = useState({})
     const [file, setFile] = useState(null)
@@ -43,6 +44,7 @@ function FormSwap({ reloadPage }) {
         if (Object.keys(formErrors).length > 0) {
             setErrors(formErrors)
         } else {
+            closeModal()
             uploadFile(file).then(async (downloadURL) => {
                 const newSwap = {
                     title: swap.title,
@@ -52,7 +54,23 @@ function FormSwap({ reloadPage }) {
                     image: downloadURL
                 }
                 console.log('nuevo intercambio: ', newSwap,)
-                await axios.post(baseURL, newSwap,{withCredentials: true});
+                await axios.post(baseURL, newSwap, { withCredentials: true });
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Intercambio agregado.'
+                })
                 reloadPage();
                 setSwap(swapOject)
             }).catch((error) => {

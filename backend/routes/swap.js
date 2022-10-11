@@ -11,8 +11,8 @@ router.post("/create", isUserAuthenticaded, async (req, res) => {
         author: req.body.author,
         description: req.body.description,
         interest: req.body.interest,
-        user: req.userId,
-        image: req.body.image,        
+        userId: req.userId,
+        image: req.body.image,
     });
     try {
         const swapSaved = await newSwap.save()

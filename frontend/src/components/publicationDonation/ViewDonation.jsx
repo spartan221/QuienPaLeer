@@ -1,10 +1,15 @@
-
 import React from 'react'
 import "../css/ViewEvent.css"
 import DatePublication from '../DatePublication.jsx';
+import { useNavigate, Link } from 'react-router-dom';
 
 const ViewDonation = (props) => {
-
+    const navigate = useNavigate();
+    const hideModal = () => {
+        setTimeout(() => {
+            navigate(`profile/${props.userId}`)
+        }, 100);
+    }
     return (
         <div className='container rounded border p-4 mr-5'>
             <div className='row'>
@@ -29,6 +34,10 @@ const ViewDonation = (props) => {
                
             </div>
             <DatePublication dateCreatedAt={props.createdAt}/>
+
+            <Link data-bs-dismiss="modal" aria-label="Close" onClick={hideModal}>
+                Usuario
+            </Link>
         </div>
     )
 }
