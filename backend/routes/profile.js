@@ -2,6 +2,8 @@ import express from 'express'
 import User from '../models/User.js';
 import Event from '../models/Event.js'
 import Book from '../models/Book.js'
+import Donation from '../models/Donation.js'
+import Swap from '../models/Donation.js'
 import { isUserAuthenticaded } from '../config/firebase/authentication.js';
 
 const makeProfileRouter = (database) => {
@@ -12,8 +14,10 @@ const makeProfileRouter = (database) => {
         const user = await User.findById(req.params.userId);
         const events = await Event.find({ userId: req.params.userId });
         const books = await Book.find({ userId: req.params.userId })
+        const donations = await Donation.find({ userId: req.params.userId })
+        const swaps = await Swap.find({ userId: req.params.userId })
         if (user) {
-            res.status(201).json({ user, events, books });
+            res.status(201).json({ user, events, books, donations, swaps });
         } else {
             res.status(500)
         }
