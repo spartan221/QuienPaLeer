@@ -11,6 +11,10 @@ import LogoQPLBlack from "../assets/img/QPL_Logo_Black.png";
 import '../css/Navigation.css'
 import { LinkContainer } from 'react-router-bootstrap'
 import { AnimatedPageNavBar } from './AnimationPage';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+
+const baseURL = 'http://127.0.0.1:5000/api/auth/logout'
 
 function Navigation(user) {
 
@@ -91,7 +95,7 @@ function Navigation(user) {
                             <button type="button" className="btn" id='btnDropMenu' data-bs-toggle="dropdown"><i class="bi bi-caret-down-fill"></i></button>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <Nav.Link  className='d-flex justify-content-center align-items-center'>
+                                    <Nav.Link onClick={handleLogout} className='d-flex justify-content-center align-items-center'>
                                         <i className="navBarLinks bi bi-x-lg me-2" style={{ fontSize: 20 }}></i>
                                         Cerrar Sesión
                                     </Nav.Link>
