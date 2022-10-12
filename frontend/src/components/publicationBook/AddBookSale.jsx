@@ -186,7 +186,7 @@ function FormBook({reloadPage,closeModal}) {
           </Col>
           <Col>
             <Form.Group className="mb-3" controlId="formPrice">
-              <Form.Label style={{ color: "#FF9F43", fontWeight: "bold" }}>Precio</Form.Label>
+              <Form.Label className='fw-bold' style={{ color: "#ffa44f"}}>Precio</Form.Label>
               <Form.Control type="number" name="price" value={book.price} onChange={captureValues} />
               <p className="errorContainer ms-1 mt-2 text-danger">{errors.price}</p>
             </Form.Group>

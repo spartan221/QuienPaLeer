@@ -11,8 +11,9 @@ import {AnimatedPageSmoothY} from '../components/AnimationPage'
 export default function SideBar() {
 
     let activeStyle = {
-        backgroundColor: '#ffb875',
+        backgroundColor: '#ffcfa2',
         borderRadius: '5px',
+        padding: '2px'
     }
 
     return (
@@ -87,7 +88,7 @@ export default function SideBar() {
                     </div>
                     <br />
                     <div className='text-center textAppVersionSideBar text-muted lead h6 mt-3'>
-                        App Version: <span>2.4</span>
+                        App Version: <span>2.7</span>
                     </div>
 
                     <hr />
@@ -113,7 +114,7 @@ export default function SideBar() {
                                             </h6>
                                             <div className='d-flex justify-content-center'>
                                                 <a href={member.email} className='text-decoration-none'>
-                                                    <button className='btnContactMember btn mt-3' style={{ fontSize: 10, backgroundColor: '#ffb875', color: 'black' }}>Contactar</button>
+                                                    <button className='btnContactMember btn mt-3' style={{ fontSize: 10, backgroundColor: '#ffcfa2', color: 'black' }}>Contactar</button>
                                                 </a>
                                             </div>
                                         </div>

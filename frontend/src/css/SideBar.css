@@ -1,7 +1,7 @@
 
 .navLinkContainer:hover{
-    background-color: #ffb875;
-    border-radius: 5px;
+    background-color: #ffcfa2;
+    border-radius: 3px;
 }
 
 .textAppVersionSideBar{
@@ -13,7 +13,7 @@
 }
 
 #btnInfoTeamSideBar:hover, #btnContactSideBar:hover{
-    background-color: #ffb875;
+    background-color: #ffcfa2;
 }
 
 

@@ -3,7 +3,7 @@ import User from '../models/User.js';
 import Event from '../models/Event.js'
 import Book from '../models/Book.js'
 import Donation from '../models/Donation.js'
-import Swap from '../models/Donation.js'
+import Swap from '../models/Swap.js'
 import { isUserAuthenticaded } from '../config/firebase/authentication.js';
 
 const makeProfileRouter = (database) => {

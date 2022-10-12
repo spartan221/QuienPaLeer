@@ -34,7 +34,7 @@ const ViewDonation = (props) => {
             <div className='row'>
                 <div className='col'>
                     <div className='d-flex align-content-center justify-content-center'>
-                        <Link data-bs-dismiss="modal" aria-label="Close" onClick={hideModal} className='text-black rounded-3 btn text-decoration-none' style={{backgroundColor: '#ffb875'}}> 
+                        <Link data-bs-dismiss="modal" aria-label="Close" onClick={hideModal} className='text-black rounded-3 btn text-decoration-none' style={{backgroundColor: '#ffcfa2'}}> 
                             <i className="bi bi-person"></i>
                         </Link>
                     </div>
