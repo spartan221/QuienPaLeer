@@ -22,7 +22,7 @@ export const EventPost = ({ posts, loading }) => {
                             <p className='col text-start fw-bold'>{post.name}</p>
                             <p className='col text-end gray-text'>{post.place}</p>
                         </div>
-                        <p className='col text-start orange-text'>{post.startDate} - {post.endDate}</p>
+                        <p className='col text-dark text-start'>{post.startDate} - {post.endDate}</p>
                     </div>
 
                     <div className="modal fade" id="modalViewEvent" tabIndex={-1} aria-labelledby="modalViewEventLabel" aria-hidden="true">

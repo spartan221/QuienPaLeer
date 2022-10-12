@@ -128,7 +128,7 @@ function Register() {
   return (
     <div className='d-flex align-content-center justify-content-center vh-100'>
       <div className="card my-auto">
-        <div className="card-header">
+        <div className="card-header" style={{backgroundColor: '#ffcfa2', borderRadius: '19px 19px 0px 0px'}}>
           <div className="row">
             <div className="col-9">
               <div className="d-flex justify-content-start align-content-center">

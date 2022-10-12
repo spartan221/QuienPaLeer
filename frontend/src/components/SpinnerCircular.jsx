@@ -4,7 +4,7 @@ import { SpinnerCircularFixed } from 'spinners-react'
 const Spinner = () => {
 
     return (
-        <SpinnerCircularFixed color='#ff9f43' size='8%' />
+        <SpinnerCircularFixed color='#ffcfa2' size='8%' />
     );
 };
 

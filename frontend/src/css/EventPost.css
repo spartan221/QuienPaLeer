@@ -4,6 +4,11 @@
     object-fit: cover;
 }*/
 
+.startAndEndDate{
+    color: #ffb978;
+    font-weight: bolder;
+}
+
 p {
     font-size: xx-small;
 }
@@ -12,10 +17,7 @@ p {
     color: gray;
 }
 
-.orange-text {
-    color: #ffb875;
-}
-
 .col {
     margin: 0;
 }
+
