@@ -1,9 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react';
 
-const Paginations = ({postPerPage, totalPosts,paginate,currentPage,band,bandRight}) => {
+const Paginations = ({postPerPage, totalPosts,setCurrentPage,currentPage}) => {
+    
+    const [band, setBand] = useState(true);
+    const [bandRight, setBandRight] = useState(false);
+    
+    
     const pageNumbers = [];
     for(let i =1 ; i<=Math.ceil(totalPosts/postPerPage);i++ ){
         pageNumbers.push(i);
+    }
+    const paginate = pageNumber => {
+
+        if ((pageNumber - 1) == 0) {
+
+            setBand(true)
+        }
+        else {
+
+            setBand(false)
+        }
+        if (pageNumber >= Math.ceil(totalPosts / postPerPage)) {
+            setBandRight(true)
+
+        }
+        else {
+            setBandRight(false)
+
+        }
+        setCurrentPage(pageNumber)
     }
   return (
     <nav>
