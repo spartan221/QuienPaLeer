@@ -19,7 +19,7 @@ const useViews = (url) =>{
     const fetch =async ()=>{
         setLoading(true);
         const res = await axios.get(url)
-        setPost(res.data);
+        setPost(res.data.reverse());
         setLoading(false);
     }
 
