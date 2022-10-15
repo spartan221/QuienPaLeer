@@ -16,6 +16,7 @@ import Profile, {
 } from './components/profile/Profile.jsx';
 
 import ViewDonations from "./components/publicationDonation/ViewDonations";
+import ViewRecommendation from "./components/publicationRecommendation/ViewRecommendations";
 import Swaps from './components/publicationSwap/ViewSwaps';
 const router = createBrowserRouter([
   {
@@ -59,6 +60,15 @@ const router = createBrowserRouter([
       },
       {
         path: 'donationBooks/profile/:userId',
+        element: <Profile myProfile={false} />,
+        loader: profileLoader
+      },
+      {
+        path: 'recommendationBooks',
+        element: <ViewRecommendation />
+      },
+      {
+        path: 'recommendationBooks/profile/:userId',
         element: <Profile myProfile={false} />,
         loader: profileLoader
       },

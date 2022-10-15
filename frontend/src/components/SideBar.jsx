@@ -7,6 +7,7 @@ import { Button, Nav, NavItem } from 'react-bootstrap';
 import LogoQPLBlack from "../assets/img/QPL_Logo_Black.png";
 import TeamJson from '../assets/team.json';
 import {AnimatedPageSmoothY} from '../components/AnimationPage'
+import RecommendIcon from '@mui/icons-material/Recommend';
 
 export default function SideBar() {
 
@@ -61,6 +62,15 @@ export default function SideBar() {
                                 } to='donationBooks'>
                                 <i className="bi bi-bag-heart p-2"></i>
                                 Donación de libros
+                            </NavLink>
+                        </NavItem>
+                        <NavItem className='d-flex align-items-start  pb-4'>
+                            <NavLink className='text-decoration-none text-dark navLinkContainer w-100 text-start'
+                                style={({ isActive }) =>
+                                    isActive ? activeStyle : undefined
+                                } to='recommendationBooks'>
+                                <i class="bi bi-hand-thumbs-up p-2"></i>
+                                 Recomedación de libros
                             </NavLink>
                         </NavItem>
                     </Nav>
