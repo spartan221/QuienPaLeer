@@ -6,6 +6,15 @@ import '../css/ViewBooks.css'
 import FormSwap from './AddBookSwap.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as bootstrap from 'bootstrap'
+import { useLoaderData } from 'react-router-dom'
+import { publicRequest } from '../../requestMethods.js'
+
+export function loader({ params }) {
+    if (params.filter != '' || params.filter != 'null') {
+        return `search/${params.filter}`
+    } 
+    return 'view/all'
+}
 
 
 const ViewSwaps = () => {
@@ -17,6 +26,10 @@ const ViewSwaps = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(6)
     const reloadPage = () => setReload(reload + 1);
+    let url = useLoaderData()
+    if (!url) {
+        url = 'view/all'
+    }
 
     const handleShow = () => {
         const myModal = new bootstrap.Modal(document.getElementById('ModalCreateSwap'))
@@ -32,7 +45,7 @@ const ViewSwaps = () => {
     useEffect(() => {
         const fetchPost = async () => {
             setLoading(true);
-            const res = await axios.get("http://127.0.0.1:5000/api/swap/")
+            const res = await publicRequest.get(`/swap/${url}`)
             console.log(res.data)
             setPost(res.data);
             setLoading(false);

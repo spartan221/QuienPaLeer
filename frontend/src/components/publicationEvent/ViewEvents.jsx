@@ -5,6 +5,14 @@ import { publicRequest } from '../../requestMethods.js'
 import '../css/ViewEvents.css'
 import CreateEvent from './CreateEvent'
 import * as bootstrap from 'bootstrap'
+import { useLoaderData } from 'react-router-dom'
+
+export function loader({ params }) {
+    if (params.filter != '' || params.filter != 'null') {
+        return `search/${params.filter}`
+    } 
+    return 'view/all'
+}
 
 const Pagination = () => {
     const [posts, setPost] = useState([])
@@ -14,17 +22,18 @@ const Pagination = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(6)
     const [reload, setReload] = useState(0);
-    const reloadPage = () => setReload(reload+1);
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPost = posts.slice(indexOfFirstPost, indexOfLastPost)
+    const reloadPage = () => setReload(reload + 1);
+    let url = useLoaderData()
+    if (!url) {
+        url = 'view/all'
+    }
 
     const handleShow = () => {
         const myModal = new bootstrap.Modal(document.getElementById('ModalCreate'))
         myModal.show();
     };
-    const hideModal = ()=>{ 
-        const myModal = document.getElementById('ModalCreate') ;
+    const hideModal = () => {
+        const myModal = document.getElementById('ModalCreate');
         const modal = bootstrap.Modal.getInstance(myModal);
         modal.hide();
     }
@@ -32,15 +41,19 @@ const Pagination = () => {
     useEffect(() => {
         const fetchPost = async () => {
             setLoading(true);
-            const res = await publicRequest.get("/event/view/all")
+            const res = await publicRequest.get(`/event/${url}`)
             console.log(res.data)
             setPost(res.data);
             setLoading(false);
-            console.log("posts:",res.data)
+            console.log("posts:", res.data)
         }
         fetchPost();
         console.log("recarga")
     }, [reload]);
+
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPost = posts.slice(indexOfFirstPost, indexOfLastPost)
 
     const paginate = pageNumber => {
         if ((pageNumber - 1) == 0) {
@@ -67,7 +80,7 @@ const Pagination = () => {
                     <button type="button" className='btn btn-dark border me-4' id='btnCreateEvent' onClick={handleShow}>Crear evento</button>
                 </div>
             </div>
-            <hr/>
+            <hr />
 
             <EventPost posts={currentPost} loading={loading} />
 

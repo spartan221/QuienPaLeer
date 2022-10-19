@@ -6,6 +6,15 @@ import '../css/ViewBooks.css'
 import CreateDonation from './CreateDonation.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as bootstrap from 'bootstrap'
+import { useLoaderData } from 'react-router-dom'
+import { publicRequest } from '../../requestMethods.js'
+
+export function loader({ params }) {
+    if (params.filter != '' || params.filter != 'null') {
+        return `search/${params.filter}`
+    } 
+    return 'view/all'
+}
 
 
 const ViewBooks = () => {
@@ -16,6 +25,11 @@ const ViewBooks = () => {
     const [reload, setReload] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(6)
+    let url = useLoaderData()
+    if (!url) {
+        url = 'view/all'
+    }
+
 
     const handleShow = () => {
         const myModal = new bootstrap.Modal(document.getElementById('ModalCreate'))
@@ -56,7 +70,8 @@ const ViewBooks = () => {
     useEffect(() => {
         const fetchPost = async () => {
             setLoading(true);
-            const res = await axios.get("http://127.0.0.1:5000/api/donation/")
+            console.log(url);
+            const res = await publicRequest.get(`/donation/${url}`)
             setPost(res.data);
             setLoading(false);
         }
