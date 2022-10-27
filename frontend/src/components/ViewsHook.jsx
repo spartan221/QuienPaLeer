@@ -16,9 +16,9 @@ const useViews = (url) =>{
         modal.hide();
     }
 
-    const fetch =async ()=>{
+    const fetch = async (param)=>{
         setLoading(true);
-        const res = await axios.get(url)
+        const res = await axios.get(url+param)
         setPost(res.data.reverse());
         setLoading(false);
     }

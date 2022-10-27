@@ -22,9 +22,18 @@ router.post("/create", isUserAuthenticaded, async (req, res) => {
     }
 });
 
-router.get("/", async (req, res) => {
+router.get("/view/all", async (req, res) => {
     const donations = await Donation.find();
     res.json(donations)
+})
+
+router.get('/search/:filter', async (req, res) => {
+    try {
+        const donation = await Donation.find({$text: {$search: req.params.filter}, $language: "none"});
+        res.status(200).json(donation)
+    } catch (err) {
+        res.status(500).json(err)
+    }
 })
 
 

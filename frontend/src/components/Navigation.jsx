@@ -13,11 +13,36 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { AnimatedPageNavBar } from './AnimationPage';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useState } from 'react';
+import { publicRequest } from '../requestMethods';
+import { useNavigate } from 'react-router-dom';
 
 const baseURL = 'http://127.0.0.1:5000/api/auth/logout'
 
 function Navigation(user) {
+    const navigate = useNavigate();
+    const [inputs, setInputs] = useState({place: 'events'})
+    const [loading, setLoading] = useState(false);
+    const [reload, setReload] = useState(0);
+    const reloadPage = () => setReload(reload + 1);
+    const [seed, setSeed] = useState(1);
+    function handleChange(event) {
+        setInputs(prevInput => {
+            return {
+                ...prevInput, [event.target.name]: event.target.value
+            }
+        })
+        console.log(inputs);
+    }
 
+    const handleClick = async (event) => {
+        event.preventDefault()
+        // const res = await publicRequest.get(`/event/search/${input}`)
+        // console.log(res.data);
+        
+        navigate(`${inputs.place}/search/${inputs.filter}`)
+        //window.location.reload(false)
+    }
     // Controlador para cuando el usuario le de click al icono de cerrar sesión
     const handleLogout = async () => {
 
@@ -66,10 +91,12 @@ function Navigation(user) {
 
                 <Container>
                     <Nav>
-                        <Form.Select id="selectTypeSearch">
-                            <option value="1">Eventos</option>
-                            <option value="2">Compra de libros</option>
-                            <option value='3'>Cambio de libros</option>
+                        <Form.Select id="selectTypeSearch" onChange={handleChange} name='place'>
+                            <option value="events">Eventos</option>
+                            <option value="buyBooks">Compra de libros</option>
+                            <option value='changeBooks'>Cambio de libros</option>
+                            <option value='donationBooks'>Donación de libros</option>
+                            <option value='recommendationBooks'>Recomendación de libros</option>
                         </Form.Select>
 
                         <InputGroup className="ps-3">
@@ -77,8 +104,10 @@ function Navigation(user) {
                                 type="search"
                                 placeholder="Buscar..."
                                 id='searchNavBar'
+                                name='filter'
+                                onChange={handleChange}
                             />
-                            <Button id="btnSearchNavBar">
+                            <Button id="btnSearchNavBar" onClick={handleClick}>
                                 <i className="bi bi-search"></i>
                             </Button>
                         </InputGroup>

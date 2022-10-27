@@ -7,17 +7,29 @@ import "bootstrap/dist/css/bootstrap.css";
 import ErrorPage from "./components/ErrorPage";
 import Home from "./components/Home";
 import Register from "./components/registerLogin/Register";
-import FormBook from "./components/publicationBook/ViewBooks";
-import Events from "./components/publicationEvent/ViewEvents";
+import FormBook, {
+  loader as booksLoader
+} from "./components/publicationBook/ViewBooks";
+import Events, {
+  loader as eventsLoader,
+} from "./components/publicationEvent/ViewEvents";
 import "jquery/dist/jquery.js";
 import "bootstrap/dist/js/bootstrap.js";
 import Profile, {
   loader as profileLoader,
 } from './components/profile/Profile.jsx';
 
-import ViewDonations from "./components/publicationDonation/ViewDonations";
-import ViewRecommendation from "./components/publicationRecommendation/ViewRecommendations";
-import Swaps from './components/publicationSwap/ViewSwaps';
+import ViewRecommendation, {
+  loader as recommendationLoader
+} from "./components/publicationRecommendation/ViewRecommendations";
+
+import ViewDonations, {
+  loader as donationsLoader
+} from "./components/publicationDonation/ViewDonations";
+
+import Swaps, {
+  loader as swapsLoader
+} from './components/publicationSwap/ViewSwaps';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -81,6 +93,31 @@ const router = createBrowserRouter([
         element: <Profile myProfile={false} />,
         loader: profileLoader
       },
+      {
+        path: 'events/search/:filter',
+        element: <Events />,
+        loader: eventsLoader
+      },
+      {
+        path: 'buyBooks/search/:filter',
+        element: <FormBook />,
+        loader: booksLoader
+      },
+      {
+        path: 'donationBooks/search/:filter',
+        element: <ViewDonations />,
+        loader: donationsLoader
+      },
+      {
+        path: 'changeBooks/search/:filter',
+        element: <Swaps />,
+        loader: swapsLoader
+      },
+      {
+        path: 'recommendationBooks/search/:filter',
+        element: <ViewRecommendation/>,
+        loader: recommendationLoader
+      }
     ]
   }
 ])

@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 // TODO
 // Agregar el id del usuario
 const RecommendationSchema = new mongoose.Schema({
-    title: { type: String, required: true, trim: true },
+    title: { type: String, required: true, index: 'text', trim: true },
     name: { type: String, required: true },
     author: { type: String, required: true },
     summary:{type: String, required: true},

@@ -6,6 +6,15 @@ import FormSwap from './AddBookSwap.jsx'
 import * as bootstrap from 'bootstrap'
 import '../css/ViewBooks.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useLoaderData } from 'react-router-dom'
+import { publicRequest } from '../../requestMethods.js'
+
+export function loader({ params }) {
+    if (params.filter != '' || params.filter != 'null') {
+        return `search/${params.filter}`
+    } 
+    return 'view/all'
+}
 
 import usePaginationHook from '../PaginationHook.jsx';
 import useViews from '../ViewsHook.jsx'
@@ -15,13 +24,17 @@ const ViewSwaps = () => {
     const {currentPage,currentPost,postsPerPage,changeCurrentPage} = usePaginationHook(posts)
     const [reload, setReload] = useState(0);
     const reloadPage = () => setReload(reload + 1);
+    let url = useLoaderData()
+    if (!url) {
+        url = 'view/all'
+    }
 
     useEffect(() => {
         const fetchPost = async () => {
-            fetch()
+            fetch(url)
         }
         fetchPost();
-    }, [reload]);
+    }, [reload,url]);
 
 
     return (

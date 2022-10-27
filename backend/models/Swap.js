@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const SwapSchema = new mongoose.Schema({
-    title: { type: String, required: true, trim: true },
+    title: { type: String, index: 'text', required: true, trim: true },
     author: { type: String, required: true },
     description: { type: String, required: true },
     interest: { type: String, required: true },
