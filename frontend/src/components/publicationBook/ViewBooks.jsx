@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react'
-import BookPost from './BookPost.jsx'
-import Paginations from '../Paginations'
-import '../css/ViewBooks.css'
-import FormBook from './AddBookSale.jsx'
+import React, { useState, useEffect } from 'react';
+import BookPost from './BookPost.jsx';
+import Paginations from '../Paginations';
+import '../css/ViewBooks.css';
+import FormBook from './AddBookSale.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import * as bootstrap from 'bootstrap'
-import useViews from '../ViewsHook.jsx'
+import * as bootstrap from 'bootstrap';
+import useViews from '../ViewsHook.jsx';
 import usePaginationHook from '../PaginationHook.jsx';
 import { useLoaderData } from 'react-router-dom'
-import { publicRequest } from '../../requestMethods.js'
+import { publicRequest } from '../../requestMethods.js';
+import NoResultFound from '../NoResultFound';
 
 export function loader({ params }) {
     if (params.filter != '' || params.filter != 'null') {
@@ -16,8 +17,6 @@ export function loader({ params }) {
     } 
     return 'view/all'
 }
-
-
 const ViewBooks = () => {
     const {handleShow,hideModal,posts,loading,fetch} = useViews("http://127.0.0.1:5000/api/book/")
     const {currentPage,currentPost,postsPerPage,changeCurrentPage} = usePaginationHook(posts)
@@ -27,19 +26,9 @@ const ViewBooks = () => {
     if (!url) {
         url = 'view/all'
     }
-
     useEffect(() => {
         const fetchPost =  () => {
             fetch(url)
-        /*const fetchPost = async () => {
-            setLoading(true);
-            console.log(url);
-            const res = await publicRequest.get(`/book/${url}`)
-            console.log(res.data)
-            setPost(res.data);
-            setLoading(false);
-
-        }*/
         }
         fetchPost();
     }, [reload,url]);
@@ -53,9 +42,7 @@ const ViewBooks = () => {
                 </div>
             </div>
             <hr />
-
             <BookPost posts={currentPost} loading={loading} />
-
             <Paginations postPerPage={postsPerPage} totalPosts={posts.length} setCurrentPage={changeCurrentPage} currentPage={currentPage}/>
             <div className="modal fade" id="ModalCreate" tabIndex={-1} aria-labelledby="ModalCreateLabel" aria-hidden="true">
                 <div className="modal-dialog modal-lg">
@@ -71,6 +58,5 @@ const ViewBooks = () => {
             </div>
         </div>
     )
-
 }
 export default ViewBooks

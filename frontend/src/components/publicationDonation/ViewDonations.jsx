@@ -9,6 +9,7 @@ import usePaginationHook from '../PaginationHook.jsx';
 import useViews from '../ViewsHook.jsx'
 import { useLoaderData } from 'react-router-dom'
 import { publicRequest } from '../../requestMethods.js'
+import NoResultFound from '../NoResultFound';
 
 export function loader({ params }) {
     if (params.filter != '' || params.filter != 'null') {
@@ -25,7 +26,6 @@ const ViewBooks = () => {
     if (!url) {
         url = 'view/all'
     }
-
     const reloadPage = () => setReload(reload + 1);
 
     useEffect(() => {
@@ -62,6 +62,7 @@ const ViewBooks = () => {
                     </div>
                 </div>
             </div>
+            
         </div>
     )
 

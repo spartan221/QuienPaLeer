@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios'
 const useViews = (url) =>{
     const [posts, setPost] = useState([])
-    const [loading, setLoading] = useState(false);
-   
-    
-    
+    const [loading, setLoading] = useState(true);
     const handleShow = () => {
         const myModal = new bootstrap.Modal(document.getElementById('ModalCreate'))
         myModal.show();
@@ -20,7 +17,8 @@ const useViews = (url) =>{
         setLoading(true);
         const res = await axios.get(url+param)
         setPost(res.data.reverse());
-        setLoading(false);
+        setLoading(false)
+        
     }
 
     return {

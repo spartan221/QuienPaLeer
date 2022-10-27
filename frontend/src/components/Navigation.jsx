@@ -21,12 +21,13 @@ const baseURL = 'http://127.0.0.1:5000/api/auth/logout'
 
 function Navigation(user) {
     const navigate = useNavigate();
-    const [inputs, setInputs] = useState({place: 'events'})
+    const [inputs, setInputs] = useState({ place: 'events' })
     const [loading, setLoading] = useState(false);
     const [reload, setReload] = useState(0);
     const reloadPage = () => setReload(reload + 1);
     const [seed, setSeed] = useState(1);
-    function handleChange(event) {
+
+    const handleChange = async (event) => {
         setInputs(prevInput => {
             return {
                 ...prevInput, [event.target.name]: event.target.value
@@ -39,9 +40,11 @@ function Navigation(user) {
         event.preventDefault()
         // const res = await publicRequest.get(`/event/search/${input}`)
         // console.log(res.data);
-        
         navigate(`${inputs.place}/search/${inputs.filter}`)
         //window.location.reload(false)
+    }
+    const onEnter = async (event) => {
+        navigate(`${inputs.place}/search/${inputs.filter}`)
     }
     // Controlador para cuando el usuario le de click al icono de cerrar sesión
     const handleLogout = async () => {
@@ -106,6 +109,11 @@ function Navigation(user) {
                                 id='searchNavBar'
                                 name='filter'
                                 onChange={handleChange}
+                                onKeyPress={event => {
+                                    if (event.key === 'Enter') {
+                                        onEnter();
+                                    }
+                                }}
                             />
                             <Button id="btnSearchNavBar" onClick={handleClick}>
                                 <i className="bi bi-search"></i>
