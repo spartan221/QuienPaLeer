@@ -22,5 +22,8 @@
   "homepage": "https://github.com/spartan221/QuienPaLeer#readme",
   "dependencies": {
     "nodemon": "^2.0.20"
+  },
+  "engines": {
+    "node": "16.17.0"
   }
 }
