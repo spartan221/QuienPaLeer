@@ -8,7 +8,7 @@
     "start": "nodemon --watch backend --exec node backend/server.js",
     "server": "nodemon backend/server.js",
     "client": "npm run dev --prefix frontend",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --force --prefix frontend && npm run build -- prefix install"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --force --prefix frontend && npm run build -- prefix frontend"
   },
   "repository": {
     "type": "git",
