@@ -99,9 +99,19 @@ const router = createBrowserRouter([
         loader: eventsLoader
       },
       {
+        path: 'events/search/:filter/profile/:userId',
+        element: <Profile myProfile={false} />,
+        loader: profileLoader
+      },
+      {
         path: 'buyBooks/search/:filter',
         element: <FormBook />,
         loader: booksLoader
+      },
+      {
+        path: 'buyBooks/search/:filter/profile/:userId',
+        element: <Profile myProfile={false} />,
+        loader: profileLoader
       },
       {
         path: 'donationBooks/search/:filter',
@@ -109,15 +119,30 @@ const router = createBrowserRouter([
         loader: donationsLoader
       },
       {
+        path: 'donationBooks/search/:filter/profile/:userId',
+        element: <Profile myProfile={false} />,
+        loader: profileLoader
+      },
+      {
         path: 'changeBooks/search/:filter',
         element: <Swaps />,
         loader: swapsLoader
       },
       {
+        path: 'changeBooks/search/:filter/profile/:userId',
+        element: <Profile myProfile={false} />,
+        loader: profileLoader
+      },
+      {
         path: 'recommendationBooks/search/:filter',
-        element: <ViewRecommendation/>,
+        element: <ViewRecommendation />,
         loader: recommendationLoader
-      }
+      },
+      {
+        path: 'recommendationBooks/search/:filter/profile/:userId',
+        element: <Profile myProfile={false} />,
+        loader: profileLoader
+      },
     ]
   }
 ])

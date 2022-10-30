@@ -14,7 +14,6 @@ import { AnimatedPageNavBar } from './AnimationPage';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
-import { publicRequest } from '../requestMethods';
 import { useNavigate } from 'react-router-dom';
 
 const baseURL = 'http://127.0.0.1:5000/api/auth/logout'
@@ -36,12 +35,12 @@ function Navigation(user) {
         console.log(inputs);
     }
 
-    const handleClick = async (event) => {
-        event.preventDefault()
-        // const res = await publicRequest.get(`/event/search/${input}`)
-        // console.log(res.data);
-        navigate(`${inputs.place}/search/${inputs.filter}`)
-        //window.location.reload(false)
+    const handleSearch = async (event) => {
+        if (inputs.filter == '') {
+            navigate(`${inputs.place}/search/undefined`)
+        } else {
+            navigate(`${inputs.place}/search/${inputs.filter}`)
+        }
     }
     const onEnter = async (event) => {
         navigate(`${inputs.place}/search/${inputs.filter}`)
@@ -111,11 +110,11 @@ function Navigation(user) {
                                 onChange={handleChange}
                                 onKeyPress={event => {
                                     if (event.key === 'Enter') {
-                                        onEnter();
+                                        handleSearch();
                                     }
                                 }}
                             />
-                            <Button id="btnSearchNavBar" onClick={handleClick}>
+                            <Button id="btnSearchNavBar" onClick={handleSearch}>
                                 <i className="bi bi-search"></i>
                             </Button>
                         </InputGroup>

@@ -70,7 +70,7 @@ export default function SideBar() {
                                     isActive ? activeStyle : undefined
                                 } to='recommendationBooks'>
                                 <i class="bi bi-hand-thumbs-up p-2"></i>
-                                 Recomedación de libros
+                                 Recomendación de libros
                             </NavLink>
                         </NavItem>
                     </Nav>
