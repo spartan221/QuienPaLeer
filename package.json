@@ -1,0 +1,26 @@
+{
+  "name": "quienpaleer",
+  "version": "1.0.0",
+  "description": "<p align=\"center\">\r     <span>\r     <img src=\"https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white\"/>\r     <img src=\"https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white\"/>\r     <img src=\"https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB\"/>\r     <img src=\"https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white\"/>\r    </span> \r    </br>\r    <img src=\"https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black\"/>\r    <img src=\"https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white\"/>\r    <img src=\"https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white\"/>\r    <img src=\"https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=Jira&logoColor=white\"/>\r    <img src=\"https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white\"/>\r    <img src=\"https://img.shields.io/badge/JSS-F7DF1E?style=for-the-badge&logo=JSS&logoColor=white\"/>\r    <img src=\"https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white\"/>\r    <img src=\"https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white\"/>\r    <img src=\"https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=white\"/>\r    <img src=\"https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white\"/>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --watch backend --exec node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm run dev --prefix frontend",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spartan221/QuienPaLeer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spartan221/QuienPaLeer/issues"
+  },
+  "homepage": "https://github.com/spartan221/QuienPaLeer#readme",
+  "dependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
