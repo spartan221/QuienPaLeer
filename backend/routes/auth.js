@@ -35,7 +35,8 @@ const makeAuthRouter = (database) => {
                 name: req.body.name,
                 lastName: req.body.lastName,
                 email: req.body.email,
-                phone: req.body.phone
+                phone: req.body.phone,
+                photo: ''
             });
             
             // Almacenar el nuevo usuario registrado en la BD

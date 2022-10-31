@@ -28,3 +28,10 @@
   margin-right: 2px;
 }
 
+#userProfilePhotoView {
+    width: 10em;
+    height: 10em;
+    border-radius: 50%;
+    background-size: cover;
+    border: solid 6px white;
+}

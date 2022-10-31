@@ -13,6 +13,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { AnimatedPageNavBar } from './AnimationPage';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import profileUnknown from '../assets/img/profileUnknown.jpg';
 
 const baseURL = 'http://127.0.0.1:5000/api/auth/logout'
 
@@ -89,7 +90,7 @@ function Navigation(user) {
                             <LinkContainer to={`profile/${user._id}`}>
                                 <Nav.Link className='navBarLinks py-0 d-flex align-items-center' id='userNameNavContainer'>
                                     {user.name ? user.name + ' ' + user.lastName : 'Cargando...'}
-                                    <i className="bi bi-person-circle px-2" style={{ fontSize: 30 }}></i>
+                                    <div className='ms-3 text-center' id='userProfilePhoto' style={user.photo ? {backgroundImage: "url(" + user.photo +")"} : {backgroundImage: "url(" + profileUnknown +")"}}/>
                                 </Nav.Link>
                             </LinkContainer>
                             <button type="button" className="btn" id='btnDropMenu' data-bs-toggle="dropdown"><i class="bi bi-caret-down-fill"></i></button>
