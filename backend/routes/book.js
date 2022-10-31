@@ -1,6 +1,8 @@
 import Book from "../models/Book.js"
+//import Rating from '../models/Raiting.js'
 import express from "express"
 import { isUserAuthenticaded } from '../config/firebase/authentication.js'
+import { async } from "@firebase/util"
 
 const router = express.Router()
 
@@ -24,10 +26,94 @@ router.post("/create", isUserAuthenticaded, async (req, res) => {
     }
 })
 
+//Valoración
+router.put("/val", isUserAuthenticaded, async (req, res) => {
+    let update = {
+        $push: {
+            ratings: {
+                rating: req.body.ratings.rating,
+                userId: req.userId
+            }
+        },
+    }
+    try {
+        const bookSaved = await Book.findOne({ _id: req.body._id })
+        //console.log(bookSaved)
+        let userRating
+        bookSaved.ratings.forEach(e => {
+            if (e.userId == req.userId) {
+                userRating = e
+                return
+            }
+        })
+
+        console.log('Valoración usuario:', userRating)
+        if (userRating) {
+            console.log("Existe")
+            res.json(200,bookSaved)
+        } else {
+            const ratingSaved = await Book.findOneAndUpdate({
+                _id: req.body._id
+            }, update, { returnNewDocument: true });
+            console.log("Rating saved:",ratingSaved);
+
+            const bookUpdated = await Book.findOne({ _id: req.body._id })
+
+            const ratingReturn = {
+                ...bookUpdated._doc,
+                totalRatings: null,
+                ratingsAveraged:null,
+                ratingUser:null
+            }
+            console.log("NUEVO DOCUMENTO :", ratingReturn)
+            let sum = 0
+            bookUpdated.ratings.forEach(f => {
+                sum += f.rating
+                console.log("Las valoraciones",f)
+                if (f.userId = req.userId) {
+                    ratingReturn.ratingUser = f.rating
+                }
+            })
+            ratingReturn.totalRatings = bookUpdated.ratings.length
+            ratingReturn.ratingsAveraged = sum / bookUpdated.ratings.length || 0
+            console.log("Calificación guardada", bookUpdated)
+            console.log("NUEVO DOCUMENTO X2:", ratingReturn)
+            res.status(201).json(ratingReturn)
+        }
+
+    } catch (err) {
+        res.status(500).json(err)
+    }
+})
 //Lectura
-router.get("/", async (req, res) => {
+router.get("/", isUserAuthenticaded, async (req, res) => {
     const books = await Book.find();
-    res.json(books)
+    const newBooks = []
+    books.forEach(e => {
+        const newBook = {
+            _id: e._id,
+            name: e.name,
+            title: e.title,
+            author: e.author,
+            editorial: e.editorial,
+            year: e.year,
+            price: e.price,
+            image: e.image,
+            createdAt: e.createdAt,
+            updatedAt: e.updatedAt
+        }
+        let sum = 0
+        e.ratings.forEach(f => {
+            sum += f.rating
+            if (f.userId == req.userId) {
+                newBook.ratingUser = f.rating
+            }
+        })
+        newBook.totalRatings = e.ratings.length
+        newBook.ratings = sum / e.ratings.length || 0
+        newBooks.push(newBook)
+    })
+    res.json(newBooks)
 })
 
 //Lectura con usuarios

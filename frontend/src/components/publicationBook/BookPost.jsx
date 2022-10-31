@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../css/BookPost.css'
 import Spinner from '../SpinnerCircular';
 import ViewBook from './ViewBook'
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 
 export const BookPost = ({ posts, loading }) => {
@@ -25,6 +26,7 @@ export const BookPost = ({ posts, loading }) => {
                         <div className='row mt-2'>
                             <p className='col text-start '>{post.name}</p>
                             <p className='col text-end' id='priceSellBook'>$ {post.price}</p>
+                            <p className='text-start '><i class="col bi bi-star-fill text-start">{post.ratings}</i></p>
                         </div>
                     </div>
 

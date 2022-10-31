@@ -5,7 +5,7 @@ const DatePublication = ({dateCreatedAt})=>{
     useEffect(() => {
         const date = new Date(dateCreatedAt)
         const str = date.toLocaleDateString()+" "+date.toLocaleTimeString()
-        console.log(str)
+   //     console.log(str)
         setDatePublication(str)
     });
     return <p>Fecha de publicación: {datePublication}</p>

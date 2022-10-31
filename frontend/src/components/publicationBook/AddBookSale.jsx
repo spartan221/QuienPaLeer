@@ -11,10 +11,9 @@ import '../css/CreateBookSale.css'
 import Swal from 'sweetalert2'
 
 
-
 const baseURL = 'http://127.0.0.1:5000/api/book/create'
 
-function FormBook({reloadPage,closeModal}) {
+function FormBook({ reloadPage, closeModal }) {
   let re = /^\d+$/;
   const [inputs, setInputs] = useState({})
   const [file, setFile] = useState(null)
@@ -60,7 +59,7 @@ function FormBook({reloadPage,closeModal}) {
           image: downloadURL
         }
         console.log('nuevo libro: ', newBook)
-        await axios.post(baseURL, newBook, {withCredentials: true});
+        await axios.post(baseURL, newBook, { withCredentials: true });
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
@@ -80,7 +79,7 @@ function FormBook({reloadPage,closeModal}) {
         document.getElementById('bookForm').reset()
         reloadPage();
         setBook(bookOject)
-      setInputs({})
+        setInputs({})
       }).catch((error) => {
         console.log(error);
       })
@@ -123,7 +122,7 @@ function FormBook({reloadPage,closeModal}) {
     if (!(re.test(year))) newErrors.year = 'Ingresa un número.'
     if (!file || file === '') newErrors.image = 'Sube una imagen.'
     if (!price || price === '') newErrors.price = 'Ingresa un precio.'
-    if (!(re.test(price))) newErrors.price = 'Ingresa un número.'
+    if (!(re.test(price))) newErrors.price = 'Ingresa un precio.'
     return newErrors
   }
 
@@ -140,19 +139,19 @@ function FormBook({reloadPage,closeModal}) {
 
         <Form.Group className="mb-3" controlId="formTitle"  >
           <Form.Label>Título de la venta</Form.Label>
-          <Form.Control type="text" name="title" value={book.title} onChange={captureValues} />
+          <Form.Control type="text" name="title" value={book.title} onChange={captureValues} maxlength="50"  />
           <p className="errorContainer ms-1 mt-2 text-danger">{errors.title}</p>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formName">
           <Form.Label>Nombre del libro</Form.Label>
-          <Form.Control type="text" name="name" value={book.name} onChange={captureValues} />
+          <Form.Control type="text" name="name" value={book.name} onChange={captureValues} maxlength="60"/>
           <p className="errorContainer ms-1 mt-2 text-danger">{errors.name}</p>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formAuthor">
           <Form.Label>Autor</Form.Label>
-          <Form.Control type="text" name="author" value={book.author} onChange={captureValues} />
+          <Form.Control type="text" name="author" value={book.author} onChange={captureValues} maxlength="50"/>
           <p className="errorContainer ms-1 mt-2 text-danger">{errors.author}</p>
         </Form.Group>
 
@@ -160,13 +159,13 @@ function FormBook({reloadPage,closeModal}) {
           <Col sm={8}>
             <Form.Group className="mb-3" controlId="formEditorial">
               <Form.Label>Editorial</Form.Label>
-              <Form.Control type="text" name="editorial" value={book.editorial} onChange={captureValues} />
+              <Form.Control type="text" name="editorial" value={book.editorial} onChange={captureValues} maxlength="50"/>
               <p className="errorContainer ms-1 mt-2 text-danger">{errors.editorial}</p>
             </Form.Group>
           </Col>
           <Col sm={4}><Form.Group className="mb-3" controlId="formYear">
             <Form.Label>Año</Form.Label>
-            <Form.Control type="number" name="year" value={book.year} onChange={captureValues} />
+            <Form.Control type="number" maxlength="4" min="1" max="9999" name="year" value={book.year} onChange={captureValues} />
             <p className="errorContainer ms-1 mt-2 text-danger">{errors.year}</p>
           </Form.Group></Col>
         </Row>
@@ -186,8 +185,8 @@ function FormBook({reloadPage,closeModal}) {
           </Col>
           <Col>
             <Form.Group className="mb-3" controlId="formPrice">
-              <Form.Label className='fw-bold' style={{ color: "#ffa44f"}}>Precio</Form.Label>
-              <Form.Control type="number" name="price" value={book.price} onChange={captureValues} />
+              <Form.Label className='fw-bold' style={{ color: "#ffa44f" }}>Precio</Form.Label>
+              <Form.Control type="number" name="price" value={book.price} onChange={captureValues} maxlength="4" min="1" max="99999999" />
               <p className="errorContainer ms-1 mt-2 text-danger">{errors.price}</p>
             </Form.Group>
           </Col>
@@ -198,6 +197,7 @@ function FormBook({reloadPage,closeModal}) {
             <Form.Label htmlFor="image" className="form-label">Imagen</Form.Label>
             <Form.Control className="form-control" type="file" name="image" accept="image/png,  image/jpeg" onChange={handleChangeFile} />
             <p className="errorContainer ms-1 mt-2 text-danger">{errors.image}</p>
+
           </Col>
         </Row>
 

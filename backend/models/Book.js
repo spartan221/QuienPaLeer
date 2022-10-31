@@ -10,7 +10,8 @@ const BookSchema = new mongoose.Schema({
     cathegory: { type: String },
     //user:{ type: mongoose.Schema.ObjectId,ref:"UserPrueba"},
     userId: { type: String, required: true },
-    image: { type: String }
+    image: { type: String },
+    ratings:[{ _id:false,rating: Number,userId:String}] 
 }, {
     timestamps: true
 });
