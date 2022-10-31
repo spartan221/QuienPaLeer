@@ -39,6 +39,7 @@ const makeProfileRouter = (database) => {
         if (req.body.name) user.name = req.body.name
         if (req.body.lastName) user.lastName = req.body.lastName
         if (req.body.phone) user.phone = req.body.phone
+        if (req.body.photo) user.photo = req.body.photo
         const response = await database.saveUser(user);
         if (response) {
             res.status(201).json('Perfil actualizado en la BD satisfactoriamente.');

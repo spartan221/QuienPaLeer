@@ -6,6 +6,7 @@ import '../css/Profile.css';
 import * as bootstrap from 'bootstrap';
 import LogoQPLBlack from '../../assets/img/QPL_Logo_Black.png';
 import { AnimatedPageSmoothY, AnimatedPageNavBar } from '../AnimationPage';
+import profileUnknown from '../../assets/img/profileUnknown.jpg';
 
 export async function loader({ params }) {
     return await publicRequest.get(`profile/view/${params.userId}`)
@@ -31,15 +32,21 @@ const Profile = ({ myProfile }) => {
     return (
         <div>
             <AnimatedPageSmoothY>
-                <div className='mt-4 mx-5 rounded-4 text-center' style={{ backgroundColor: '#ffcfa2' }}>
-                    <div className='m-5 p-4 d-flex flex-column align-content-center justify-content-center'>
-                        <p className='lead fs-2'>{user.name} {user.lastName}</p>
-                        <p className='lead fs-6 text-muted'>Usuario desde el {currentDate.getDate()}/{currentDate.getMonth()}/{currentDate.getFullYear()}</p>
-                        <span>
-                            {myProfile && <button className='btn' id='btnEditProfile' onClick={handleShow}>Editar</button>}
-                        </span>
+                <div className='row mb-5'>
+                    <div className='col-3 d-flex justify-content-center align-items-center mt-4 ms-5' style={{ backgroundColor: '#ffcfa2', borderRadius: '15px' }}>
+                        <div id='userProfilePhotoView' style={user.photo ? {backgroundImage: "url(" + user.photo +")"} : {backgroundImage: "url(" + profileUnknown +")"}}/>
+                    </div>
+                    <div className=' col mt-4 me-5 ms-2 rounded-4 text-center' style={{ backgroundColor: '#ffcfa2' }}>
+                        <div className='m-5 p-4 d-flex flex-column align-content-center justify-content-center'>
+                            <p className='lead fs-2'>{user.name} {user.lastName}</p>
+                            <p className='lead fs-6 text-muted'>Usuario desde el {currentDate.getDate()}/{currentDate.getMonth()}/{currentDate.getFullYear()}</p>
+                            <span>
+                                {myProfile && <button className='btn' id='btnEditProfile' onClick={handleShow}>Editar</button>}
+                            </span>
+                        </div>
                     </div>
                 </div>
+                
 
                 <div className='mx-5 d-flex flex-row fs-6'>
                     <div className='col text-center'>
