@@ -86,7 +86,7 @@ router.put("/val", isUserAuthenticaded, async (req, res) => {
     }
 })
 //Lectura
-router.get("/", isUserAuthenticaded, async (req, res) => {
+router.get("/view/all", async (req, res) => {
     const books = await Book.find();
     const newBooks = []
     books.forEach(e => {
@@ -132,6 +132,16 @@ router.get("/getWithUsers", async (req, res) => {
         }
     ])
     res.json(books);
+})
+
+//búsqueda
+router.get('/search/:filter', async (req, res) => {
+    try {
+        const book = await Book.find({$text: {$search: req.params.filter}, $language: "none"});
+        res.status(200).json(book)
+    } catch (err) {
+        res.status(500).json(err)
+    }
 })
 
 export default router

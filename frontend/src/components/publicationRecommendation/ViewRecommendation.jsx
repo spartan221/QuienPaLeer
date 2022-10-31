@@ -19,16 +19,22 @@ const ViewDonation = (props) => {
             
             <div className='row mt-3 text-center'>
                 <div className='col'>
-                    <h5>Nombre</h5>
+                    <h5>Nombre del libro</h5>
                     <p>{props.name}</p>
-                </div>
-                <div className='col'>
-                    <h5>Editorial</h5>
-                    <p>{props.editorial}</p>
                 </div>
                 <div className='col'>
                     <h5>Autor</h5>
                     <p>{props.author}</p>
+                </div>
+            </div>
+            <div className='row mt-3 text-center'>
+                <div className='col'>
+                    <h5>Recomendación</h5>
+                    <p>{props.recommendation}</p>
+                </div>
+                <div className='col'>
+                    <h5>Resumen</h5>
+                    <p>{props.summary}</p>
                 </div>
             </div>
             <div className='row'>

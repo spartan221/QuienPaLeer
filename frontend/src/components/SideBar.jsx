@@ -6,7 +6,8 @@ import { NavLink } from 'react-router-dom';
 import { Button, Nav, NavItem } from 'react-bootstrap';
 import LogoQPLBlack from "../assets/img/QPL_Logo_Black.png";
 import TeamJson from '../assets/team.json';
-import {AnimatedPageSmoothY} from '../components/AnimationPage'
+import { AnimatedPageSmoothY } from '../components/AnimationPage'
+import RecommendIcon from '@mui/icons-material/Recommend';
 
 export default function SideBar() {
 
@@ -18,7 +19,7 @@ export default function SideBar() {
 
     return (
         <AnimatedPageSmoothY>
-            <div>
+            <div >
                 <div className="px-4 h-100 w-100" >
                     <p className='text-muted d-flex justify-content-start p-2 mt-3' style={{ fontSize: 12 }}>
                         Opciones
@@ -42,7 +43,7 @@ export default function SideBar() {
                                 }
                                 to='buyBooks'>
                                 <i className="bi bi-currency-dollar p-2"></i>
-                                Compra de libros
+                                Compra/Venta de <span className='ms-4'>libros</span>
                             </NavLink>
                         </NavItem>
                         <NavItem className='d-flex align-items-start  pb-4'>
@@ -63,6 +64,15 @@ export default function SideBar() {
                                 Donación de libros
                             </NavLink>
                         </NavItem>
+                        <NavItem className='d-flex align-items-start  pb-4'>
+                            <NavLink className='text-decoration-none text-dark navLinkContainer w-100 text-start'
+                                style={({ isActive }) =>
+                                    isActive ? activeStyle : undefined
+                                } to='recommendationBooks'>
+                                <i class="bi bi-hand-thumbs-up p-2"></i>
+                                 Recomendación de <span className='ms-4'>libros</span>
+                            </NavLink>
+                        </NavItem>
                     </Nav>
 
                     <hr />
@@ -76,19 +86,21 @@ export default function SideBar() {
                             <button type="button" className="btn" id='btnInfoTeamSideBar' data-bs-toggle="modal" data-bs-target="#teamModal">
                                 <i class="bi bi-info-lg"></i>
                             </button>
+                            <p className='text-center pt-2'>Equipo</p>
                         </div>
                         <div>
-                            <a href='mailto:ProyectoQPL.App@gmail.com'>
+                            <a href='mailto:quienpaleerproyecto@gmail.com'>
                                 <button type="button" className="btn text-black" id='btnInfoTeamSideBar'>
                                     <i class="bi bi-envelope">
                                     </i>
                                 </button>
                             </a>
+                            <p className='text-center pt-2'>Contactar</p>
                         </div>
                     </div>
                     <br />
                     <div className='text-center textAppVersionSideBar text-muted lead h6 mt-3'>
-                        App Version: <span>2.7</span>
+                        App Version: <span>3.8</span>
                     </div>
 
                     <hr />
@@ -104,19 +116,18 @@ export default function SideBar() {
                             </div>
                             <div class="modal-body d-flex flex-row flex-wrap justify-content-center">
                                 {TeamJson.map((member, i) => (
-                                    <div className="card w-25 m-2 fw-lighter" key={i}>
-                                        <div className="card-header h-50">
+                                    <div className="card border-0 w-25 m-2 fw-lighter d-flex justify-content-center align-items-center" key={i}>
+                                        <div className='containerImageMember' style={{backgroundImage: "url(" + member.imgpath + ")"}}></div>
+                                        <div className="mt-3">
                                             <h6 className='text-center'>{member.firstname + ' ' + member.lastname}</h6>
-                                        </div>
-                                        <div className='card-body'>
-                                            <h6 className='text-center text-muted'>
+                                            <h6 className='text-center text-muted fs-6'>
                                                 {member.dev}
                                             </h6>
-                                            <div className='d-flex justify-content-center'>
-                                                <a href={member.email} className='text-decoration-none'>
-                                                    <button className='btnContactMember btn mt-3' style={{ fontSize: 10, backgroundColor: '#ffcfa2', color: 'black' }}>Contactar</button>
-                                                </a>
-                                            </div>
+                                        </div>
+                                        <div>
+                                            <a href={member.github} target='_blank'>
+                                                <i className="bi bi-github" style={{color: '#000'}}></i>
+                                            </a>
                                         </div>
                                     </div>
                                 ))}

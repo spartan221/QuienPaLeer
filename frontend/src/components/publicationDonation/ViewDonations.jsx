@@ -1,69 +1,36 @@
-import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import DonationPost from './DonationPost.jsx'
 import Paginations from '../Paginations'
-import '../css/ViewBooks.css'
 import CreateDonation from './CreateDonation.jsx';
+import usePaginationHook from '../PaginationHook.jsx';
+import useViews from '../ViewsHook.jsx'
+import { useLoaderData } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import * as bootstrap from 'bootstrap'
+import '../css/ViewPublications.css'
 
-
+export function loader({ params }) {
+    if (params.filter != '' || params.filter != 'null') {
+        return `search/${params.filter}`
+    } 
+    return 'view/all'
+}
 const ViewBooks = () => {
-    const [posts, setPost] = useState([])
-    const [loading, setLoading] = useState(false);
-    const [band, setBand] = useState(true);
-    const [bandRight, setBandRight] = useState(false);
+    const {handleShow,hideModal,posts,loading,fetch} = useViews("http://127.0.0.1:5000/api/donation/")
+    const {currentPage,currentPost,postsPerPage,changeCurrentPage} = usePaginationHook(posts)
     const [reload, setReload] = useState(0);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(6)
 
-    const handleShow = () => {
-        const myModal = new bootstrap.Modal(document.getElementById('ModalCreate'))
-        myModal.show();
-
-    };
-
-    const hideModal = () => {
-        const myModal = document.getElementById('ModalCreate');
-        const modal = bootstrap.Modal.getInstance(myModal);
-        modal.hide();
+    let url = useLoaderData()
+    if (!url) {
+        url = 'view/all'
     }
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPost = posts.slice(indexOfFirstPost, indexOfLastPost)
-
     const reloadPage = () => setReload(reload + 1);
-
-    const paginate = pageNumber => {
-
-        if ((pageNumber - 1) == 0) {
-            setBand(true)
-        }
-        else {
-            setBand(false)
-        }
-        if (pageNumber >= Math.ceil(posts.length / postsPerPage)) {
-            setBandRight(true)
-            console.log("true")
-        }
-        else {
-            setBandRight(false)
-            console.log("false")
-        }
-        setCurrentPage(pageNumber)
-    }
 
     useEffect(() => {
         const fetchPost = async () => {
-            setLoading(true);
-            const res = await axios.get("http://127.0.0.1:5000/api/donation/")
-            setPost(res.data);
-            setLoading(false);
+            fetch(url)
         }
         fetchPost();
-    }, [reload]);
-
-
+    }, [reload,url]);
 
     return (
         <div className='container pt-5'>
@@ -77,7 +44,7 @@ const ViewBooks = () => {
 
             <DonationPost posts={currentPost} loading={loading} />
 
-            <Paginations postPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} currentPage={currentPage} band={band} bandRight={bandRight} />
+            <Paginations postPerPage={postsPerPage} totalPosts={posts.length} setCurrentPage={changeCurrentPage} currentPage={currentPage} />
 
 
             <div className="modal fade" id="ModalCreate" tabIndex={-1} aria-labelledby="ModalCreateLabel" >
@@ -92,6 +59,7 @@ const ViewBooks = () => {
                     </div>
                 </div>
             </div>
+            
         </div>
     )
 

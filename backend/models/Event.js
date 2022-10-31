@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 // TODO
 // Agregar el id del usuario
 const EventSchema = new mongoose.Schema({
-    name: { type: String, required: true },
+    name: { type: String,  index: 'text', required: true },
     description: { type: String, required: true },
     startDate: { type: String, required: true },
     endDate: { type: String, required: true },

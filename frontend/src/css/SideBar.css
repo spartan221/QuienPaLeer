@@ -16,5 +16,15 @@
     background-color: #ffcfa2;
 }
 
+.containerImageMember {
+    width: 8em;
+    height: 8em;
+    background-size: cover;
+    border-radius: 50%;
+    border: 5px solid #ffcfa2;
+}
+
+
+
 
 

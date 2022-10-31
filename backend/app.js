@@ -3,10 +3,11 @@ import express from "express";
 import makeAuthRouter from "./routes/auth.js";
 import cors from "cors";
 import makeEventRouter from "./routes/event.js";
-import bookRoute from './routes/book.js'
-import donationRoute from './routes/donation.js';
+import bookRoute from "./routes/book.js"
+import donationRoute from "./routes/donation.js";
 import makeProfileRouter from "./routes/profile.js";
-import swapRoute from './routes/swap.js';
+import swapRoute from "./routes/swap.js";
+import recommendationRoute from "./routes/recommendation.js";
 
 
 const makeApp = (database) => {
@@ -31,7 +32,8 @@ const makeApp = (database) => {
     app.use("/api/donation",donationRoute)
     const profileRouter = makeProfileRouter(database);
     app.use("/api/profile", profileRouter)
-    app.use('/api/swap',swapRoute);
+    app.use("/api/swap",swapRoute);
+    app.use("/api/recommendation",recommendationRoute);
 
     return app;
 }

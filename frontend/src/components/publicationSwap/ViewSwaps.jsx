@@ -1,67 +1,39 @@
-import axios from 'axios'
+
 import React, { useState, useEffect } from 'react'
 import SwapPost from './SwapPost'
 import Paginations from '../Paginations'
-import '../css/ViewBooks.css'
 import FormSwap from './AddBookSwap.jsx'
+import { useLoaderData } from 'react-router-dom'
+import '../css/ViewPublications.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import * as bootstrap from 'bootstrap'
 
+export function loader({ params }) {
+    if (params.filter != '' || params.filter != 'null') {
+        return `search/${params.filter}`
+    } 
+    return 'view/all'
+}
+
+import usePaginationHook from '../PaginationHook.jsx';
+import useViews from '../ViewsHook.jsx'
 
 const ViewSwaps = () => {
-    const [posts, setPost] = useState([])
-    const [loading, setLoading] = useState(false);
-    const [band, setBand] = useState(true);
+    const {handleShow,hideModal,posts,loading,fetch} = useViews("http://127.0.0.1:5000/api/swap/")
+    const {currentPage,currentPost,postsPerPage,changeCurrentPage} = usePaginationHook(posts)
     const [reload, setReload] = useState(0);
-    const [bandRight, setBandRight] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(6)
     const reloadPage = () => setReload(reload + 1);
-
-    const handleShow = () => {
-        const myModal = new bootstrap.Modal(document.getElementById('ModalCreateSwap'))
-        myModal.show();
-    };
-
-    const hideModal = () => {
-        const myModal = document.getElementById('ModalCreateSwap');
-        const modal = bootstrap.Modal.getInstance(myModal);
-        modal.hide();
+    let url = useLoaderData()
+    if (!url) {
+        url = 'view/all'
     }
 
     useEffect(() => {
         const fetchPost = async () => {
-            setLoading(true);
-            const res = await axios.get("http://127.0.0.1:5000/api/swap/")
-            console.log(res.data)
-            setPost(res.data);
-            setLoading(false);
+            fetch(url)
         }
         fetchPost();
-        console.log("recarga")
-    }, [reload]);
+    }, [reload,url]);
 
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPost = posts.slice(indexOfFirstPost, indexOfLastPost)
-
-    const paginate = pageNumber => {
-        if ((pageNumber - 1) == 0) {
-
-            setBand(true)
-        }
-        else {
-
-            setBand(false)
-        }
-        if (pageNumber >= Math.ceil(posts.length / postsPerPage)) {
-            setBandRight(true)
-        }
-        else {
-            setBandRight(false)
-        }
-        setCurrentPage(pageNumber)
-    }
 
     return (
         <div className='container pt-5'>
@@ -75,8 +47,8 @@ const ViewSwaps = () => {
 
             <SwapPost posts={currentPost} loading={loading} />
 
-            <Paginations postPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} currentPage={currentPage} band={band} bandRight={bandRight} />
-            <div className="modal fade" id="ModalCreateSwap" tabIndex={-1} aria-labelledby="ModalCreateLabel" aria-hidden="true">
+            <Paginations postPerPage={postsPerPage} setCurrentPage={changeCurrentPage} totalPosts={posts.length}  currentPage={currentPage}   />
+            <div className="modal fade" id="ModalCreate" tabIndex={-1} aria-labelledby="ModalCreateLabel" aria-hidden="true">
                 <div className="modal-dialog modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">

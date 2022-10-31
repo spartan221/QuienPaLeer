@@ -1,9 +1,7 @@
 import React from 'react'
-import "../css/ViewEvent.css"
-import { Link, Navigate, useNavigate } from 'react-router-dom'
-import * as bootstrap from 'bootstrap'
-import EditProfile from '../profile/EditProfile'
+import { Link, useNavigate } from 'react-router-dom'
 import DatePublication from '../DatePublication.jsx';
+import "../css/ViewPublication.css"
 
 const ViewEvent = (props) => {
     const navigate = useNavigate();
