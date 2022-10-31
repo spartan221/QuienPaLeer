@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import DonationPost from './DonationPost.jsx'
 import Paginations from '../Paginations'
-import '../css/ViewBooks.css'
 import CreateDonation from './CreateDonation.jsx';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import * as bootstrap from 'bootstrap'
 import usePaginationHook from '../PaginationHook.jsx';
 import useViews from '../ViewsHook.jsx'
 import { useLoaderData } from 'react-router-dom'
-import { publicRequest } from '../../requestMethods.js'
-import NoResultFound from '../NoResultFound';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/ViewPublications.css'
 
 export function loader({ params }) {
     if (params.filter != '' || params.filter != 'null') {

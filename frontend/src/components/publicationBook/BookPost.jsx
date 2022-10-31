@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import '../css/BookPost.css'
 import NoResultFound from '../NoResultFound';
 import Spinner from '../SpinnerCircular';
 import ViewBook from './ViewBook'
+import '../css/PublicationPost.css'
 
 export const BookPost = ({ posts, loading }) => {
     const [properties, setProperties] = useState({})
@@ -20,16 +20,16 @@ export const BookPost = ({ posts, loading }) => {
                         <div className='row row-cols-2'>
                             {posts.map(post => (
                                 <div>
-                                    <div key={post._id} className="col py-2 px-5 pb-5" id='booksPostContainer'>
+                                    <div key={post._id} className="col py-2 px-4 h-20 pb-4" id='infoEventsContainer'>
                                         <div className='row'>
                                             <p className='col text-start fw-bold'>{post.title}</p>
                                         </div>
                                         <div className='row'>
-                                            <input onClick={e => setProperties({ ...post })} type="image" data-bs-toggle="modal" data-bs-target="#Modal" className="rounded-5 imagen" id='imageInputSellBook' src={post.image}></input>
+                                            <input onClick={e => setProperties({ ...post })} type="image" data-bs-toggle="modal" data-bs-target="#Modal" className="rounded-5 imagen"  src={post.image}></input>
                                         </div>
                                         <div className='row mt-2'>
-                                            <p className='col text-start '>{post.name}</p>
-                                            <p className='col text-end' id='priceSellBook'>$ {post.price}</p>
+                                            <p className='col text-start fw-bold'>{post.name}</p>
+                                            <p className='col text-end gray-text' id='priceSellBook'>$ {post.price}</p>
                                         </div>
                                     </div>
                                     <div className="modal fade" id="Modal" tabIndex={-1} aria-labelledby="ModalLabel" aria-hidden="true">

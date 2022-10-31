@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import '../css/EventPost.css'
 import Spinner from '../SpinnerCircular';
 import NoResultFound from '../NoResultFound';
 import ViewEvent from './ViewEvent'
+import '../css/PublicationPost.css'
 
 export const EventPost = ({ posts, loading }) => {
     const [properties, setProperties] = useState({})

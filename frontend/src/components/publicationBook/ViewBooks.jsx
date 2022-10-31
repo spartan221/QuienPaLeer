@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useLoaderData } from 'react-router-dom'
 import BookPost from './BookPost.jsx';
 import Paginations from '../Paginations';
-import '../css/ViewBooks.css';
 import FormBook from './AddBookSale.jsx';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import * as bootstrap from 'bootstrap';
 import useViews from '../ViewsHook.jsx';
 import usePaginationHook from '../PaginationHook.jsx';
-import { useLoaderData } from 'react-router-dom'
-import { publicRequest } from '../../requestMethods.js';
-import NoResultFound from '../NoResultFound';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/ViewPublications.css'
 
 export function loader({ params }) {
     if (params.filter != '' || params.filter != 'null') {
@@ -35,7 +32,7 @@ const ViewBooks = () => {
     
     return (
         <div className='container pt-5'>
-            <div className='row'>
+            <div className='row '>
                 <h2 className='col text-start ms-4 fw-bold'>Venta de libros</h2>
                 <div className='col text-end'>
                     <button type="button" className='btn border me-4' id='btnAddBookSell' onClick={handleShow}>Añadir a la venta</button>

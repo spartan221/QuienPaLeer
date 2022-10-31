@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import DonationPost from './RecommendationPost.jsx'
 import Paginations from '../Paginations'
-import '../css/ViewBooks.css'
-import CreateDonation from './CreateRecommendation.jsx';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import * as bootstrap from 'bootstrap'
 import usePaginationHook from '../PaginationHook.jsx';
 import useViews from '../ViewsHook.jsx'
 import CreateRecommendation from './CreateRecommendation.jsx';
 import RecommendationPost from './RecommendationPost';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/ViewPublications.css'
 
 import { useLoaderData } from 'react-router-dom'
 
