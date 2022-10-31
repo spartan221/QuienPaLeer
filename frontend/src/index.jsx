@@ -14,10 +14,10 @@ import "bootstrap/dist/js/bootstrap.js";
 import Profile, {
   loader as profileLoader,
 } from './components/profile/Profile.jsx';
-
 import ViewDonations from "./components/publicationDonation/ViewDonations";
 import ViewRecommendation from "./components/publicationRecommendation/ViewRecommendation";
 import Swaps from './components/publicationSwap/ViewSwaps';
+
 const router = createBrowserRouter([
   {
     path: "/",
