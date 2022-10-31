@@ -2,36 +2,38 @@
     {
         "firstname":"Ivan",
         "lastname":"Morales",
-        "email":"mailto:imorales@unal.edu.co",
+        "github":"https://github.com/spartan221",
         "dev":"Fullstack",
-        "imgpath":"https://picsum.photos/200/300"
+        "imgpath":"https://i.ibb.co/pnQ9RKF/Screenshot-1.png"
     },
     {
         "firstname":"Miguel",
         "lastname":"Villada",
-        "email":"mailto:mvilladas@unal.edu.co",
+        "github":"https://github.com/mvilladas",
         "dev":"Fullstack",
-        "imgpath":"https://picsum.photos/200/300"
+        "imgpath":"https://i.ibb.co/yR6GnzY/1656026897642-1.jpg"
     },
     {
         "firstname":"Luis",
         "lastname":"Mendez ",
-        "email":"mailto:lumendezm@unal.edu.co",
+        "github":"https://github.com/Lumendezm",
         "dev":"UX/UI & Frontend",
-        "imgpath":"https://picsum.photos/200/300"
+        "imgpath":"https://i.ibb.co/y0zCDnL/311420844-1590075018102735-3951145173537657425-n.jpg"
     },
     {
         "firstname":"Daniel",
         "lastname":"Vargas",
-        "email":"mailto:danvargasgo@unal.edu.co",
+        "github":"https://github.com/danvargasgo",
         "dev":"Fullstack",
-        "imgpath":"https://picsum.photos/200/300"
+        "imgpath":"https://i.ibb.co/CBPtn7h/IMG-20220515-144909.jpg"
     },
     {
         "firstname":"Daniel",
         "lastname":"Bonilla",
-        "email":"mailto:dabonilla@unal.edu.co",
+        "github":"https://github.com/dabonilla",
         "dev":"Fullstack",
-        "imgpath":"https://picsum.photos/200/300"
+        "imgpath":"https://i.ibb.co/yYnr8Ys/Bonilla-Photo.jpg"
+        
+        
     }
 ]

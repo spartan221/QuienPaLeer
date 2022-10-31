@@ -9,19 +9,30 @@ import useViews from '../ViewsHook.jsx'
 import usePaginationHook from '../PaginationHook.jsx';
 
 
+import { useLoaderData } from 'react-router-dom'
+
+export function loader({ params }) {
+    if (params.filter != '' || params.filter != 'null') {
+        return `search/${params.filter}`
+    } 
+    return 'view/all'
+}
 
 const Pagination = () => {
-    const {handleShow,hideModal,posts,loading,fetch} = useViews("http://127.0.0.1:5000/api/event/view/all")
+    const {handleShow,hideModal,posts,loading,fetch} = useViews("http://127.0.0.1:5000/api/event/")
     const {currentPage,currentPost,postsPerPage,changeCurrentPage} = usePaginationHook(posts)
     const [reload, setReload] = useState(0);
     const reloadPage = () => setReload(reload + 1);
-
+    let url = useLoaderData()
+    if (!url) {
+        url = 'view/all'
+    }
     useEffect(() => {
         const fetchPost = async () => {
-            fetch()
+            fetch(url)
         }
         fetchPost();
-    }, [reload]);
+    }, [reload,url]);
 
 
     return (
@@ -32,7 +43,7 @@ const Pagination = () => {
                     <button type="button" className='btn btn-dark border me-4' id='btnCreateEvent' onClick={handleShow}>Crear evento</button>
                 </div>
             </div>
-            <hr/>
+            <hr />
 
             <EventPost posts={currentPost} loading={loading} />
 

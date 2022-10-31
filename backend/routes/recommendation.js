@@ -21,9 +21,18 @@ router.post("/create", isUserAuthenticaded, async (req, res) => {
 })
 
 //Lectura
-router.get("/", async (req, res) => {
+router.get("/view/all", async (req, res) => {
     const recommendation = await Recommendation.find();
     res.json(recommendation)
+})
+
+router.get('/search/:filter', async (req, res) => {
+    try {
+        const recommendation = await Recommendation.find({$text: {$search: req.params.filter}, $language: "none"});
+        res.status(200).json(recommendation)
+    } catch (err) {
+        res.status(500).json(err)
+    }
 })
 
 export default router

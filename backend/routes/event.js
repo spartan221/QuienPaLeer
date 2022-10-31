@@ -47,6 +47,16 @@ const makeEventRouter = (database) => {
         }
     })
 
+    //BÚSQUEDA
+    eventRouter.get('/search/:filter', async (req, res) => {
+        try {
+            const event = await Event.find({$text: {$search: req.params.filter}, $language: "none"});
+            res.status(200).json(event)
+        } catch (err) {
+            res.status(500).json(err)
+        }
+    })
+
     return eventRouter
 }
 
