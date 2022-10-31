@@ -21,7 +21,7 @@ const ViewBooks = () => {
     const reloadPage = () => setReload(reload + 1);
     let url = useLoaderData()
     if (!url) {
-        url = 'view/all'
+        url = '/view/all'
     }
     useEffect(() => {
         const fetchPost =  () => {

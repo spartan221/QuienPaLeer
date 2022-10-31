@@ -73,8 +73,9 @@ router.put("/val", isUserAuthenticaded, async (req, res) => {
                 if (f.userId = req.userId) {
                     ratingReturn.ratingUser = f.rating
                 }
-            })
-            ratingReturn.totalRatings = bookUpdated.ratings.length
+            })          
+
+            ratingReturn.totalRatings =bookUpdated.ratings.length;
             ratingReturn.ratingsAveraged = sum / bookUpdated.ratings.length || 0
             console.log("Calificación guardada", bookUpdated)
             console.log("NUEVO DOCUMENTO X2:", ratingReturn)
@@ -110,7 +111,9 @@ router.get("/view/all", async (req, res) => {
             }
         })
         newBook.totalRatings = e.ratings.length
-        newBook.ratings = sum / e.ratings.length || 0
+        let n = sum / e.ratings.length || 0;
+        var num1 = n.toFixed(1);
+        newBook.ratings = num1
         newBooks.push(newBook)
     })
     res.json(newBooks)

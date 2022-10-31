@@ -2,3 +2,11 @@ img {
     width: 100px;
     object-fit: cover;
 }
+
+.btnValorar{
+    background-color: rgb(94, 92, 92) !important;
+}
+
+.btnValorar:hover{
+    filter: brightness(90%) !important;
+}

@@ -1,9 +1,10 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import DatePublication from '../DatePublication.jsx';
 import Rating from '@mui/material/Rating';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
+
 
 import "../css/ViewPublication.css"
 
@@ -73,11 +74,11 @@ const ViewBook = (props) => {
                     {props.ratings}
                 </div>
                 <div className='col-auto pt-2 px-1'>
-                    <p>({calification ? calification:props.totalRatings} Valoraciones)</p>
+                    <p>({props.totalRatings} Valoraciones)</p>
                 </div>
                 <div className='col-auto'>
                     <div class="btn-group dropend">
-                        <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button type="button" class="btn btn-sm btn-secondary dropdown-toggle btnValorar" data-bs-toggle="dropdown" aria-expanded="false">
                             Valorar
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end py-0 pt-1 px-2">
