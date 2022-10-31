@@ -7,6 +7,9 @@ import bookRoute from './routes/book.js'
 import donationRoute from './routes/donation.js';
 import makeProfileRouter from "./routes/profile.js";
 import swapRoute from './routes/swap.js';
+import makeConversationRouter from "./routes/conversation.js";
+import makeMessageRouter from "./routes/message.js";
+import usersRouter from "./routes/users.js";
 
 
 const makeApp = (database) => {
@@ -32,7 +35,11 @@ const makeApp = (database) => {
     const profileRouter = makeProfileRouter(database);
     app.use("/api/profile", profileRouter)
     app.use('/api/swap',swapRoute);
-
+    const conversationRouter = makeConversationRouter(database);
+    app.use('/api/chat/conversations', conversationRouter);
+    const messageRouter = makeMessageRouter(database);
+    app.use('/api/chat/messages', messageRouter);
+    app.use('/api/users', usersRouter);
     return app;
 }
 

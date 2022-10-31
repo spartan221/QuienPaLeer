@@ -28,7 +28,7 @@ const Home = () => {
         setTimeout(() => {
             fetchUser()
         }, 3000);
-    })
+    }, [])
 
     return (
         <div>
@@ -37,10 +37,10 @@ const Home = () => {
                     <Navigation {...user}/>
                 </div>
                 <div className="side">
-                    <SideBar />
+                    <SideBar/>
                 </div>
                 <div className="content">
-                    <Outlet />
+                    <Outlet context={[user, setUser]}/>
                 </div>
 
                 <div className="chat">

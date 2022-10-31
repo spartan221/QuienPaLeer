@@ -16,5 +16,10 @@
     background-color: #ffcfa2;
 }
 
+.disabled{
+    pointer-events: none;
+    cursor: default;
+}
+
 
 

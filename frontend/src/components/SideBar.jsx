@@ -63,6 +63,15 @@ export default function SideBar() {
                                 Donación de libros
                             </NavLink>
                         </NavItem>
+                        <NavItem className='d-flex align-items-start pb-4'>
+                            <NavLink className={`text-decoration-none text-dark navLinkContainer w-100 text-start`}
+                                style={({ isActive }) =>
+                                    isActive ? activeStyle : undefined
+                                } to='messenger'>
+                                <i className="bi bi-chat-dots p-2"></i>
+                                Chat
+                            </NavLink>
+                        </NavItem>
                     </Nav>
 
                     <hr />

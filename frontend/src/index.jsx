@@ -9,6 +9,7 @@ import Home from "./components/Home";
 import Register from "./components/registerLogin/Register";
 import FormBook from "./components/publicationBook/ViewBooks";
 import Events from "./components/publicationEvent/ViewEvents";
+import Messenger from './components/chat/Messenger';
 import "jquery/dist/jquery.js";
 import "bootstrap/dist/js/bootstrap.js";
 import Profile, {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
         path: 'ChangeBooks/profile/:userId',
         element: <Profile myProfile={false} />,
         loader: profileLoader
+      },
+      {
+        path: 'messenger',
+        element: <Messenger/>,
       },
     ]
   }
