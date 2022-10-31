@@ -1,7 +1,7 @@
 import React from 'react'
-import "../css/ViewEvent.css"
 import { useNavigate, Link } from 'react-router-dom';
 import DatePublication from '../DatePublication';
+import "../css/ViewPublication.css"
 
 const ViewSwap = (props) => {
     const navigate = useNavigate();
@@ -23,7 +23,7 @@ const ViewSwap = (props) => {
                 </div>
                 <div className='col'>
                     <div className='d-flex align-content-center justify-content-end'>
-                        <Link data-bs-dismiss="modal" aria-label="Close" onClick={hideModal} className='text-black rounded-3 btn text-decoration-none' style={{backgroundColor: '##ffcfa2'}}> 
+                        <Link data-bs-dismiss="modal" aria-label="Close" onClick={hideModal} className='text-black rounded-3 btn text-decoration-none' style={{backgroundColor: '#ffcfa2'}}> 
                             <i className="bi bi-person"></i>
                         </Link>
                     </div>

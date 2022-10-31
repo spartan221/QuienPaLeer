@@ -1,13 +1,11 @@
-import axios from 'axios'
+
 import React, { useState, useEffect } from 'react'
 import SwapPost from './SwapPost'
 import Paginations from '../Paginations'
 import FormSwap from './AddBookSwap.jsx'
-import * as bootstrap from 'bootstrap'
-import '../css/ViewBooks.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { useLoaderData } from 'react-router-dom'
-import { publicRequest } from '../../requestMethods.js'
+import '../css/ViewPublications.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export function loader({ params }) {
     if (params.filter != '' || params.filter != 'null') {

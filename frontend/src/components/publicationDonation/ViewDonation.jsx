@@ -1,7 +1,7 @@
 import React from 'react'
-import "../css/ViewEvent.css"
-import DatePublication from '../DatePublication.jsx';
 import { useNavigate, Link } from 'react-router-dom';
+import DatePublication from '../DatePublication.jsx';
+import "../css/ViewPublication.css"
 
 const ViewDonation = (props) => {
     const navigate = useNavigate();
