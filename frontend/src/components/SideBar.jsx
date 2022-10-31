@@ -19,7 +19,7 @@ export default function SideBar() {
 
     return (
         <AnimatedPageSmoothY>
-            <div>
+            <div >
                 <div className="px-4 h-100 w-100" >
                     <p className='text-muted d-flex justify-content-start p-2 mt-3' style={{ fontSize: 12 }}>
                         Opciones
@@ -43,7 +43,7 @@ export default function SideBar() {
                                 }
                                 to='buyBooks'>
                                 <i className="bi bi-currency-dollar p-2"></i>
-                                Compra de libros
+                                Compra/Venta de <span className='ms-4'>libros</span>
                             </NavLink>
                         </NavItem>
                         <NavItem className='d-flex align-items-start  pb-4'>
@@ -70,7 +70,7 @@ export default function SideBar() {
                                     isActive ? activeStyle : undefined
                                 } to='recommendationBooks'>
                                 <i class="bi bi-hand-thumbs-up p-2"></i>
-                                 Recomendación de libros
+                                 Recomendación de <span className='ms-4'>libros</span>
                             </NavLink>
                         </NavItem>
                     </Nav>
@@ -89,7 +89,7 @@ export default function SideBar() {
                             <p className='text-center pt-2'>Equipo</p>
                         </div>
                         <div>
-                            <a href='mailto:ProyectoQPL.App@gmail.com'>
+                            <a href='mailto:quienpaleerproyecto@gmail.com'>
                                 <button type="button" className="btn text-black" id='btnInfoTeamSideBar'>
                                     <i class="bi bi-envelope">
                                     </i>
@@ -100,7 +100,7 @@ export default function SideBar() {
                     </div>
                     <br />
                     <div className='text-center textAppVersionSideBar text-muted lead h6 mt-3'>
-                        App Version: <span>2.7</span>
+                        App Version: <span>3.8</span>
                     </div>
 
                     <hr />

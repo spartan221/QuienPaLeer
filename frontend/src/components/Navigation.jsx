@@ -96,7 +96,7 @@ function Navigation(user) {
                     <Nav>
                         <Form.Select id="selectTypeSearch" onChange={handleChange} name='place'>
                             <option value="events">Eventos</option>
-                            <option value="buyBooks">Compra de libros</option>
+                            <option value="buyBooks">Compra/Venta de libros</option>
                             <option value='changeBooks'>Cambio de libros</option>
                             <option value='donationBooks'>Donación de libros</option>
                             <option value='recommendationBooks'>Recomendación de libros</option>

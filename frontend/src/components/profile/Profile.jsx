@@ -63,22 +63,25 @@ const Profile = ({ myProfile }) => {
             </AnimatedPageSmoothY>
 
             <AnimatedPageNavBar>
-                <div className='container-fluid d-flex justify-content-evenly align-content-center mt-3 mb-2'>
-                    <div className='row mt-5 pt-3'>
-                        <div className='col mx-5 text-center p-4 px-5 rounded-4' style={{ backgroundColor: '#ffcfa2' }}>
-                            <h4>{books.length}</h4>
-                            <i className="bi bi-currency-dollar p-2 "></i>
+                <h5 className='fw-bold text-center mt-5'>Cantidad de publicaciones creadas</h5>
+                <p className='text-center'>(en cada sección)</p>
+                <div className='container-fluid d-flex justify-content-evenly align-content-center mb-2 pb-5'>
+                    <div className='row mt-3 pt-3'>
+                        <div className='col mx-5 fs-6 text-center p-4 px-3 rounded-4' style={{ backgroundColor: '#ffcfa2' }}>
+                            <h4 className='fw-bold'>{books.length}</h4>
+                            <p>Compra de Libros</p>
                         </div>
-                        <div className='col mx-5 text-center p-4 px-5 rounded-4' style={{ backgroundColor: '#ffcfa2' }}>
-                            <h4>{swaps.length}</h4>
-                            <i className="bi bi-repeat p-2"></i>
+                        <div className='col mx-5 text-center p-3 px-3 rounded-4' style={{ backgroundColor: '#ffcfa2' }}>
+                            <h4 className='fw-bold'>{swaps.length}</h4>
+                            <p>Intercambio de Libros</p>
                         </div>
-                        <div className='col mx-5 text-center p-4 px-5 rounded-4' style={{ backgroundColor: '#ffcfa2' }}>
-                            <h4>{donations.length}</h4>
-                            <i className="bi bi-bag-heart p-2"></i>
+                        <div className='col mx-5 text-center p-4 px-3 rounded-4' style={{ backgroundColor: '#ffcfa2' }}>
+                            <h4 className='fw-bold'>{donations.length}</h4>
+                            <p>Donación de Libros</p>
                         </div>
                     </div>
                 </div>
+                <div className='mx-5' style={{borderTop: '3px solid #ffcfa2'}}></div>
             </AnimatedPageNavBar>
 
 
@@ -92,9 +95,7 @@ const Profile = ({ myProfile }) => {
                     <div className='d-flex justify-content-center align-content-center'>
                         <div className='wrapper'>
                             {books.map((book, i) => (
-                                <div className='item'>
-                                    <img src={book.image} />
-                                </div>
+                                <div className='item' style={{backgroundImage: "url(" + book.image +")", backgroundSize: 'cover'}}></div>
                             ))}
                         </div>
                     </div>
@@ -107,9 +108,7 @@ const Profile = ({ myProfile }) => {
                         <div className='d-flex justify-content-center align-content-center'>
                             <div className='wrapper'>
                                 {swaps.map((book, i) => (
-                                    <div className='item'>
-                                        <img src={book.image} />
-                                    </div>
+                                    <div className='item' style={{backgroundImage: "url(" + book.image +")", backgroundSize: 'cover'}}></div>
                                 ))}
                             </div>
                         </div>
@@ -125,9 +124,7 @@ const Profile = ({ myProfile }) => {
                 <div className='d-flex justify-content-center align-content-center'>
                     <div className='wrapper'>
                         {donations.map((book, i) => (
-                            <div className='item'>
-                                <img src={book.image} />
-                            </div>
+                            <div className='item' style={{backgroundImage: "url(" + book.image +")", backgroundSize: 'cover'}}></div>
                         ))}
                     </div>
                 </div>

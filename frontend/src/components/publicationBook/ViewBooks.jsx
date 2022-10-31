@@ -36,7 +36,7 @@ const ViewBooks = () => {
     return (
         <div className='container pt-5'>
             <div className='row'>
-                <h2 className='col text-start ms-4 fw-bold'>Venta de libros</h2>
+                <h2 className='col text-start ms-4 fw-bold'>Compra/Venta de libros</h2>
                 <div className='col text-end'>
                     <button type="button" className='btn border me-4' id='btnAddBookSell' onClick={handleShow}>Añadir a la venta</button>
                 </div>
