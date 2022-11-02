@@ -1,11 +1,12 @@
 import React from 'react'
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate, useOutletContext } from 'react-router-dom';
 import { publicRequest } from '../../requestMethods';
 import EditProfile from './EditProfile';
 import '../css/Profile.css';
 import * as bootstrap from 'bootstrap';
 import LogoQPLBlack from '../../assets/img/QPL_Logo_Black.png';
 import { AnimatedPageSmoothY, AnimatedPageNavBar } from '../AnimationPage';
+import axios from 'axios';
 
 export async function loader({ params }) {
     return await publicRequest.get(`profile/view/${params.userId}`)
@@ -17,6 +18,8 @@ const Profile = ({ myProfile }) => {
     const books = useLoaderData().data.books;
     const donations = useLoaderData().data.donations;
     const swaps = useLoaderData().data.swaps;
+    const navigate = useNavigate();
+    const [currentUser, setCurrentUser] = useOutletContext();
     console.log({ user, events, books, donations, swaps });
     const handleShow = () => {
         const myModal = new bootstrap.Modal(document.getElementById('modalEditProfile'))
@@ -27,6 +30,28 @@ const Profile = ({ myProfile }) => {
         const modal = bootstrap.Modal.getInstance(myModal);
         modal.hide();
     };
+    const handleSendMessage = async() => {
+
+        // Crea una nueva conversación entre los dos participantes
+        try {
+            await axios.post("http://127.0.0.1:5000/api/chat/conversations",{receiverId: user._id}, {withCredentials: true})
+        } catch (error) {
+            console.log(error);
+        }
+
+        navigate('/home/messenger', {
+            replace: true,
+        })
+    };
+    const showMessageButton = () => {
+        if (currentUser && user) {
+            if (currentUser._id !== user._id )
+                return <button className='btn' id='btnSendMessage' onClick={handleSendMessage}>Enviar Mensaje</button>
+        }else{
+            null
+        }
+    };
+
     const currentDate = new Date();
     return (
         <div>
@@ -37,6 +62,7 @@ const Profile = ({ myProfile }) => {
                         <p className='lead fs-6 text-muted'>Usuario desde el {currentDate.getDate()}/{currentDate.getMonth()}/{currentDate.getFullYear()}</p>
                         <span>
                             {myProfile && <button className='btn' id='btnEditProfile' onClick={handleShow}>Editar</button>}
+                            {showMessageButton()}
                         </span>
                     </div>
                 </div>

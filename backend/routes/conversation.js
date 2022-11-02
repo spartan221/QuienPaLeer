@@ -10,6 +10,18 @@ const makeConversationRouter = (database) => {
      
     conversationRouter.post('/', isUserAuthenticaded, async (req, res) => {
 
+        // Si hay una conversación creada previamente notificarlo
+        try {
+            const conversation = await Conversation.findOne({
+              members: { $all: [req.userId, req.body.receiverId] },
+            });
+            if (conversation) {
+                return res.status(200).json({alreadyExists: true})
+            }
+          } catch (err) {
+            return res.status(500).json(err);
+          }
+
         const senderId = req.userId;
 
         const newConversation = new Conversation({
