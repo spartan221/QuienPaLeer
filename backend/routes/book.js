@@ -50,7 +50,7 @@ router.put("/val", isUserAuthenticaded, async (req, res) => {
         console.log('Valoración usuario:', userRating)
         if (userRating) {
             console.log("Existe")
-            res.json(200,bookSaved)
+            res.status(200).status(bookSaved)
         } else {
             const ratingSaved = await Book.findOneAndUpdate({
                 _id: req.body._id

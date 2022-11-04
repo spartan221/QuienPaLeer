@@ -6,6 +6,7 @@ import FormSwap from './AddBookSwap.jsx'
 import { useLoaderData } from 'react-router-dom'
 import '../css/ViewPublications.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+const ApiHeroku=import.meta.env.VITE_API
 
 export function loader({ params }) {
     if (params.filter != '' || params.filter != 'null') {
@@ -18,7 +19,7 @@ import usePaginationHook from '../PaginationHook.jsx';
 import useViews from '../ViewsHook.jsx'
 
 const ViewSwaps = () => {
-    const {handleShow,hideModal,posts,loading,fetch} = useViews("http://127.0.0.1:5000/api/swap/")
+    const {handleShow,hideModal,posts,loading,fetch} = useViews(ApiHeroku+"api/swap/")
     const {currentPage,currentPost,postsPerPage,changeCurrentPage} = usePaginationHook(posts)
     const [reload, setReload] = useState(0);
     const reloadPage = () => setReload(reload + 1);

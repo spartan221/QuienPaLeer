@@ -16,8 +16,9 @@ import Swal from 'sweetalert2';
 import profileUnknown from '../assets/img/profileUnknown.jpg';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+const ApiHeroku=import.meta.env.VITE_API
 
-const baseURL = 'http://127.0.0.1:5000/api/auth/logout'
+const baseURL = ApiHeroku + 'api/auth/logout'
 
 function Navigation(user) {
     const navigate = useNavigate();

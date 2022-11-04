@@ -8,10 +8,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/ContentStyle.css';
 import Content from "./ContentHome";
 import '../css/ContentHome.css';
+const ApiHeroku=import.meta.env.VITE_API
 
 const Home = () => {
 
-    const baseURL = 'http://127.0.0.1:5000/api/profile/myInfo'
+    const baseURL = ApiHeroku+'api/profile/myInfo'
     const [user, setUser] = useState(null)
     const navigate = useNavigate();
     const location = useLocation();

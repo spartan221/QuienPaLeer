@@ -7,7 +7,7 @@ import axios from "axios";
 
 
 import "../css/ViewPublication.css"
-
+const ApiHeroku=import.meta.env.VITE_API
 const ViewBook = (props) => {
     const navigate = useNavigate();
     const hideModal = () => {
@@ -24,7 +24,7 @@ const ViewBook = (props) => {
     const putRating = async (e) => {
         //console.log(e)
         setLoading(true);
-        const res = await axios.put("http://127.0.0.1:5000/api/book/val",e,{withCredentials:true})
+        const res = await axios.put(ApiHeroku+"api/book/val",e,{withCredentials:true})
         console.log(res.data)
         setCalification(res.data.totalRatings)
         setLoading(false);

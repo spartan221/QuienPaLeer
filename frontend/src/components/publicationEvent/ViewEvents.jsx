@@ -6,6 +6,7 @@ import useViews from '../ViewsHook.jsx'
 import usePaginationHook from '../PaginationHook.jsx';
 import { useLoaderData } from 'react-router-dom'
 import '../css/ViewPublications.css'
+const ApiHeroku=import.meta.env.VITE_API
 
 export function loader({ params }) {
     if (params.filter != '' || params.filter != 'null') {
@@ -15,7 +16,7 @@ export function loader({ params }) {
 }
 
 const Pagination = () => {
-    const {handleShow,hideModal,posts,loading,fetch} = useViews("http://127.0.0.1:5000/api/event/")
+    const {handleShow,hideModal,posts,loading,fetch} = useViews(ApiHeroku+"api/event/")
     const {currentPage,currentPost,postsPerPage,changeCurrentPage} = usePaginationHook(posts)
     const [reload, setReload] = useState(0);
     const reloadPage = () => setReload(reload + 1);

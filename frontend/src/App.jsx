@@ -8,12 +8,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import Spinner from './components/SpinnerCircular';
+const ApiHeroku=import.meta.env.VITE_API
 
 
 
 function App() {
 
-  const baseURL = 'http://127.0.0.1:5000/api/profile/myInfo';
+  const baseURL = ApiHeroku+'api/profile/myInfo';
   const [alreadyLoggedIn, setAlreadyLoggedIn] = useState(null);
   const navigate = useNavigate();
 

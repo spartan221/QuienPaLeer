@@ -6,9 +6,8 @@ import { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-
-
-const baseURL = 'http://127.0.0.1:5000/api/auth/register'
+const ApiHeroku=import.meta.env.VITE_API
+const baseURL = ApiHeroku+'api/auth/register'
 
 function Register() {
 

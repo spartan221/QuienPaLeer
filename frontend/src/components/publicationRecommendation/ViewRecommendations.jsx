@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/ViewPublications.css'
 
 import { useLoaderData } from 'react-router-dom'
+const ApiHeroku=import.meta.env.VITE_API
 
 export function loader({ params }) {
     if (params.filter != '' || params.filter != 'null') {
@@ -18,7 +19,7 @@ export function loader({ params }) {
 
 
 const ViewRecommendation = () => {
-    const {handleShow,hideModal,posts,loading,fetch} = useViews("http://127.0.0.1:5000/api/recommendation/")
+    const {handleShow,hideModal,posts,loading,fetch} = useViews(ApiHeroku+"api/recommendation/")
     const {currentPage,currentPost,postsPerPage,changeCurrentPage} = usePaginationHook(posts)
     const [reload, setReload] = useState(0);
     const reloadPage = () => setReload(reload + 1);
