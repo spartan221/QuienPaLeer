@@ -10,7 +10,7 @@
 }
 
 .wrapper{
-  max-height: 200px;
+  max-height: 120px;
   max-width: 400px;
   display: flex;
   overflow-x: auto;
@@ -22,10 +22,10 @@
 
 .wrapper .item{
   min-width: 110px;
-  height: 10em;
+  height: 110px;
   line-height: 110px;
   text-align: center;
-  margin-right: 10px;
+  margin-right: 2px;
 }
 
 #userProfilePhotoView {
