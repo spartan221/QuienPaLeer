@@ -43,7 +43,7 @@ export default function SideBar() {
                                 }
                                 to='buyBooks'>
                                 <i className="bi bi-currency-dollar p-2"></i>
-                                Compra de libros
+                                Compra/Venta de <span className='ms-4'>libros</span>
                             </NavLink>
                         </NavItem>
                         <NavItem className='d-flex align-items-start  pb-4'>
@@ -70,7 +70,7 @@ export default function SideBar() {
                                     isActive ? activeStyle : undefined
                                 } to='recommendationBooks'>
                                 <i class="bi bi-hand-thumbs-up p-2"></i>
-                                 Recomendación de libros
+                                Recomendación de <span className='ms-4'>libros</span>
                             </NavLink>
                         </NavItem>
                     </Nav>
@@ -89,7 +89,7 @@ export default function SideBar() {
                             <p className='text-center pt-2'>Equipo</p>
                         </div>
                         <div>
-                            <a href='mailto:ProyectoQPL.App@gmail.com'>
+                            <a href='mailto:quienpaleerproyecto@gmail.com'>
                                 <button type="button" className="btn text-black" id='btnInfoTeamSideBar'>
                                     <i class="bi bi-envelope">
                                     </i>
@@ -100,7 +100,7 @@ export default function SideBar() {
                     </div>
                     <br />
                     <div className='text-center textAppVersionSideBar text-muted lead h6 mt-3'>
-                        App Version: <span>2.7</span>
+                        App Version: <span>3.8</span>
                     </div>
 
                     <hr />
@@ -117,7 +117,7 @@ export default function SideBar() {
                             <div class="modal-body d-flex flex-row flex-wrap justify-content-center">
                                 {TeamJson.map((member, i) => (
                                     <div className="card border-0 w-25 m-2 fw-lighter d-flex justify-content-center align-items-center" key={i}>
-                                        <div className='containerImageMember' style={{backgroundImage: "url(" + member.imgpath + ")"}}></div>
+                                        <div className='containerImageMember' style={{ backgroundImage: "url(" + member.imgpath + ")" }}></div>
                                         <div className="mt-3">
                                             <h6 className='text-center'>{member.firstname + ' ' + member.lastname}</h6>
                                             <h6 className='text-center text-muted fs-6'>
@@ -126,7 +126,7 @@ export default function SideBar() {
                                         </div>
                                         <div>
                                             <a href={member.github} target='_blank'>
-                                                <i className="bi bi-github" style={{color: '#000'}}></i>
+                                                <i className="bi bi-github" style={{ color: '#000' }}></i>
                                             </a>
                                         </div>
                                     </div>
