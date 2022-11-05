@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'
+import * as bootstrap from 'bootstrap';
+
 const useViews = (url) =>{
     const [posts, setPost] = useState([])
     const [loading, setLoading] = useState(true);
