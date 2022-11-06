@@ -123,15 +123,15 @@ function Navigation(user) {
                     </Nav>
 
                     <Nav>
-                        <div class="btn-group me-3">
+                        <div className="btn-group me-3">
                             <LinkContainer to={`profile/${user._id}`}>
                                 <Nav.Link className='navBarLinks py-0 d-flex align-items-center' id='userNameNavContainer'>
                                     {user.name ? user.name + ' ' + user.lastName : 'Cargando...'}
                                     <div className='ms-3 text-center' id='userProfilePhoto' style={user.photo ? {backgroundImage: "url(" + user.photo +")"} : {backgroundImage: "url(" + profileUnknown +")"}}/>
                                 </Nav.Link>
                             </LinkContainer>
-                            <button type="button" className="btn" id='btnDropMenu' data-bs-toggle="dropdown"><i class="bi bi-caret-down-fill"></i></button>
-                            <ul class="dropdown-menu">
+                            <button type="button" className="btn" id='btnDropMenu' data-bs-toggle="dropdown"><i className="bi bi-caret-down-fill"></i></button>
+                            <ul className="dropdown-menu">
                                 <li>
                                     <Nav.Link onClick={handleLogout} className='d-flex justify-content-center align-items-center'>
                                         <i className="navBarLinks bi bi-x-lg me-2" style={{ fontSize: 20 }}></i>

@@ -25,7 +25,7 @@ export default function SideBar() {
                         Opciones
                     </p>
 
-                    <Nav vertical fill>
+                    <Nav fill>
                         <NavItem className='d-flex align-items-start pb-4'>
                             <NavLink className='text-decoration-none text-dark navLinkContainer w-100 text-start'
                                 style={({ isActive }) =>
@@ -69,7 +69,7 @@ export default function SideBar() {
                                 style={({ isActive }) =>
                                     isActive ? activeStyle : undefined
                                 } to='recommendationBooks'>
-                                <i class="bi bi-hand-thumbs-up p-2"></i>
+                                <i className="bi bi-hand-thumbs-up p-2"></i>
                                 Recomendación de <span className='ms-4'>libros</span>
                             </NavLink>
                         </NavItem>
@@ -84,14 +84,14 @@ export default function SideBar() {
                     <div className='d-flex justify-content-evenly align-items-center'>
                         <div>
                             <button type="button" className="btn" id='btnInfoTeamSideBar' data-bs-toggle="modal" data-bs-target="#teamModal">
-                                <i class="bi bi-info-lg"></i>
+                                <i className="bi bi-info-lg"></i>
                             </button>
                             <p className='text-center pt-2'>Equipo</p>
                         </div>
                         <div>
                             <a href='mailto:quienpaleerproyecto@gmail.com'>
                                 <button type="button" className="btn text-black" id='btnInfoTeamSideBar'>
-                                    <i class="bi bi-envelope">
+                                    <i className="bi bi-envelope">
                                     </i>
                                 </button>
                             </a>
@@ -107,14 +107,14 @@ export default function SideBar() {
 
                 </div>
 
-                <div className="modal fade modal-lg" id="teamModal" tabindex="-1" aria-labelledby="teamModalLabel" aria-hidden="true">
+                <div className="modal fade modal-lg" id="teamModal" tabIndex="-1" aria-labelledby="teamModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered">
                         <div className="modal-content">
                             <div className="modal-header d-flex justify-content-start">
                                 <h5 className='modal-title fw-bold ms-2' id="teamModalLabel">Equipo</h5>
                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body d-flex flex-row flex-wrap justify-content-center">
+                            <div className="modal-body d-flex flex-row flex-wrap justify-content-center">
                                 {TeamJson.map((member, i) => (
                                     <div className="card border-0 w-25 m-2 fw-lighter d-flex justify-content-center align-items-center" key={i}>
                                         <div className='containerImageMember' style={{ backgroundImage: "url(" + member.imgpath + ")" }}></div>

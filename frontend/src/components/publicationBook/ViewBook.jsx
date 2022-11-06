@@ -1,14 +1,14 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import DatePublication from '../DatePublication.jsx';
 import Rating from '@mui/material/Rating';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
-
-
 import "../css/ViewPublication.css"
-const ApiHeroku=import.meta.env.VITE_API
+
+
 const ViewBook = (props) => {
+    const ApiHeroku = import.meta.env.VITE_API
     const navigate = useNavigate();
     const hideModal = () => {
         setTimeout(() => {
@@ -16,22 +16,22 @@ const ViewBook = (props) => {
         }, 100);
     }
     const [value, setValue] = useState(0);
-    const [hover, setHover] = useState();    
+    const [hover, setHover] = useState();
     const [loading, setLoading] = useState(false);
-    const [calification,setCalification]=useState([null]);
-    const [book,setBook]=useState();
+    const [calification, setCalification] = useState([null]);
+    const [book, setBook] = useState();
 
     const putRating = async (e) => {
         //console.log(e)
         setLoading(true);
-        const res = await axios.put(ApiHeroku+"api/book/val",e,{withCredentials:true})
+        const res = await axios.put(ApiHeroku + "api/book/val", e, { withCredentials: true })
         console.log(res.data)
         setCalification(res.data.totalRatings)
         setLoading(false);
 
     }
     return (
-        
+
         <div className='container rounded border p-4 mr-5'>
             <div className='row'>
                 <img className='rounded-4' src={props.image} />
@@ -65,7 +65,7 @@ const ViewBook = (props) => {
                     <p>{props.author}</p>
                 </div>
             </div>
-        
+
             <div className='row  justify-content-md-center'>
                 <div className='col-3 px-0 mx-1' data-toggle="tooltip" data-placement="top" title={props.ratings}>
                     <Rating value={props.ratings ?? " "} precision={0.1} readOnly />
@@ -89,11 +89,11 @@ const ViewBook = (props) => {
                                 onChange={(event, newValue) => {
                                     setValue(newValue);
                                     console.log(newValue)
-                                    console.log(props._id)                                    
-                                    const rating={
-                                        _id:props._id,
-                                        ratings:{
-                                            rating:newValue
+                                    console.log(props._id)
+                                    const rating = {
+                                        _id: props._id,
+                                        ratings: {
+                                            rating: newValue
                                         }
                                     }
                                     putRating(rating)
@@ -102,7 +102,7 @@ const ViewBook = (props) => {
                                     setHover(newHover);
                                 }}
                             />
-                            {props.ratingUser?(<p className='py-0 my-0 mb-1'>Mi calificación: {props.ratingUser}</p>):(<></>)}
+                            {props.ratingUser ? (<p className='py-0 my-0 mb-1'>Mi calificación: {props.ratingUser}</p>) : (<></>)}
                         </ul>
                     </div>
                 </div>

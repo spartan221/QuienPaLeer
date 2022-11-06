@@ -21,7 +21,7 @@ const Content = () => {
             </div>
 
             <div className='text-center mt-3'>
-                <i class="bi bi-chevron-down"></i>
+                <i className="bi bi-chevron-down"></i>
             </div>
 
             <div className='row mt-5 center mx-5'>

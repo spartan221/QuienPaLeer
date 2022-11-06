@@ -49,7 +49,7 @@ const Home = () => {
                 <div className="chat">
                 </div>
 
-                <div className="text-center mt-5 vw-100" style={{backgroundColor: '#ffcfa2'}}>
+                <div className="text-center mt-5 footer " style={{backgroundColor: '#ffcfa2'}}>
                     <div className="text-center text-black p-3">
                         © 2022 Copyright
                         <p>QuienPaLeer</p>
