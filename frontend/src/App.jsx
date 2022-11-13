@@ -34,7 +34,7 @@ function App() {
 
   useEffect(() => {
     isUserAlreadyLogged();
-  });
+  }, []);
 
 
   if (alreadyLoggedIn === false) {

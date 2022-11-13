@@ -1,5 +1,6 @@
 import express from 'express';
 import Conversation from '../models/Conversation.js';
+import Message from '../models/Message.js'
 import { isUserAuthenticaded } from '../config/firebase/authentication.js';
 
 const makeConversationRouter = (database) => {
@@ -8,7 +9,7 @@ const makeConversationRouter = (database) => {
 
     // Create new conversation between two users
      
-    conversationRouter.post('/', isUserAuthenticaded, async (req, res) => {
+    conversationRouter.post('', isUserAuthenticaded, async (req, res) => {
 
         // Si hay una conversación creada previamente notificarlo
         try {
@@ -51,6 +52,26 @@ const makeConversationRouter = (database) => {
         }
     });
 
+    // Delete a conversation with its id
+
+    conversationRouter.delete('/:conversationId', isUserAuthenticaded, async(req, res) => {
+
+        try {
+            // Comprobar que existe una conversación con el id brindado
+            const result = await Conversation.findById(req.params.conversationId);
+            if (!result) {
+                throw {message:"No existe la conversación a eliminar"}
+            }
+            // Eliminar las conversación con el id
+            await Conversation.deleteOne({_id: req.params.conversationId});
+            // Eliminar los mensajes con el id de la conversación a eliminar
+            await Message.deleteMany({conversationId: req.params.conversationId});
+            res.status(200).json(true);
+        } catch (error) {
+            res.status(500).json(error);
+        }
+
+    });
 
 
 

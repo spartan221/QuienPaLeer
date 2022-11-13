@@ -3,7 +3,7 @@
     align-items: center;
     padding: 10px;
     cursor: pointer;
-    margin-top: 20px;
+    width: 80%;
 }
 
 .conversation:hover{
@@ -20,4 +20,15 @@
 
 .conversationName{
     font-weight: 500;
+}
+
+.conversationDelete{
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 20%;
+    margin-left: 50%;
+}
+
+.conversationDelete:hover{
+    background-color: #ffcfa2;
 }

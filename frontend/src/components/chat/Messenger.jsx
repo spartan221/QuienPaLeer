@@ -103,6 +103,20 @@ export default function Messenger() {
 
   };
 
+  //TODO: 
+  // Cada usuario puede tener sus propias conversaciones, asi si uno elimina el otro puede seguir teniendo sus conversaciones
+  // Ver lo de socket para que cuadre el estado en linea de los usuarios y los mensajes en tiempo real
+
+  const deleteConversation = (conversationId) => {
+    try {
+      const res = axios.delete(`${conversationsURL}/${conversationId}`, {withCredentials: true});
+      setConversations(conversations.filter((conversation) => conversation._id !== conversationId));
+      setCurrentChat(null);
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behaviour: "smooth" })
@@ -126,8 +140,13 @@ export default function Messenger() {
           <div className="chatMenuWrapper">
             <input placeholder="Buscar chats" className="chatMenuInput" />
             {conversations.map((conversation) => (
-              <div onClick={() => setCurrentChat(conversation)}>
-                <Conversation conversation={conversation} userId={user?._id} />
+              <div className="row align-items-center mt-3">
+                <div className="col-8" onClick={() => setCurrentChat(conversation)}>
+                  <Conversation conversation={conversation} userId={user?._id} />
+                </div>
+                <div className="col-4">
+                  <span onClick={() => deleteConversation(conversation._id)} className="conversationDelete"><i class="bi bi-trash"></i></span>
+                </div>
               </div>
             ))}
           </div>
