@@ -27,6 +27,8 @@ io.on("connection", (socket) => {
   socket.on("addUser", (userId) => {
     addUser(userId, socket.id);
     io.emit("getUsers", users);
+   console.log({users});
+
   });
 
   //send and get message
@@ -35,6 +37,15 @@ io.on("connection", (socket) => {
     io.to(user.socketId).emit("getMessage", {
       senderId,
       text,
+    });
+    console.log(user.socketId);
+  });
+
+  //delete conversation and get notificacion of delete
+  socket.on("deleteConversation",({ senderId, receiverId }) => {
+    const user = getUser(receiverId);
+    io.to(user.socketId).emit("deleteConversation", {
+      senderId
     });
   });
 

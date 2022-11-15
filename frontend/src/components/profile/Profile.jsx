@@ -19,7 +19,9 @@ const Profile = ({ myProfile }) => {
     const donations = useLoaderData().data.donations;
     const swaps = useLoaderData().data.swaps;
     const navigate = useNavigate();
-    const [currentUser, setCurrentUser] = useOutletContext();
+    const context = useOutletContext();
+    const [currentUser, setCurrentUser] = context.userContext;
+
     console.log({ user, events, books, donations, swaps });
     const handleShow = () => {
         const myModal = new bootstrap.Modal(document.getElementById('modalEditProfile'))

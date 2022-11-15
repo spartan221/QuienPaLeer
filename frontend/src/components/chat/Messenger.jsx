@@ -8,7 +8,6 @@ import Message from "./Message";
 import axios from 'axios';
 import { useOutletContext } from "react-router-dom";
 import { useRef } from "react";
-import { io } from "socket.io-client";
 
 
 const conversationsURL = 'http://127.0.0.1:5000/api/chat/conversations';
@@ -18,26 +17,44 @@ export default function Messenger() {
 
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
-  const socket = useRef();
+  // const socket = useRef();
   const [messages, setMessages] = useState([]);
   const [arrivalMessage, setArrivalMessage] = useState(null);
+  const [userIdDeletedConversation, setUserIdDeletedConversation] = useState(null); // id de un usuario que eliminó una conversación desde otra cuenta
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const scrollRef = useRef();
 
 
-  const [user, setUser] = useOutletContext();
+  const context = useOutletContext();
+  const [user, setUser] = context.userContext;
+  const socket = context.socket;
+
 
   useEffect(() => {
-    socket.current = io("ws://127.0.0.1:8900");
-    socket.current.on("getMessage", data => {
+    socket.current?.on("getMessage", data => {
       setArrivalMessage({
         sender: data.senderId,
         text: data.text,
         createdAt: Date.now(),
       })
     });
+    socket.current?.on("deleteConversation", (data) => {
+      setUserIdDeletedConversation({
+        sender: data.senderId
+      })
+    });
   }, [])
+
+  useEffect(() => {
+    if (userIdDeletedConversation && conversations){
+      setConversations(conversations.filter((c) => !c.members.includes(userIdDeletedConversation.sender))) 
+      if(currentChat?.members.includes(userIdDeletedConversation.sender)){
+        setCurrentChat(null)
+      }
+    }
+
+  }, [userIdDeletedConversation, conversations, currentChat])
 
   useEffect(() => {
     arrivalMessage &&
@@ -47,8 +64,8 @@ export default function Messenger() {
 
 
   useEffect(() => {
-    user && socket.current.emit("addUser", user?._id);
-    socket.current.on("getUsers", users => {
+    user && socket.current?.emit("addUser", user?._id);
+    socket.current?.on("getUsers", users => {
       setOnlineUsers(users.map((o) => o.userId));
     })
   }, [user]);
@@ -87,7 +104,7 @@ export default function Messenger() {
 
     const receiverId = currentChat.members.find(member => member !== user._id)
 
-    socket.current.emit("sendMessage", {
+    socket.current?.emit("sendMessage", {
       senderId: user._id,
       receiverId,
       text: newMessage
@@ -103,15 +120,16 @@ export default function Messenger() {
 
   };
 
-  //TODO: 
-  // Cada usuario puede tener sus propias conversaciones, asi si uno elimina el otro puede seguir teniendo sus conversaciones
-  // Ver lo de socket para que cuadre el estado en linea de los usuarios y los mensajes en tiempo real
-
-  const deleteConversation = (conversationId) => {
+  const deleteConversation = async(conversation) => {
     try {
-      const res = axios.delete(`${conversationsURL}/${conversationId}`, {withCredentials: true});
-      setConversations(conversations.filter((conversation) => conversation._id !== conversationId));
+      const receiverId = conversation.members.find(member => member !== user._id);
+      const res = await axios.delete(`${conversationsURL}/${conversation._id}`, {withCredentials: true});
+      setConversations(conversations.filter((conversation) => conversation._id !== conversation._id));
       setCurrentChat(null);
+      socket.current?.emit("deleteConversation", {
+        senderId: user._id,
+        receiverId,
+      });
     } catch (error) {
       console.log(error)
     }
@@ -145,7 +163,7 @@ export default function Messenger() {
                   <Conversation conversation={conversation} userId={user?._id} />
                 </div>
                 <div className="col-4">
-                  <span onClick={() => deleteConversation(conversation._id)} className="conversationDelete"><i class="bi bi-trash"></i></span>
+                  <span onClick={() => deleteConversation(conversation)} className="conversationDelete"><i class="bi bi-trash"></i></span>
                 </div>
               </div>
             ))}

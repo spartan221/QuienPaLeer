@@ -24,25 +24,24 @@ export default function ChatOnline({ onlineUsers, conversations, currentId, setC
   useEffect(() => {
 
     const getInfoFriends = async () => {
-      let friends = [];
+      let friendsInformation = [];
       let friendsId = getFriendsIds();
-      friendsId.forEach((friendId) => {
-        axios.get(baseUrl + `?userId=${friendId}`)
-          .then((res) => {
-            friends.push({ ...res.data, _id: friendId });
-          })
-          .catch((error) => {
-            console.log(error);
-  
-          })
+
+      for (const friendId of friendsId){
+        try {
+          const res = await axios.get(baseUrl + `?userId=${friendId}`);
+          friendsInformation.push({ ...res.data, _id: friendId });
+        } catch (error) {
+          console.log(error);
+        }
       }
-      );
-      setFriends(friends);
+
+      setFriends(friendsInformation);
     };
 
     getInfoFriends();
 
-  }, []);
+  }, [conversations]);
 
   useEffect(() => {
     setOnlineFriends(friends.filter((f) => onlineUsers.includes(f._id)))
@@ -52,7 +51,7 @@ export default function ChatOnline({ onlineUsers, conversations, currentId, setC
   return (
     <div className="chatOnline">
       {onlineFriends.map((friendOnline) => (
-        <div className="chatOnlineFriend">
+        <div className="chatOnlineFriend" key={friendOnline._id}>
           <div className="chatOnlineImgContainer">
             <img className="chatOnlineImg" src={userImage} alt="" />
             <div className="chatOnlineBadge"></div>
