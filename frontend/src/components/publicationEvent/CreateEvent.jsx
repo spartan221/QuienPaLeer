@@ -41,9 +41,16 @@ const CreateEvent = ({reloadPage,closeModal}) => {
         if (!description || description === '') newErrors.description = 'Ingresa una descripción.'
         if (!startDate || startDate === '') newErrors.startDate = 'Fecha inválida.'
         if (!endDate || endDate === '') newErrors.endDate = 'Fecha inválida.'
-        if (parseInt(startDate.substring(0, 4)) <= parseInt(endDate.substring(0, 4))) {
-            if (parseInt(startDate.substring(5, 7)) <= parseInt(endDate.substring(5, 7))) {
-                if (parseInt(startDate.substring(8)) > parseInt(endDate.substring(8))) {
+        if (!startDate || startDate === '' || startDate.length != 10) newErrors.startDate = 'Fecha inválida.'
+        if (!endDate || endDate === '' || endDate.length != 10) newErrors.endDate = 'Fecha inválida.'
+        if (startDate && startDate != '' && startDate.length === 10 && endDate && endDate != '' && endDate.length === 10) {
+            if (parseInt(startDate.substring(0, 4)) <= parseInt(endDate.substring(0, 4))) {
+                if (parseInt(startDate.substring(5, 7)) <= parseInt(endDate.substring(5, 7))) {
+                    if (parseInt(startDate.substring(8)) > parseInt(endDate.substring(8))) {
+                        newErrors.startDate = "Fecha inválida."
+                        newErrors.endDate = "Fecha inválida."
+                    }
+                } else {
                     newErrors.startDate = "Fecha inválida."
                     newErrors.endDate = "Fecha inválida."
                 }
@@ -51,9 +58,6 @@ const CreateEvent = ({reloadPage,closeModal}) => {
                 newErrors.startDate = "Fecha inválida."
                 newErrors.endDate = "Fecha inválida."
             }
-        } else {
-            newErrors.startDate = "Fecha inválida."
-            newErrors.endDate = "Fecha inválida."
         }
         if (!hour || hour === '') newErrors.hour = 'Hora inválida.'
         if (!place || place === '') newErrors.place = 'Ingresa un lugar.'
