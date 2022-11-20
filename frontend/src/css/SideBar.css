@@ -24,5 +24,11 @@
     border: 5px solid #ffcfa2;
 }
 
+.disabled{
+    pointer-events: none;
+    cursor: default;
+}
+
+
 
 
