@@ -2,11 +2,15 @@
 const regexNumber = /^\d+$/;
 const regexNumber10 = /^[\d+]{0,10}$/;
 const regexNumber4 = /^[\d+]{0,4}$/;
-const regexAlphanumeric = /^[\wñ*\s*\w*]+$/
-const regexMaximum = /^[\w\s*\w*]{0,60}$/
+const regexAlphanumeric = /^[\wñáéíóú*\s*\w*]+$/
+const regexMaximum = /^[\s\S]{0,60}$/
 
-const regexMaximum60 = /^[\s\S]{0,60}$/
+//const regexMaximum60 = /^[\s\S]{0,60}$/
+const regexMaximum60 = /^[\wñáéíóú*\s*\w*]{0,60}$/
+
+//const regexMaximum200 = /^[\s\S]{0,200}$/
 const regexMaximum200 = /^[\s\S]{0,200}$/
+//const regexMaximum400 = /^[\s\S]{0,400}$/
 const regexMaximum400 = /^[\s\S]{0,400}$/
 
 function validateBookSale(name, title, author, file, editorial, year, price) {
@@ -68,14 +72,14 @@ function validateEvent(name, file, description, startDate, endDate, hour, place)
     }
   }
   if (!hour || hour === '') newErrors.hour = 'Hora inválida.'
-  if (!regexMaximum60.test(place)) newErrors.place = 'Ingresa máximo 60 caracteres.'
+  if (!regexMaximum.test(place)) newErrors.place = 'Ingresa máximo 60 caracteres.'
   if (!place || place === '') newErrors.place = 'Ingresa un lugar.'
   return newErrors
 }
 
 function validateNameFile(name, file) {
   const newErrors = {}
-  if (!regexMaximum60.test(name)) newErrors.name = 'Ingresa máximo 60 caracteres..'
+  if (!regexMaximum.test(name)) newErrors.name = 'Ingresa máximo 60 caracteres.'
   if (!name || name === '') newErrors.name = 'Ingresa un nombre.'
   if (!file || file === '') newErrors.image = 'Sube una imagen.'
   return newErrors
@@ -83,7 +87,7 @@ function validateNameFile(name, file) {
 function validateNameFileAuthor(name, file, author) {
   let newErrors = {}
   newErrors = validateNameFile(name, file)
-  if (!regexMaximum.test(author)) newErrors.author = 'Ingresa máximo 60 caracteres.'
+  if (!regexMaximum60.test(author)) newErrors.author = 'Ingresa máximo 60 caracteres.'
   if (!regexAlphanumeric.test(author)) newErrors.author = 'Solo se permiten caracteres alfanuméricos.'
   if (!author || author === '') newErrors.author = 'Ingresa un autor.'
   return newErrors
@@ -91,7 +95,7 @@ function validateNameFileAuthor(name, file, author) {
 function validateNameFileAuthorTitle(name, file, author, title) {
   let newErrors = {}
   newErrors = validateNameFileAuthor(name, file, author)
-  if (!regexMaximum.test(title)) newErrors.title = 'Ingresa máximo 60 caracteres.'
+  if (!regexMaximum60.test(title)) newErrors.title = 'Ingresa máximo 60 caracteres.'
   if (!regexAlphanumeric.test(title)) newErrors.title = 'Solo se permiten caracteres alfanuméricos.'
   if (!title || title === '') newErrors.title = 'Ingresa un título.'
   return newErrors
