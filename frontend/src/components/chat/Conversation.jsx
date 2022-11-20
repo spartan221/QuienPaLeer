@@ -3,8 +3,9 @@ import userImage from "../../assets/img/userImage.png";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+const ApiHeroku=import.meta.env.VITE_API
 
-const baseUrl = 'http://127.0.0.1:5000/api/users';
+const baseUrl = ApiHeroku+'api/users';
 
 export default function Conversation({ conversation, userId }) {
 

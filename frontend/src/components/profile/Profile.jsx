@@ -8,6 +8,7 @@ import LogoQPLBlack from '../../assets/img/QPL_Logo_Black.png';
 import { AnimatedPageSmoothY, AnimatedPageNavBar } from '../AnimationPage';
 import profileUnknown from '../../assets/img/profileUnknown.jpg';
 import axios from 'axios';
+const ApiHeroku=import.meta.env.VITE_API
 
 export async function loader({ params }) {
     return await publicRequest.get(`profile/view/${params.userId}`)
@@ -37,7 +38,7 @@ const Profile = ({ myProfile }) => {
 
         // Crea una nueva conversación entre los dos participantes
         try {
-            await axios.post("http://127.0.0.1:5000/api/chat/conversations",{receiverId: user._id}, {withCredentials: true})
+            await axios.post(ApiHeroku+"api/chat/conversations",{receiverId: user._id}, {withCredentials: true})
         } catch (error) {
             console.log(error);
         }

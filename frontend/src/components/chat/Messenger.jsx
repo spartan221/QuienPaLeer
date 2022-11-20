@@ -8,10 +8,11 @@ import Message from "./Message";
 import axios from 'axios';
 import { useOutletContext } from "react-router-dom";
 import { useRef } from "react";
+const ApiHeroku=import.meta.env.VITE_API
 
 
-const conversationsURL = 'http://127.0.0.1:5000/api/chat/conversations';
-const messagesURL = 'http://127.0.0.1:5000/api/chat/messages';
+const conversationsURL = ApiHeroku+'api/chat/conversations';
+const messagesURL = ApiHeroku+'api/chat/messages';
 
 export default function Messenger() {
 
