@@ -7,7 +7,7 @@ const router = express.Router()
 //CREACIÓN
 router.post("/create", isUserAuthenticaded, async (req, res) => {
     const newSwap = new Swap({
-        title: req.body.title,
+        name: req.body.name,
         author: req.body.author,
         description: req.body.description,
         interest: req.body.interest,
