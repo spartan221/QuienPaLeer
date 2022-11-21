@@ -56,6 +56,10 @@
 .chatSumbitButton:hover {
     background-color: #FFCFA2;
 }
+.modalButton:hover{
+    background-color: #FFCFA2;
+}
+
 
 .chatOnline {
     flex: 3;
