@@ -12,7 +12,7 @@ const secretKey = 'IngeneriadeSoftware2022-2S';
 // TODO: Cuando se este en ambiente de producción debe redirigir al 
 // la pagina de inicio de la aplicación del frontend
 const actionCodeSettings = {
-    url: process.env.NODE_ENV === 'DEV' ? 'http://127.0.0.1:5173/' : 'http://127.0.0.1:5173/',
+    url: process.env.NODE_ENV === 'DEV' ? 'http://127.0.0.1:5173/' : 'https://app-quien-pa-leer.netlify.app/',
     handleCodeInApp: false
 };
 
