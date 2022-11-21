@@ -6,7 +6,8 @@ const DonationSchema = new mongoose.Schema({
     author: { type: String, required: true },
     editorial: { type: String, required: true },
     userId: { type: String, required: true },
-    image: { type: String, require: true }
+    image: { type: String, require: true },
+    comments: [{ _id: false, comment: String, nameUser: String }]
 }, {
     timestamps: true
 });

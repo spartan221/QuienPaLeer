@@ -3,6 +3,7 @@ import Book from "../models/Book.js"
 import express from "express"
 import { isUserAuthenticaded } from '../config/firebase/authentication.js'
 import { async } from "@firebase/util"
+import User from "../models/User.js"
 
 const router = express.Router()
 
@@ -21,6 +22,19 @@ router.post("/create", isUserAuthenticaded, async (req, res) => {
     try {
         const bookSaved = await newBook.save()
         res.status(201).json(bookSaved)
+    } catch (err) {
+        res.status(500).json(err)
+    }
+})
+
+router.put("/comment", isUserAuthenticaded, async (req, res) => {
+    try {
+        const bookSaved = await Book.findOne({ _id: req.body.bookId })
+        const user = await User.findOne({_id: req.userId})
+        const name = user.name
+        console.log(name);
+        bookSaved.comments.push({comment: req.body.comment, nameUser: name})
+        await bookSaved.save();
     } catch (err) {
         res.status(500).json(err)
     }
@@ -50,7 +64,7 @@ router.put("/val", isUserAuthenticaded, async (req, res) => {
         console.log('Valoración usuario:', userRating)
         if (userRating) {
             console.log("Existe")
-            res.status(200).status(bookSaved)
+            res.json(200,bookSaved)
         } else {
             const ratingSaved = await Book.findOneAndUpdate({
                 _id: req.body._id
@@ -100,8 +114,10 @@ router.get("/view/all", async (req, res) => {
             year: e.year,
             price: e.price,
             image: e.image,
+            userId: e.userId,
             createdAt: e.createdAt,
-            updatedAt: e.updatedAt
+            updatedAt: e.updatedAt,
+            comments: e.comments
         }
         let sum = 0
         e.ratings.forEach(f => {

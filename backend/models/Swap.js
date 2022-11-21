@@ -5,8 +5,9 @@ const SwapSchema = new mongoose.Schema({
     author: { type: String, required: true },
     description: { type: String, required: true },
     interest: { type: String, required: true },
-    userId: { type: String , required: true},
-    image: { type: String, required: true }
+    userId: { type: String },
+    image: { type: String, required: true },
+    comments: [{ _id: false, comment: String, nameUser: String }]
 }, {
     timestamps: true
 });
