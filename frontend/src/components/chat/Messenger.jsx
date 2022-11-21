@@ -135,7 +135,7 @@ export default function Messenger() {
     try {
       const receiverId = conversation.members.find(member => member !== user._id);
       const res = await axios.delete(`${conversationsURL}/${conversation._id}`, {withCredentials: true});
-      setConversations(conversations.filter((conversation) => conversation._id !== conversation._id));
+      setConversations(conversations.filter((c) => c._id !== conversation._id));
       setCurrentChat(null);
       socket.current?.emit("deleteConversation", {
         senderId: user._id,
@@ -226,7 +226,7 @@ export default function Messenger() {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                La conversación se borrará para las dos personas
+                La conversación se borrará para las dos personas.
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn modalButton" data-bs-dismiss="modal">Cancelar</button>
