@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -10,15 +10,17 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import '../css/CreateBookSale.css'
 import Swal from 'sweetalert2'
 
-const ApiHeroku=import.meta.env.VITE_API
-const baseURL = ApiHeroku+'api/book/create'
-
-function FormBook({ reloadPage, closeModal }) {
+const ApiHeroku = import.meta.env.VITE_API
+const baseURL = ApiHeroku + 'api/book/create'
+const editURL = ApiHeroku + 'api/book/edit'
+function FormBook({ reloadPage, closeModal, bookSended }) {
   let re = /^\d+$/;
   const [inputs, setInputs] = useState({})
   const [file, setFile] = useState(null)
   const [errors, setErrors] = useState({ file: null })
   const [book, setBook] = useState({});
+  useEffect(() => {
+  }, [reloadPage]);
   const bookOject = {
     name: '',
     title: '',
@@ -58,8 +60,15 @@ function FormBook({ reloadPage, closeModal }) {
           cathegory: book.cathegory,
           image: downloadURL
         }
-        console.log('nuevo libro: ', newBook)
-        await axios.post(baseURL, newBook, { withCredentials: true });
+        //console.log('nuevo libro: ', newBook)
+        if (bookSended) {
+          //console.log("Editando libro")
+          const bookEdit = { ...newBook, _id: bookSended._id }
+          console.log('Libro a editar', bookEdit)
+          await axios.put(editURL, bookEdit, { withCredentials: true })
+        } else {
+          await axios.post(baseURL, newBook, { withCredentials: true });
+        }
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
@@ -132,26 +141,25 @@ function FormBook({ reloadPage, closeModal }) {
       <div className='container row border-bottom border-secondary ms-1 '>
         <h1 className="fs-4 text-start col-8 ps-0 ms-0">Agregar libro</h1>
         <div className="col-4 text-end"><AttachMoneyIcon /></div>
-
       </div>
       <br />
       <Form onSubmit={saveData} novalidate="novalidate" id='bookForm' >
 
         <Form.Group className="mb-3" controlId="formTitle"  >
           <Form.Label>Título de la venta</Form.Label>
-          <Form.Control type="text" name="title" value={book.title} onChange={captureValues} maxlength="50"  />
+          <Form.Control type="text" name="title" value={book.title} onChange={captureValues} maxlength="50" />
           <p className="errorContainer ms-1 mt-2 text-danger">{errors.title}</p>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formName">
           <Form.Label>Nombre del libro</Form.Label>
-          <Form.Control type="text" name="name" value={book.name} onChange={captureValues} maxlength="60"/>
+          <Form.Control type="text" name="name" value={book.name} onChange={captureValues} maxlength="60" />
           <p className="errorContainer ms-1 mt-2 text-danger">{errors.name}</p>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formAuthor">
           <Form.Label>Autor</Form.Label>
-          <Form.Control type="text" name="author" value={book.author} onChange={captureValues} maxlength="50"/>
+          <Form.Control type="text" name="author" value={book.author} onChange={captureValues} maxlength="50" />
           <p className="errorContainer ms-1 mt-2 text-danger">{errors.author}</p>
         </Form.Group>
 
@@ -159,13 +167,14 @@ function FormBook({ reloadPage, closeModal }) {
           <Col sm={8}>
             <Form.Group className="mb-3" controlId="formEditorial">
               <Form.Label>Editorial</Form.Label>
-              <Form.Control type="text" name="editorial" value={book.editorial} onChange={captureValues} maxlength="50"/>
+              <Form.Control type="text" name="editorial" value={book.editorial} onChange={captureValues} maxlength="50" />
               <p className="errorContainer ms-1 mt-2 text-danger">{errors.editorial}</p>
             </Form.Group>
           </Col>
           <Col sm={4}><Form.Group className="mb-3" controlId="formYear">
             <Form.Label>Año</Form.Label>
             <Form.Control type="number" maxlength="4" min="1" max="9999" name="year" value={book.year} onChange={captureValues} />
+
             <p className="errorContainer ms-1 mt-2 text-danger">{errors.year}</p>
           </Form.Group></Col>
         </Row>

@@ -20,7 +20,10 @@ const ViewBook = (props) => {
     const [loading, setLoading] = useState(false);
     const [calification, setCalification] = useState([null]);
     const [book, setBook] = useState();
-
+    const handleShow = () => {
+        const myModal = new bootstrap.Modal(document.getElementById('ModalCreate'))
+        myModal.show();
+    };
     const putRating = async (e) => {
         //console.log(e)
         setLoading(true);
@@ -42,8 +45,10 @@ const ViewBook = (props) => {
                     <h5 className='text-start'>Nombre del Libro</h5>
                     <p className='text-start'>{props.name}</p>
                 </div>
+
                 <div className='col'>
                     <div className='d-flex align-content-center justify-content-end'>
+
                         <Link data-bs-dismiss="modal" aria-label="Close" onClick={hideModal} className='text-black rounded-3 btn text-decoration-none' style={{ backgroundColor: '#ffcfa2' }}>
                             <i className="bi bi-person"></i>
                         </Link>

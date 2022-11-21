@@ -39,7 +39,7 @@ const ViewBooks = () => {
                 </div>
             </div>
             <hr />
-            <BookPost posts={currentPost} loading={loading} />
+            <BookPost posts={currentPost} loading={loading} reloadPage={reloadPage} />
             <Paginations postPerPage={postsPerPage} totalPosts={posts.length} setCurrentPage={changeCurrentPage} currentPage={currentPage} />
             <div className="modal fade" id="ModalCreate" tabIndex={-1} aria-labelledby="ModalCreateLabel" aria-hidden="true">
                 <div className="modal-dialog modal-lg">
