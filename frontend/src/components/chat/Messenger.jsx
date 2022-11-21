@@ -35,7 +35,7 @@ export default function Messenger() {
   const handleShow = (m) => {
     const myModal = new bootstrap.Modal(document.getElementById('modalChat'))
     myModal.show();
-    setConversation2(m)
+    setConversation(m)
 };
 
   useEffect(() => {
