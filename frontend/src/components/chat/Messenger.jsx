@@ -25,12 +25,18 @@ export default function Messenger() {
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const scrollRef = useRef();
+  const [conversation, setConversation] = useState(null)
 
 
   const context = useOutletContext();
   const [user, setUser] = context.userContext;
   const socket = context.socket;
 
+  const handleShow = (m) => {
+    const myModal = new bootstrap.Modal(document.getElementById('modalChat'))
+    myModal.show();
+    setConversation(m)
+};
 
   useEffect(() => {
     socket.current?.on("getMessage", data => {
@@ -121,11 +127,15 @@ export default function Messenger() {
 
   };
 
-  const deleteConversation = async(conversation) => {
+  const deleteConversation = async() => {
+    console.log("conversation",conversation)
+    const myModal = document.getElementById('modalChat');
+    const modal = bootstrap.Modal.getInstance(myModal);
+    modal.hide();
     try {
       const receiverId = conversation.members.find(member => member !== user._id);
       const res = await axios.delete(`${conversationsURL}/${conversation._id}`, {withCredentials: true});
-      setConversations(conversations.filter((conversation) => conversation._id !== conversation._id));
+      setConversations(conversations.filter((c) => c._id !== conversation._id));
       setCurrentChat(null);
       socket.current?.emit("deleteConversation", {
         senderId: user._id,
@@ -164,12 +174,13 @@ export default function Messenger() {
                   <Conversation conversation={conversation} userId={user?._id} />
                 </div>
                 <div className="col-4">
-                  <span onClick={() => deleteConversation(conversation)} className="conversationDelete"><i class="bi bi-trash"></i></span>
+                  <span onClick={() => handleShow(conversation)} className="conversationDelete"><i class="bi bi-trash"></i></span>
                 </div>
               </div>
             ))}
           </div>
         </div>
+
         <div className="chatBox">
           <div className="chatBoxWrapper">
             {
@@ -197,6 +208,7 @@ export default function Messenger() {
                 : <span className="noConversationText">Abre una conversación para ver el chat</span>}
           </div>
         </div>
+
         <div className="chatOnline">
           <div className="chatOnlineWrapper">
             <ChatOnline
@@ -204,6 +216,23 @@ export default function Messenger() {
               conversations={conversations}
               currentId={user._id}
               setCurrentChat={setCurrentChat} />
+          </div>
+        </div>
+        <div class="modal fade" id="modalChat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Advertencia</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                La conversación se borrará para las dos personas.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn modalButton" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" onClick={deleteConversation} class="btn modalButton">Aceptar</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

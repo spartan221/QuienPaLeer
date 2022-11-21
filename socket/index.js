@@ -42,7 +42,7 @@ io.on("connection", (socket) => {
   //delete conversation and get notificacion of delete
   socket.on("deleteConversation",({ senderId, receiverId }) => {
     const user = getUser(receiverId);
-    io.to(user.socketId).emit("deleteConversation", {
+    user && io.to(user.socketId).emit("deleteConversation", {
       senderId
     });
   });
