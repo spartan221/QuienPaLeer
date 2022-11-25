@@ -1,21 +1,13 @@
-import { useState, useEffect } from 'react';
-import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import axios from "axios";
-import { uploadFile } from '../../../../backend/config/firebase/storage';
-import Swal from 'sweetalert2'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import '../css/CreateBookSale.css'
 import useValidationHook from '../ValidationHook.jsx';
-import Swal from 'sweetalert2'
 
 const ApiHeroku = import.meta.env.VITE_API
-const baseURL = ApiHeroku + 'api/book/create'
-const editURL = ApiHeroku + 'api/book/edit'
 
 function FormBook({ reloadPage, closeModal, bookSended }) {
   let re = /^\d+$/;
@@ -34,33 +26,33 @@ function FormBook({ reloadPage, closeModal, bookSended }) {
 
         <Form.Group className="mb-3" controlId="formTitle"  >
           <Form.Label>Título de la venta</Form.Label>
-          <Form.Control type="text" name="title" value={book.title} onChange={handleChange} maxlength="50" />
+          <Form.Control type="text" name="title"  onChange={handleChange} maxlength="50" />
           <p className="errorContainer ms-1 mt-2 text-danger">{errors.title}</p>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formName">
           <Form.Label>Nombre del libro</Form.Label>
-          <Form.Control type="text" name="name" value={book.name} onChange={handleChange} maxlength="60"/>
+          <Form.Control type="text" name="name" onChange={handleChange} maxlength="60"/>
           <p className="errorContainer ms-1 mt-2 text-danger">{errors.name}</p>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formAuthor">
           <Form.Label>Autor</Form.Label>
-          <Form.Control type="text" name="author" value={book.author} onChange={handleChange} maxlength="50" />
+          <Form.Control type="text" name="author"  onChange={handleChange} maxlength="50" />
           <p className="errorContainer ms-1 mt-2 text-danger">{errors.author}</p>
         </Form.Group>
 
         <Row>
           <Col sm={8}>
-            <Form.Group className="mb-3" controlId="formEditorial">
+            <Form.Group className="mb-3" controlId="formEditorial" >
               <Form.Label>Editorial</Form.Label>
-              <Form.Control type="text" name="editorial" value={book.editorial} onChange={handleChange} maxlength="50" />
+              <Form.Control type="text" name="editorial"onChange={handleChange} maxlength="50" />
               <p className="errorContainer ms-1 mt-2 text-danger">{errors.editorial}</p>
             </Form.Group>
           </Col>
           <Col sm={4}><Form.Group className="mb-3" controlId="formYear">
             <Form.Label>Año</Form.Label>
-            <Form.Control type="number" maxlength="4" min="1" max="9999" name="year" value={book.year} onChange={handleChange} />
+            <Form.Control type="number" maxlength="4" min="1" max="9999" name="year"  onChange={handleChange} />
             <p className="errorContainer ms-1 mt-2 text-danger">{errors.year}</p>
           </Form.Group></Col>
         </Row>

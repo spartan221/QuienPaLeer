@@ -146,7 +146,7 @@ router.get("/view/all",isUserAuthenticaded, async (req, res) => {
         var num1 = n.toFixed(1);
         newBook.ratings = num1
         if(req.userId==e.userId){
-            newBook.userId=e.userId
+            newBook.actualUserId=e.userId
         }
         newBooks.push(newBook)
     })
