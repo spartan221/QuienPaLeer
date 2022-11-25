@@ -5,7 +5,7 @@ import { uploadFile } from '../../../backend/config/firebase/storage';
 import Swal from 'sweetalert2'
 import {validateBookSale,validateDonation,validateEvent,validateRecommendation,validateSwap} from './ValidationField';
 
-const useValidationHook = (formName, url, reloadPage, closeModal) => {
+const useValidationHook = (formName, url,url2, reloadPage, closeModal,bookSended) => {
   const [inputs, setInputs] = useState({})
   const [file, setFile] = useState(null)
   const [errors, setErrors] = useState({ file: null })
@@ -57,7 +57,17 @@ const useValidationHook = (formName, url, reloadPage, closeModal) => {
       closeModal();
       uploadFile(file).then(async (downloadURL) => {
         const newPublication = { ...inputs, image: downloadURL };
-        await publicRequest.post(url, newPublication, { withCredentials: true })
+        //console.log('nuevo libro: ', newBook)
+        if (bookSended) {
+          //console.log("Editando libro")
+
+          const bookEdit = { ...newPublication, _id: bookSended._id }
+          console.log('Libro a editar', bookEdit)
+          await axios.put(url2, bookEdit, { withCredentials: true })
+        } else {
+          await publicRequest.post(url, newPublication, { withCredentials: true })
+        }
+       
         const Toast = Swal.mixin({
           toast: true,
           position: 'top-end',
