@@ -13,6 +13,7 @@ import FormBook, {
 import Events, {
   loader as eventsLoader,
 } from "./components/publicationEvent/ViewEvents";
+import Messenger from './components/chat/Messenger';
 import "jquery/dist/jquery.js";
 import "bootstrap/dist/js/bootstrap.js";
 import Profile, {
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
         path: 'ChangeBooks/profile/:userId',
         element: <Profile myProfile={false} />,
         loader: profileLoader
+      },
+      {
+        path: 'messenger',
+        element: <Messenger/>,
       },
       {
         path: 'events/search/:filter',

@@ -5,16 +5,49 @@ import Rating from '@mui/material/Rating';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
 import "../css/ViewPublication.css"
-
+import { publicRequest } from '../../requestMethods.js';
+import Swal from 'sweetalert2'
 
 const ViewBook = (props) => {
     const ApiHeroku = import.meta.env.VITE_API
+    const [comment, setComment] = useState('')
     const navigate = useNavigate();
     const hideModal = () => {
         setTimeout(() => {
             navigate(`profile/${props.userId}`)
         }, 100);
     }
+    function handleChange(event) {
+        setComment(event.target.value)
+    }
+
+    const handleClick = (event) => {
+        console.log(props);
+        event.preventDefault()
+        const newComment = { bookId: props._id, comment: comment }
+        //console.log(newComment);
+        publicRequest.put("/book/comment", newComment, { withCredentials: true });
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'success',
+            title: 'Comentario agregado.'
+        })
+        document.getElementById('eventForm').reset()
+        reloadPage();
+        console.log('Comentario agregado.')
+    }
+
     const [value, setValue] = useState(0);
     const [hover, setHover] = useState();
     const [loading, setLoading] = useState(false);
@@ -116,7 +149,22 @@ const ViewBook = (props) => {
             <div className='text-center mt-4'>
                 <DatePublication dateCreatedAt={props.createdAt} />
             </div>
-
+            <div className="mt-4">Comentarios</div>
+            <div className='row'>
+                {props.comments && props.comments.map((comment, i) => (
+                    <div className='container border mt-3 p-2 ms-2 me-3 rounded' style={{ background: "#F5F5F5" }}>
+                        <h6>{comment.nameUser}</h6>
+                        <p className='mb-0'>{comment.comment}</p>
+                    </div>
+                ))}
+            </div>
+            <form className="text-start mt-3 row" id="commentForm">
+                <label htmlFor="comment" className="comment-label"></label><br />
+                <input className="form-control col px-4" name="comment" id="comment" type="text" onChange={handleChange} placeholder="Escribe un comentario..."></input>
+                <div className="text-center col">
+                    <button className="btn btn-dark px-2 text-black" id='btnCreateComment' type="submit" onClick={handleClick} style={{ backgroundColor: '#ffcfa2' }}>Agregar comentario</button>
+                </div>
+            </form>
         </div>
 
     )

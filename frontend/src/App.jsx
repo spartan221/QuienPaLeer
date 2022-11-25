@@ -21,21 +21,23 @@ function App() {
   // Verifica si el usuario tiene el cookie activo y funcionando
   // Si el cookie sigue funcionando se redirige de una vez al home
   // caso contrario, despliega la vista del login.
-  const isUserAlreadyLogged = () => {
-    axios.get(baseURL, { withCredentials: true })
-      .then((response) => {
-        if (response.status === 200) {
-          navigate('/home', { replace: true });
-        }
-      })
-      .catch((error) => {
-        setAlreadyLoggedIn(false);
-      })
+  const isUserAlreadyLogged  = async () => {
+
+    try {
+      const res = await axios.get(baseURL, { withCredentials: true });
+      console.log(response)
+      if (response.status === 200) {
+        navigate('/home', { replace: true });
+      }
+    } catch (err) {
+      setAlreadyLoggedIn(false);
+    }
   }
 
   useEffect(() => {
+    console.log(baseURL)
     isUserAlreadyLogged();
-  });
+  }, []);
 
 
   if (alreadyLoggedIn === false) {

@@ -1,106 +1,11 @@
 import React from 'react'
-import { useState } from 'react'
-import { publicRequest } from '../../requestMethods'
-import { uploadFile } from '../../../../backend/config/firebase/storage';
 import EventIcon from '@mui/icons-material/Event';
 import '../css/CreateEvent.css'
-import Swal from 'sweetalert2'
+import useValidationHook from '../ValidationHook.jsx';
 
 const CreateEvent = ({reloadPage,closeModal}) => {
-    const [inputs, setInputs] = useState({})
-    const [file, setFile] = useState(null)
-    const [errors, setErrors] = useState({ file: null })
 
-    function handleChange(event) {
-        setInputs(prevInput => {
-            return {
-                ...prevInput, [event.target.name]: event.target.value
-            }
-        })
-
-        if (!!errors[event.target.name])
-            setErrors({
-                ...errors,
-                [event.target.name]: null
-            })
-    }
-
-    function handleChangeFile(event) {
-        setFile(event.target.files[0]);
-        if (!!errors[event.target.name])
-            setErrors({
-                ...errors,
-                [event.target.name]: null
-            })
-    }
-
-    const validateForm = () => {
-        const { name, description, startDate, endDate, hour, place } = inputs
-        const newErrors = {}
-        if (!name || name === '') newErrors.name = 'Ingresa un nombre.'
-        if (!description || description === '') newErrors.description = 'Ingresa una descripción.'
-        if (!startDate || startDate === '') newErrors.startDate = 'Fecha inválida.'
-        if (!endDate || endDate === '') newErrors.endDate = 'Fecha inválida.'
-        if (!startDate || startDate === '' || startDate.length != 10) newErrors.startDate = 'Fecha inválida.'
-        if (!endDate || endDate === '' || endDate.length != 10) newErrors.endDate = 'Fecha inválida.'
-        if (startDate && startDate != '' && startDate.length === 10 && endDate && endDate != '' && endDate.length === 10) {
-            if (parseInt(startDate.substring(0, 4)) <= parseInt(endDate.substring(0, 4))) {
-                if (parseInt(startDate.substring(5, 7)) <= parseInt(endDate.substring(5, 7))) {
-                    if (parseInt(startDate.substring(8)) > parseInt(endDate.substring(8))) {
-                        newErrors.startDate = "Fecha inválida."
-                        newErrors.endDate = "Fecha inválida."
-                    }
-                } else {
-                    newErrors.startDate = "Fecha inválida."
-                    newErrors.endDate = "Fecha inválida."
-                }
-            } else {
-                newErrors.startDate = "Fecha inválida."
-                newErrors.endDate = "Fecha inválida."
-            }
-        }
-        if (!hour || hour === '') newErrors.hour = 'Hora inválida.'
-        if (!place || place === '') newErrors.place = 'Ingresa un lugar.'
-        if (!file || file === '') newErrors.image = 'Sube una imagen.'
-        return newErrors
-    }
-
-    const handleClick = (event) => {
-        event.preventDefault()
-        const formErrors = validateForm()
-        if (Object.keys(formErrors).length > 0) {
-            setErrors(formErrors)
-        } else {
-            closeModal();
-            uploadFile(file).then( async (downloadURL) => {
-                const newEvent = { ...inputs, image: downloadURL };
-                publicRequest.post("/event/create", newEvent, { withCredentials: true });
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
-
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Evento agregado.'
-                })
-                document.getElementById('eventForm').reset()
-                reloadPage();
-                console.log('Evento agregado.')
-
-            }).catch((error) => {
-                console.log(error);
-            })
-
-        }
-    }
+    const {handleChange,saveData,handleChangeFile,errors} = useValidationHook("event", "/event/create",reloadPage,closeModal)
 
     return (
         <div className='container rounded border p-4'>
@@ -108,7 +13,7 @@ const CreateEvent = ({reloadPage,closeModal}) => {
                 <h1 className="fs-4 text-start col-8 ps-0 ms-0">Crear evento</h1>
                 <div className="col-4 text-end"><EventIcon /></div>
             </div>
-            <form className="text-start mt-3" id="eventForm">
+            <form className="text-start mt-3" id="publicationForm">
                 <label htmlFor="name" className="form-label">Nombre</label><br />
                 <input className="form-control" name="name" id="name" type="text" onChange={handleChange} ></input>
                 <p className="errorContainer ms-1 mt-2 text-danger">{errors.name}</p>
@@ -145,7 +50,7 @@ const CreateEvent = ({reloadPage,closeModal}) => {
                     </div>
                 </div>
                 <div className="text-center">
-                    <button className="btn btn-dark px-5" id='btnCreateEventModal' type="submit" onClick={handleClick}>Crear</button>
+                    <button className="btn btn-dark px-5" id='btnCreateEventModal' type="submit" onClick={saveData}>Crear</button>
                 </div>
 
             </form>

@@ -1,5 +1,6 @@
 backend/package-lock.json
 frontend/package-lock.json
+socket/package-lock.json
 node_modules
 package-lock.json
 # Local Netlify folder
