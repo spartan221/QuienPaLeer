@@ -16,17 +16,14 @@ export const BookPost = ({ posts, loading, reloadPage }) => {
     const handleClick = (id) => {
         //console.log('Se hizo click', id);
         setBook(id)
-        //console.log(book)
-        document.getElementById('bookForm').name.value = id.name
-        document.getElementById('bookForm').title.value = id.title
-        document.getElementById('bookForm').author.value = id.author
-        document.getElementById('bookForm').price.value = id.price
-        document.getElementById('bookForm').editorial.value = id.editorial
-        document.getElementById('bookForm').year.value = id.year
-        document.getElementById('bookForm').author.value = id.author
-        document.getElementById('bookForm').image.file = id.image
-
-
+        document.getElementById('publicationForm').name.value = id.name
+        document.getElementById('publicationForm').title.value = id.title
+        document.getElementById('publicationForm').author.value = id.author
+        document.getElementById('publicationForm').price.value = id.price
+        document.getElementById('publicationForm').editorial.value = id.editorial
+        document.getElementById('publicationForm').year.value = id.year
+        document.getElementById('publicationForm').author.value = id.author
+        document.getElementById('publicationForm').image.file = id.image
         const myModal = new bootstrap.Modal(document.getElementById('ModalEdit'))
         myModal.show();
     }
@@ -59,7 +56,7 @@ export const BookPost = ({ posts, loading, reloadPage }) => {
                                         <div className='row mt-2'>
                                             <p className='col text-start fw-bold'>{post.name}</p>
                                             <p className='col text-end gray-text' id='priceSellBook'>$ {post.price}</p>
-                                            {post.userId ?
+                                            {post.actualUserId ?
                                                 (<div className="col">
 
                                                     <button className="btn bg-info text-white border py-0 px-1" onClick={() => handleClick(post)}
