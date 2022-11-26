@@ -4,7 +4,7 @@ import Spinner from '../SpinnerCircular';
 import ViewBook from './ViewBook'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import FormBook from './AddBookSale.jsx';
-
+import * as bootstrap from 'bootstrap';
 import '../css/PublicationPost.css'
 
 export const BookPost = ({ posts, loading, reloadPage }) => {
@@ -16,6 +16,7 @@ export const BookPost = ({ posts, loading, reloadPage }) => {
     const handleClick = (id) => {
         //console.log('Se hizo click', id);
         setBook(id)
+        console.log("Libro:",id)
         document.getElementById('publicationForm').name.value = id.name
         document.getElementById('publicationForm').title.value = id.title
         document.getElementById('publicationForm').author.value = id.author
