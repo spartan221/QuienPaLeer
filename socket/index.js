@@ -1,7 +1,13 @@
-const io = require("socket.io")(8900, {
-  cors: {
-    origin: true,
-  },
+const express = require('express');
+const app = express();
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server, {cors: true});
+const PORT = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+  res.send(`<h1>QuienPaLeer Socket Server running on PORT: ${PORT}</h1>`);
 });
 
 let users = [];
@@ -53,4 +59,8 @@ io.on("connection", (socket) => {
     removeUser(socket.id);
     io.emit("getUsers", users);
   });
+});
+
+server.listen(PORT, () => {
+  console.log(`listening on ${PORT}`);
 });

@@ -34,7 +34,7 @@ const Home = () => {
 
     useEffect(() => {
         fetchUser();
-        socket.current = io("ws://127.0.0.1:8900");
+        socket.current = io("http://127.0.0.1:3000");
     }, [])
 
 
