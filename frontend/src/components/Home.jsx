@@ -34,7 +34,7 @@ const Home = () => {
 
     useEffect(() => {
         fetchUser();
-        socket.current = io("http://127.0.0.1:3000");
+        socket.current = io("https://quienpaleer-socket-server.onrender.com");
     }, [])
 
 
