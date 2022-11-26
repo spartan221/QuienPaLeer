@@ -6,7 +6,7 @@ import useValidationHook from '../ValidationHook.jsx';
 
 const CreateRecommendation = ({ reloadPage, closeModal }) => {
 
-    const { handleChange, saveData, handleChangeFile, errors } = useValidationHook("recommendation", "/recommendation/create", reloadPage, closeModal)
+    const { handleChange, saveData, handleChangeFile, errors } = useValidationHook("recommendation", "/recommendation/create",null, reloadPage, closeModal,null)
 
     return (
         <div className='container rounded border p-4'>

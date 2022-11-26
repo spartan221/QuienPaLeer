@@ -6,7 +6,7 @@ import useValidationHook from '../ValidationHook.jsx';
 
 const CreateDonation = ({ reloadPage, closeModal }) => {
 
-    const { handleChange, saveData, handleChangeFile, errors } = useValidationHook("donation", "/donation/create", reloadPage, closeModal)
+    const { handleChange, saveData, handleChangeFile, errors } = useValidationHook("donation", "/donation/create",null, reloadPage, closeModal,null)
 
     return (
         <div className='container rounded border p-4'>
