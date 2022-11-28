@@ -47,15 +47,15 @@
       </tr>
       <tr>
         <td>Visualización de Chats</td>
-        <td>:x:</td>
+        <td>:white_check_mark:</td>
       </tr>
       <tr>
         <td>Eliminar Chats</td>
-        <td>:x:</td>
+        <td>:white_check_mark:</td>
       </tr>
       <tr>
         <td>Opinión de Libros</td>
-        <td>:x:</td>
+        <td>:white_check_mark:</td>
       </tr>
       <tr>
         <td>Creación de Eventos</td>
@@ -75,39 +75,39 @@
       </tr>
       <tr>
         <td>Publicación Intercambio de Libros</td>
-        <td>:x:</td>
+        <td>:white_check_mark:</td>
       </tr>
       <tr>
         <td>Visualización Intercambio de Libros</td>
-        <td>:x:</td>
+        <td>:white_check_mark:</td>
       </tr>
       <tr>
         <td>Publicación de Recomendación de Libros</td>
-        <td>:x:</td>
+        <td>:white_check_mark:</td>
       </tr>
       <tr>
         <td>Visualizar Recomendación de Libros</td>
-        <td>:x:</td>
+        <td>:white_check_mark:</td>
       </tr>
       <tr>
         <td>Votación Recomendación de Libros</td>
-        <td>:x:</td>
+        <td>:white_check_mark:</td>
       </tr>
       <tr>
         <td>Búsqueda Específica Publicación</td>
-        <td>:x:</td>
+        <td>:white_check_mark:</td>
       </tr>
       <tr>
         <td>Editar Publicación</td>
-        <td>:x:</td>
+        <td>:white_check_mark:</td>
       </tr>
       <tr>
         <td>Visualizar Perfil</td>
-        <td>:x:</td>
+        <td>:white_check_mark:</td>
       </tr>
       <tr>
         <td>Actualizar Perfil</td>
-        <td>:x:</td>
+        <td>:white_check_mark:</td>
       </tr>
     </table>
 </details>
