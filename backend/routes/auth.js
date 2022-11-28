@@ -67,6 +67,8 @@ const makeAuthRouter = (database) => {
             // Se envia al cliente una cookie con la clave "acces_token"
             // y como valor el token generado
             res.cookie("access_token", token, {
+                sameSite: "none",
+                secure: true,
                 httpOnly: true
             });
 

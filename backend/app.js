@@ -6,6 +6,10 @@ import makeEventRouter from "./routes/event.js";
 import bookRoute from "./routes/book.js"
 import donationRoute from "./routes/donation.js";
 import makeProfileRouter from "./routes/profile.js";
+
+import makeConversationRouter from "./routes/conversation.js";
+import makeMessageRouter from "./routes/message.js";
+import usersRouter from "./routes/users.js";
 import swapRoute from "./routes/swap.js";
 import recommendationRoute from "./routes/recommendation.js";
 
@@ -33,7 +37,11 @@ const makeApp = (database) => {
     const profileRouter = makeProfileRouter(database);
     app.use("/api/profile", profileRouter)
     app.use("/api/swap",swapRoute);
-    app.use("/api/recommendation",recommendationRoute);
+    const conversationRouter = makeConversationRouter(database);
+    app.use('/api/chat/conversations', conversationRouter);
+    const messageRouter = makeMessageRouter(database);
+    app.use('/api/chat/messages', messageRouter);
+    app.use('/api/users', usersRouter);    app.use("/api/recommendation",recommendationRoute);
 
     return app;
 }

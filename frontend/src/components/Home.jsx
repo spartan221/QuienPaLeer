@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useRef } from "react";
 import axios from 'axios'
 import { Outlet, useNavigate, useLocation } from "react-router-dom"
 import { useEffect } from "react"
@@ -9,6 +10,9 @@ import '../styles/ContentStyle.css';
 import Content from "./ContentHome";
 import '../css/ContentHome.css';
 const ApiHeroku = import.meta.env.VITE_API
+import Spinner from './SpinnerCircular';
+const ApiHeroku=import.meta.env.VITE_API
+import { io } from "socket.io-client";
 
 const Home = () => {
 
@@ -16,6 +20,8 @@ const Home = () => {
     const [user, setUser] = useState(null)
     const navigate = useNavigate();
     const location = useLocation();
+    const socket = useRef();
+
 
     const fetchUser = () => {
         axios.get(baseURL, { withCredentials: true })
@@ -32,22 +38,34 @@ const Home = () => {
             fetchUser()
         }, 3000);
     })
+        fetchUser();
+        socket.current = io("https://quienpaleer-socket-server.onrender.com");
+    }, [])
 
-    return (
+
+    if (!user || !socket.current){
+        return (
+            <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '100vh',
+              }}>
+                <Spinner />
+              </div>
+        );
+    }else{
+        return (
         <div>
             <div className='layout'>
                 <SideBar {...user} />
                 <div className="content w-100">
                     <Navigation {...user} />
-                    {location.pathname === "/home" ? <Content /> : <Outlet />}
+                    {location.pathname === "/home" ? <Content /> : <Outlet context={{ userContext: [user, setUser], socket}}/>}
                 </div>
             </div>
-        </div>
-    );
-
-
-
-
+        );
+    }
 
 }
 

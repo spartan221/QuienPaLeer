@@ -1,14 +1,25 @@
+feature/sidebar
 #btnEditProfile {
   background-color: #1c51c7;
   color: white;
-}
 
 #btnEditProfile:hover {
   background-color: #88acfc;
   color: black;
 }
 
-.wrapper {
+#btnSendMessage {
+  background-color: black;
+  color: #ffcfa2;
+}
+
+#btnSendMessage:hover {
+  background-color: #ffcfa2;
+  color: #000000;
+  border: 2px solid black;
+}
+
+.wrapper{
   max-height: 200px;
   max-width: 400px;
   display: flex;

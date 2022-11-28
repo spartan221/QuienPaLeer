@@ -1,9 +1,5 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import axios from "axios";
-import { useState } from 'react';
-import { uploadFile } from '../../../../backend/config/firebase/storage';
-import Swal from 'sweetalert2'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -11,8 +7,12 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import '../css/CreateBookSale.css'
 import useValidationHook from '../ValidationHook.jsx';
 
-function FormBook({ reloadPage, closeModal }) {
-  const {saveData,handleChange,handleChangeFile,errors} = useValidationHook("booksale","/book/create",reloadPage,closeModal)
+const ApiHeroku = import.meta.env.VITE_API
+
+function FormBook({ reloadPage, closeModal, bookSended }) {
+  let re = /^\d+$/;
+  const {saveData,handleChange,handleChangeFile,errors} = useValidationHook("booksale","/book/create","book/edit",reloadPage,closeModal,bookSended)
+
 
 
   return (
@@ -20,40 +20,39 @@ function FormBook({ reloadPage, closeModal }) {
       <div className='container row border-bottom border-secondary ms-1 '>
         <h1 className="fs-4 text-start col-8 ps-0 ms-0">Agregar libro</h1>
         <div className="col-4 text-end"><AttachMoneyIcon /></div>
-
       </div>
       <br />
-      <Form onSubmit={saveData}  id='publicationForm' >
+      <Form onSubmit={saveData} id='publicationForm' >
 
         <Form.Group className="mb-3" controlId="formTitle"  >
           <Form.Label>Título de la venta</Form.Label>
-          <Form.Control type="text" name="title"  onChange={handleChange}  />
+          <Form.Control type="text" name="title"  onChange={handleChange} maxlength="50" />
           <p className="errorContainer ms-1 mt-2 text-danger">{errors.title}</p>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formName">
           <Form.Label>Nombre del libro</Form.Label>
-          <Form.Control type="text" name="name"  onChange={handleChange} />
+          <Form.Control type="text" name="name" onChange={handleChange} maxlength="60"/>
           <p className="errorContainer ms-1 mt-2 text-danger">{errors.name}</p>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formAuthor">
           <Form.Label>Autor</Form.Label>
-          <Form.Control type="text" name="author"  onChange={handleChange} />
+          <Form.Control type="text" name="author"  onChange={handleChange} maxlength="50" />
           <p className="errorContainer ms-1 mt-2 text-danger">{errors.author}</p>
         </Form.Group>
 
         <Row>
           <Col sm={8}>
-            <Form.Group className="mb-3" controlId="formEditorial">
+            <Form.Group className="mb-3" controlId="formEditorial" >
               <Form.Label>Editorial</Form.Label>
-              <Form.Control type="text" name="editorial"  onChange={handleChange} />
+              <Form.Control type="text" name="editorial"onChange={handleChange} maxlength="50" />
               <p className="errorContainer ms-1 mt-2 text-danger">{errors.editorial}</p>
             </Form.Group>
           </Col>
           <Col sm={4}><Form.Group className="mb-3" controlId="formYear">
             <Form.Label>Año</Form.Label>
-            <Form.Control type="text" name="year"   onChange={handleChange} />
+            <Form.Control type="number" maxlength="4" min="1" max="9999" name="year"  onChange={handleChange} />
             <p className="errorContainer ms-1 mt-2 text-danger">{errors.year}</p>
           </Form.Group></Col>
         </Row>
@@ -74,7 +73,7 @@ function FormBook({ reloadPage, closeModal }) {
           <Col>
             <Form.Group className="mb-3" controlId="formPrice">
               <Form.Label className='fw-bold' style={{ color: "#ffa44f" }}>Precio</Form.Label>
-              <Form.Control type="text" name="price" onChange={handleChange}  />
+              <Form.Control type="text" name="price" onChange={handleChange} />
               <p className="errorContainer ms-1 mt-2 text-danger">{errors.price}</p>
             </Form.Group>
           </Col>
