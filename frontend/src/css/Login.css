@@ -14,13 +14,13 @@
 .signInTitle {
   font-size: 30px;
   font-weight: bold;
-  color: black;
+  color: #FFB914;
 }
 
 .qplTitle {
   font-weight: bold;
   font-size: 12px;
-  color: black;
+  color: #ffe199;
 }
 
 .logoQPL {
@@ -44,14 +44,14 @@
 }
 
 #btnLogin:hover {
-  background-color: #ffcfa2;
+  background-color: #88ACFC;
   color: black;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.458);
 }
 
 #btnLogin {
-  background-color: black;
-  color: #ffcfa2;
+  background-color: #1C51C7;
+  color: white;
   width: 320px;
   border-radius: 10px;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.458);
@@ -64,7 +64,6 @@
 .card-body form label {
   color: #8c8c8c;
 }
-
 
 .textDontHaveAcc,
 .linkRegister {
@@ -88,10 +87,31 @@
 }
 
 .iconEyePass {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 a:hover {
-  color:#ffcfa2;
+  color: #ffcfa2;
 }
 
+#headerLogin {
+  background: repeating-linear-gradient(
+    45deg,
+    #616161,
+    #616161 0.5px,
+    #1c1c1c 0.5px,
+    #1c1c1c 6px
+  );
+}
+
+#footerLogin{
+  background: repeating-linear-gradient(
+    45deg,
+    #616161,
+    #616161 0.5px,
+    #1c1c1c 0.5px,
+    #1c1c1c 6px
+  );
+  color: #ffe199;
+  border-radius: 0px 0px 20px 20px;
+}

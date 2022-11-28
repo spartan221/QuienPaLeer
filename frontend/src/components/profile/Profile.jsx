@@ -61,13 +61,13 @@ const Profile = ({ myProfile }) => {
         <div>
             <AnimatedPageSmoothY>
                 <div className='row mb-5'>
-                    <div className='col-3 d-flex justify-content-center align-items-center mt-4 ms-5' style={{ backgroundColor: '#ffcfa2', borderRadius: '15px' }}>
+                    <div className='containersProfile col-3 d-flex justify-content-center align-items-center mt-4 ms-5' style={{borderRadius: '15px' }}>
                         <div id='userProfilePhotoView' style={user.photo ? { backgroundImage: "url(" + user.photo + ")" } : { backgroundImage: "url(" + profileUnknown + ")" }} />
                     </div>
-                    <div className=' col mt-4 me-5 ms-2 rounded-4 text-center' style={{ backgroundColor: '#ffcfa2' }}>
+                    <div className='containersProfile col mt-4 me-5 ms-2 rounded-4 text-center'>
                         <div className='m-5 p-4 d-flex flex-column align-content-center justify-content-center'>
-                            <p className='lead fs-2'>{user.name} {user.lastName}</p>
-                            <p className='lead fs-6 text-muted'>Usuario desde el {currentDate.getDate()}/{currentDate.getMonth()}/{currentDate.getFullYear()}</p>
+                            <p className='lead fw-bold fs-2' style={{color: '#FFB914'}}>{user.name} {user.lastName}</p>
+                            <p className='lead fs-6' style={{color: '#FFE199'}}>Usuario desde el {currentDate.getDate()}/{currentDate.getMonth()}/{currentDate.getFullYear()}</p>
                             <span>
                                 {myProfile && <button className='btn' id='btnEditProfile' onClick={handleShow}>Editar</button>}
                                 {showMessageButton()}
@@ -96,21 +96,21 @@ const Profile = ({ myProfile }) => {
                 <p className='text-center'>(en cada sección)</p>
                 <div className='container-fluid d-flex justify-content-evenly align-content-center mb-2 pb-5'>
                     <div className='row mt-3 pt-3'>
-                        <div className='col mx-5 fs-6 text-center p-4 px-3 rounded-4' style={{ backgroundColor: '#ffcfa2' }}>
+                        <div className='col mx-5 fs-6 text-center p-4 px-3 rounded-4' style={{ backgroundColor: '#88ACFC' }}>
                             <h4 className='fw-bold'>{books.length}</h4>
                             <p>Compra de Libros</p>
                         </div>
-                        <div className='col mx-5 text-center p-3 px-3 rounded-4' style={{ backgroundColor: '#ffcfa2' }}>
+                        <div className='col mx-5 text-center p-3 px-3 rounded-4' style={{ backgroundColor: '#88ACFC' }}>
                             <h4 className='fw-bold'>{swaps.length}</h4>
                             <p>Intercambio de Libros</p>
                         </div>
-                        <div className='col mx-5 text-center p-4 px-3 rounded-4' style={{ backgroundColor: '#ffcfa2' }}>
+                        <div className='col mx-5 text-center p-4 px-3 rounded-4' style={{ backgroundColor: '#88ACFC' }}>
                             <h4 className='fw-bold'>{donations.length}</h4>
                             <p>Donación de Libros</p>
                         </div>
                     </div>
                 </div>
-                <div className='mx-5' style={{ borderTop: '3px solid #ffcfa2' }}></div>
+                <div className='mx-5' style={{ borderTop: '2px solid #1c1c1c' }}></div>
             </AnimatedPageNavBar>
 
 

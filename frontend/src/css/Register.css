@@ -8,7 +8,7 @@
 }
 
 .form-check-input {
-    background-color: #ffcfa2;
+    background-color: #FFB914;
 }
 
 .form-check-label {
@@ -17,14 +17,14 @@
 
 #submitRegister{
     width: 100%;
-    background-color: black;
-    color: #ffcfa2;
+    background-color: #1C51C7;
+    color: white;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.458);
     border-radius: 10px;
 }
 
 #submitRegister:hover{
-    background-color: #ffcfa2;
+    background-color: #88ACFC;
     color: black;
 }
 
@@ -32,4 +32,24 @@ input[type="checkbox"]{
     cursor: pointer;
 }
 
+#registerCardheader{
+    background: repeating-linear-gradient(
+        45deg,
+        #616161,
+        #616161 0.5px,
+        #1c1c1c 0.5px,
+        #1c1c1c 6px
+    );
+}
+
+#registerFooter{
+    background: repeating-linear-gradient(
+        45deg,
+        #616161,
+        #616161 0.5px,
+        #1c1c1c 0.5px,
+        #1c1c1c 6px
+    );
+    border-radius: 0px 0px 20px 20px;
+}
 

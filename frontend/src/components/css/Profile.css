@@ -1,12 +1,11 @@
-#btnEditProfile #btnSendMessage {
-  background-color: black;
-  color: #ffcfa2;
-}
+feature/sidebar
+#btnEditProfile {
+  background-color: #1c51c7;
+  color: white;
 
 #btnEditProfile:hover {
-  background-color: #ffcfa2;
-  color: #000000;
-  border: 2px solid black;
+  background-color: #88acfc;
+  color: black;
 }
 
 #btnSendMessage {
@@ -27,11 +26,11 @@
   overflow-x: auto;
 }
 
-.wrapper::-webkit-scrollbar{
+.wrapper::-webkit-scrollbar {
   width: 0;
 }
 
-.wrapper .item{
+.wrapper .item {
   min-width: 110px;
   height: 10em;
   line-height: 110px;
@@ -40,9 +39,19 @@
 }
 
 #userProfilePhotoView {
-    width: 10em;
-    height: 10em;
-    border-radius: 50%;
-    background-size: cover;
-    border: solid 6px white;
+  width: 10em;
+  height: 10em;
+  border-radius: 50%;
+  background-size: cover;
+  border: solid 6px white;
+}
+
+.containersProfile {
+  background: repeating-linear-gradient(
+    45deg,
+    #616161,
+    #616161 0.5px,
+    #1c1c1c 0.5px,
+    #1c1c1c 6px
+  );
 }

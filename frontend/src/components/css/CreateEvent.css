@@ -4,12 +4,12 @@
     font-size: 10px;
 }
 #btnCreateEventModal{
-    background-color: #ffcfa2;
-    color: black;
+    background-color: #1C51C7;
+    color: white;
     border-color: transparent;
 }
 
 #btnCreateEventModal:hover{
-    background-color: black;
-    color: #ffcfa2;
+    background-color: #88ACFC;
+    color: black;
 }

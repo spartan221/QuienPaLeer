@@ -1,0 +1,58 @@
+#welcomeContainer {
+  opacity: 0.8;
+  background: repeating-linear-gradient(
+    45deg,
+    #ffb914,
+    #ffb914 0.8px,
+    #ffe199 2px,
+    #ffe199 15px
+  );
+  opacity: 1;
+  border-radius: 20px;
+  height: 20em;
+}
+
+#logoQPLHome {
+  width: 10em;
+}
+
+#textBannerHome {
+  font-size: 2vw;
+}
+
+@media only screen and (max-width: 768px) {
+  #containerLogoHome {
+    display: none;
+  }
+
+  #containerTextHomeBanner {
+    margin-left: 50px;
+  }
+
+  #textBannerHome {
+    font-size: 4vw;
+  }
+}
+
+.cardFeatures{
+    height: 10em;
+    width: 5em;
+    background: repeating-linear-gradient(
+        45deg,
+        #616161,
+        #616161 0.5px,
+        #1c1c1c 0.5px,
+        #1c1c1c 6px
+    );
+    color: #ffe199;
+    margin: 5px 0px 4px 3px;
+}
+
+.card-title{
+    color: #ffb914;
+}
+
+.textFeature{
+    font-size: 0.8em;
+}
+
