@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "private": true,
-  "proxy": "https://quien-pa-leer-backend.herokuapp.com/",
+  "proxy": "https://quienpaleer-backend.onrender.com/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

@@ -27,28 +27,28 @@ router.post("/create", isUserAuthenticaded, async (req, res) => {
     }
 })
 //Edición
-router.put('/edit',isUserAuthenticaded, async (req, res) => {
-    try{
-        const id=req.body._id
-        const bookSaved=await Book.findByIdAndUpdate(id,req.body)
-        if(bookSaved){
+router.put('/edit', isUserAuthenticaded, async (req, res) => {
+    try {
+        const id = req.body._id
+        const bookSaved = await Book.findByIdAndUpdate(id, req.body)
+        if (bookSaved) {
             res.status(200).json('Libro editado')
-        }else{
+        } else {
             res.status(500).json('Libro no encontrado')
         }
-        
-        
-    }catch(err){
+
+
+    } catch (err) {
         res.status(500).json(err)
     }
 })
 router.put("/comment", isUserAuthenticaded, async (req, res) => {
     try {
         const bookSaved = await Book.findOne({ _id: req.body.bookId })
-        const user = await User.findOne({_id: req.userId})
+        const user = await User.findOne({ _id: req.userId })
         const name = user.name
         console.log(name);
-        bookSaved.comments.push({comment: req.body.comment, nameUser: name})
+        bookSaved.comments.push({ comment: req.body.comment, nameUser: name })
         await bookSaved.save();
     } catch (err) {
         res.status(500).json(err)
@@ -79,7 +79,7 @@ router.put("/val", isUserAuthenticaded, async (req, res) => {
         console.log('Valoración usuario:', userRating)
         if (userRating) {
             console.log("Existe")
-            res.json(200,bookSaved)
+            res.json(200, bookSaved)
         } else {
             const ratingSaved = await Book.findOneAndUpdate({
                 _id: req.body._id
@@ -116,7 +116,7 @@ router.put("/val", isUserAuthenticaded, async (req, res) => {
     }
 })
 //Lectura
-router.get("/view/all",isUserAuthenticaded, async (req, res) => {
+router.get("/view/all", isUserAuthenticaded, async (req, res) => {
     const books = await Book.find();
     const newBooks = []
     books.forEach(e => {
@@ -145,8 +145,8 @@ router.get("/view/all",isUserAuthenticaded, async (req, res) => {
         let n = sum / e.ratings.length || 0;
         var num1 = n.toFixed(1);
         newBook.ratings = num1
-        if(req.userId==e.userId){
-            newBook.actualUserId=e.userId
+        if (req.userId == e.userId) {
+            newBook.actualUserId = e.userId
         }
         newBooks.push(newBook)
     })
@@ -172,10 +172,42 @@ router.get("/getWithUsers", async (req, res) => {
 })
 
 //búsqueda
-router.get('/search/:filter', async (req, res) => {
+router.get('/search/:filter', isUserAuthenticaded, async (req, res) => {
     try {
         const book = await Book.find({ $text: { $search: req.params.filter }, $language: "none" });
-        res.status(200).json(book)
+        const newBooks = []
+        book.forEach(e => {
+            const newBook = {
+                _id: e._id,
+                name: e.name,
+                title: e.title,
+                author: e.author,
+                editorial: e.editorial,
+                year: e.year,
+                price: e.price,
+                image: e.image,
+                userId: e.userId,
+                createdAt: e.createdAt,
+                updatedAt: e.updatedAt,
+                comments: e.comments
+            }
+            let sum = 0
+            e.ratings.forEach(f => {
+                sum += f.rating
+                if (f.userId == req.userId) {
+                    newBook.ratingUser = f.rating
+                }
+            })
+            newBook.totalRatings = e.ratings.length
+            let n = sum / e.ratings.length || 0;
+            var num1 = n.toFixed(1);
+            newBook.ratings = num1
+            if (req.userId == e.userId) {
+                newBook.actualUserId = e.userId
+            }
+            newBooks.push(newBook)
+        })
+        res.status(200).json(newBooks)
     } catch (err) {
         res.status(500).json(err)
     }
