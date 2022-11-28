@@ -8,6 +8,7 @@ import Message from "./Message";
 import axios from 'axios';
 import { useOutletContext } from "react-router-dom";
 import { useRef } from "react";
+import * as bootstrap from 'bootstrap';
 const ApiHeroku=import.meta.env.VITE_API
 
 
