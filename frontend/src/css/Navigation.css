@@ -1,67 +1,52 @@
-
-#SearchNavBar {
-    width: 2em;
-    border-radius: 20px;
+#containerSearchNavBar {
+  width: 100%;
 }
 
-#containerSearchNavBar{
-    width: 400px;
+#btnSearchNavBar {
+  background-color: #1C51C7;
+  color: #FFF;
+  border-color: transparent;
 }
 
-#btnSearchNavBar{
-    background-color: #ffcfa2;
-    color: black;
-    border-color: transparent;
+#btnSearchNavBar:hover {
+  background-color: #1C1C1C;
+  color: #FFB914;
 }
 
-#btnSearchNavBar:hover{
-    background-color: black;
-    color: #ffcfa2;
+#qplTitle {
+  font-size: 15px;
+  font-weight: bold;
+  color: #ffffff;
 }
 
-#qplTitle{
-    font-size: 15px;
-    font-weight: bold;
-    color: black;
+#qplLogoNavBar {
+  width: 2em;
 }
 
-#qplLogoNavBar{
-    width: 50px;
-    width: 50px;
-    margin-right: 10px;
-    filter: drop-shadow(4px 4px 6px #c2c2c2);
-}
-
-.navBarLinks:hover{
-    color: #ffcfa2;
+.navBarLinks:hover {
+  color: #fca331;
+  cursor: pointer;
 }
 
 #selectTypeSearch {
-    width: 200px;
-    border-style: none;
+  width: 10em;
+  border-style: none;
 }
 
 #selectTypeSearch:focus {
-    box-shadow: none;  
+  box-shadow: none;
 }
 
 #searchNavBar:focus{
-    box-shadow: none;
-    border-color: #ffcfa2;
-    width: 450px;
+  box-shadow: none;
 }
 
-#btnDropMenu{
-    background-color: transparent;
+#userProfilePhoto {
+  width: 3.5rem;
+  height: 3.5em;
+  border-radius: 50%;
+  background-size: cover;
+  border: 3px solid #FFE199;
 }
 
-#btnDropMenu:hover{
-    color: #ffcfa2;
-}
 
-#userProfilePhoto{
-    width: 3.5em;
-    height: 3.5em;
-    border-radius: 50%;
-    background-size: cover;
-}

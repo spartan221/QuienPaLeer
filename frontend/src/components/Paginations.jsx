@@ -31,7 +31,7 @@ const Paginations = ({postPerPage, totalPosts,setCurrentPage,currentPage}) => {
         setCurrentPage(pageNumber)
     }
   return (
-    <nav>
+    <nav className='mb-5'>
         <ul className='pagination justify-content-center mt-5'>
             {band
                   ?<li key={currentPage - 1} className="page-item disabled">

@@ -8,11 +8,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/ContentStyle.css';
 import Content from "./ContentHome";
 import '../css/ContentHome.css';
-const ApiHeroku=import.meta.env.VITE_API
+const ApiHeroku = import.meta.env.VITE_API
 
 const Home = () => {
 
-    const baseURL = ApiHeroku+'api/profile/myInfo'
+    const baseURL = ApiHeroku + 'api/profile/myInfo'
     const [user, setUser] = useState(null)
     const navigate = useNavigate();
     const location = useLocation();
@@ -36,24 +36,10 @@ const Home = () => {
     return (
         <div>
             <div className='layout'>
-                <div className='navegBar sticky-top'>
+                <SideBar {...user} />
+                <div className="content w-100">
                     <Navigation {...user} />
-                </div>
-                <div className="side">
-                    <SideBar />
-                </div>
-                <div className="content">
                     {location.pathname === "/home" ? <Content /> : <Outlet />}
-                </div>
-
-                <div className="chat">
-                </div>
-
-                <div className="text-center mt-5 footer " style={{backgroundColor: '#ffcfa2'}}>
-                    <div className="text-center text-black p-3">
-                        © 2022 Copyright
-                        <p>QuienPaLeer</p>
-                    </div>
                 </div>
             </div>
         </div>

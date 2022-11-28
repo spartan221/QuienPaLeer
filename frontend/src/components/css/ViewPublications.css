@@ -1,11 +1,11 @@
 
 #btnAddBookSell{
-    background-color: #ffcfa2;
-    color: black;
+    background-color: #1C51C7;
+    color: white;
     border-color: transparent;
 }
 
 #btnAddBookSell:hover{
-    background-color: black;
-    color: #ffcfa2;
+    background-color: #88ACFC;
+    color: black;
 }

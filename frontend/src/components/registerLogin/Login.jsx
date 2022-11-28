@@ -1,6 +1,6 @@
 import React from "react";
 import '../../css/Login.css';
-import LogoQPLBlack from "../../assets/img/QPL_Logo_Black.png";
+import LogoQPLBlack from "../../assets/img/QPL_Logo_White.png";
 import { FaEye } from "react-icons/fa";
 import { useState } from "react";
 import axios from 'axios';
@@ -112,7 +112,7 @@ const Login = () => {
   return (
     <div className="d-flex align-content-center justify-content-center vh-100">
       <div className="card my-auto">
-        <div className="card-header" style={{backgroundColor: '#ffcfa2', borderRadius: '19px 19px 0px 0px'}}>
+        <div className="card-header" id="headerLogin" style={{borderRadius: '19px 19px 0px 0px'}}>
           <div className="row">
             <div className="col-4">
               <div className="logoQPL">
@@ -194,9 +194,9 @@ const Login = () => {
             </div>
           </form>
         </div>
-        <div className="card-footer d-flex justify-content-center align-content-center">
+        <div id='footerLogin' className="card-footer d-flex justify-content-center align-content-center">
           <p className="textDontHaveAcc">¿Aún no tienes una cuenta?</p>
-          <Link className="linkRegister" to='/register'>Registrar</Link>
+          <Link className="linkRegister" style={{color: '#FFB914'}} to='/register'>Registrar</Link>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import '../../css/Register.css'
-import LogoQPLBlack from '../../assets/img/QPL_Logo_Black.png';
+import LogoQPLBlack from '../../assets/img/QPL_Logo_White.png';
 import { FaEye } from "react-icons/fa";
 import { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
@@ -127,7 +127,7 @@ function Register() {
   return (
     <div className='d-flex align-content-center justify-content-center vh-100'>
       <div className="card my-auto">
-        <div className="card-header" style={{backgroundColor: '#ffcfa2', borderRadius: '19px 19px 0px 0px'}}>
+        <div className="card-header" id='registerCardheader' style={{borderRadius: '19px 19px 0px 0px'}}>
           <div className="row">
             <div className="col-9">
               <div className="d-flex justify-content-start align-content-center">
@@ -229,9 +229,9 @@ function Register() {
             </div>
           </form>
         </div>
-        <div className="card-footer d-flex justify-content-center align-content-center">
-          <p className="textDontHaveAcc">¿Ya tienes una cuenta?</p>
-          <Link className="linkRegister" to='/'>Entrar</Link>
+        <div id='registerFooter' className="card-footer d-flex justify-content-center align-content-center">
+          <p className="textDontHaveAcc" style={{color:'#FFE199'}}>¿Ya tienes una cuenta?</p>
+          <Link className="linkRegister" style={{color:'#FFB914'}} to='/'>Entrar</Link>
         </div>
       </div>
     </div>
